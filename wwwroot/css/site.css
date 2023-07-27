@@ -1,0 +1,191 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    height: calc(100vh - (footer height + any additional spacing));
+    overflow-y: auto;
+}
+
+logoSize {
+    width:100px;
+}
+
+.name {
+    text-transform: capitalize;
+}
+
+table.width {
+    width:100%
+}
+
+.trColor{
+    color: white;
+    background-color: black;
+}
+
+.codeTable table {
+    width: 100%;
+}
+
+.codeTable thead {
+    width: calc(100%-1em);
+}
+
+.codeTable tbody {
+    display: block;
+    height: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+    .codeTable thead, .codeTable tbody tr {
+        display: table;
+        width: 97%;
+        table-layout: fixed;
+    }
+    
+
+.codeTable thead, .codeTable tbody, .codeTable td {
+    border: none !important;
+}
+
+tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+
+}
+
+.footerDiv {
+    flex-shrink: 0;
+}
+
+
+.Tbpage-wrapper {
+    height: 50%;
+    
+}
+.containerCards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 auto;
+    max-width: 30%;
+}
+
+.paddingTop {
+    padding-top:10px;
+}
+
+tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+
+/* dataTable add on CSS */
+
+.dataTables_paginate .paginate_button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 2px;
+    cursor: pointer;
+}
+
+    .dataTables_paginate .paginate_button.active {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+    .dataTables_paginate .paginate_button.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+.dataTables_wrapper {
+    overflow: hidden;
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+    .dataTables_wrapper .dataTables_paginate .paginate_button.next,
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        display: inline-block;
+        padding: 0.5rem;
+        margin: 0 0.25rem;
+    }
+
+       
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        margin: 0 0.25rem;
+    }
+
+        
+
+
+/* END - dataTable add on CSS */
+
+
+.table-container {
+    width: 100%;
+}
+
+.paddAl {
+    padding: 20px
+}
+
+h1.fontTxt {
+    font-family: 'Roboto', sans-serif;
+}
+
+.button-export {
+    text-align: right;
+    padding: 10px 20px;
+}
+
+.containero {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lefto {
+    display: flex;
+    gap: 10px;
+}
+
+.righto {
+    display: flex;
+    align-items: center;
+}
+
+    .righto labesl {
+        margin-right: 10px;
+    }
+

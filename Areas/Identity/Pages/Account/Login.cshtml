@@ -1,0 +1,77 @@
+﻿@page
+@model LoginModel
+
+@{
+    
+    Layout = Request.Path.StartsWithSegments("/Account/Login") ? null : "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<title>Calibration Management System</title>
+
+<div>
+    <h1 class="fontTxt">CALIBRATION SYSTEM</h1>
+</div>
+
+<div class="container-xxl" style="display: flex; justify-content: flex-end;">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a href="index.html" class="app-brand-link gap-2">
+                            
+                            <span class="app-brand-text demo text-body fw-bolder">SANYO DENKI PHILIPPINES</span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-2">Welcome to Calibration System! 👋</h4>
+                    <p class="mb-4">Please sign-in to your account.</p>
+
+                    <form id="account" class="mb-3" method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email or Username</label>
+                            <input type="text"
+                                   class="form-control"
+                                   asp-for="Input.Email"
+                                   placeholder="Enter your email"
+                                   autofocus />
+                        </div>
+                        <div class="mb-3 form-password-toggle">
+                            <div class="d-flex justify-content-between">
+                                <label class="form-label" for="password">Password</label>
+                                <a href="auth-forgot-password-basic.html">
+                                    @*<small>Forgot Password?</small>*@
+                                </a>
+                            </div>
+                            <div class="input-group input-group-merge">
+                                <input type="password"
+                                       id="password"
+                                       class="form-control"
+                                       asp-for="Input.Password"
+                                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                       aria-describedby="password" />
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                
+                                <label style="font-size:xx-small;" class="form-check-label" for="remember-me"><b>For guest user you may use this id.</b>  <br />User: guest@sanyodenki.com<br /> Pass: Password01*</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary d-grid w-100">Sign in</button>
+                        </div>
+                    </form>
+
+                    <p class="text-center">
+                        
+                    </p>
+                </div>
+            </div>
+            <!-- /Register -->
+        </div>
+    </div>
+</div>

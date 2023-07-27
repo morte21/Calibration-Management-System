@@ -1,0 +1,205 @@
+﻿@model Calibration_Management_System.Models.EquipmentRegistration
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Equipment</h1>
+
+<h4>Registration Update</h4>
+<hr />
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-3">
+                 <div class="form-group">
+                    <label asp-for="fld_codeNo" class="control-label"></label>
+                    <input required asp-for="fld_codeNo" class="form-control" />
+                    <span asp-validation-for="fld_codeNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_ctrlNo" class="control-label"></label>
+                    <input required asp-for="fld_ctrlNo" id="fld_ctrlNo" readonly class="form-control" />
+                    <span asp-validation-for="fld_ctrlNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_division" class="control-label"></label>
+                    <select required asp-for="fld_division" asp-items="@(ViewBag.Dept)" class="form-control"></select>
+                    <span asp-validation-for="fld_division" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_category" class="control-label"></label>
+                    <select required asp-for="fld_category" asp-items="@(ViewBag.Category)" id="fld_category" class="form-control"></select>
+                    <span asp-validation-for="fld_category" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label  class="control-label">User Function Code</label>
+                    <select required asp-for="fld_code2" asp-items="@(ViewBag.EqpCode)" id="fld_code2" class="form-control"></select>
+                    <span asp-validation-for="fld_code2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_eqpName" class="control-label"></label>
+                    <input required asp-for="fld_eqpName" class="form-control" />
+                    <span asp-validation-for="fld_eqpName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_eqpModelNo" class="control-label"></label>
+                    <input required asp-for="fld_eqpModelNo" class="form-control" />
+                    <span asp-validation-for="fld_eqpModelNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_serial" class="control-label"></label>
+                    <input required asp-for="fld_serial" class="form-control" />
+                    <span asp-validation-for="fld_serial" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="fld_brand" class="control-label"></label>
+                    <input required asp-for="fld_brand" class="form-control" />
+                    <span asp-validation-for="fld_brand" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_term" class="control-label"></label>
+                    <select required asp-for="fld_term" asp-items="@(ViewBag.Terms)" id="fld_term" onchange="updateCalibrationDate()" class="form-control"></select>
+                    <span asp-validation-for="fld_term" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_reqFunction" class="control-label"></label>
+                    <select required asp-for="fld_reqFunction" asp-items="@(ViewBag.Dept)" class="form-control"></select>
+                    <span asp-validation-for="fld_reqFunction" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_passFail" class="control-label"></label>
+                    <select required asp-for="fld_passFail" asp-items="@(ViewBag.Status)" class="form-control"></select>
+                    <span asp-validation-for="fld_passFail" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="fld_registrationDate" class="control-label"></label>
+                    <input required type="date" id="myDateInput" asp-for="fld_registrationDate" class="form-control" />
+                    <span asp-validation-for="fld_registrationDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label  class="control-label">Expiration Period</label>
+                    <select required asp-for="fld_imte" id="expirationSelect" onchange="updateCalibrationDate()" class="form-control">
+                        <option value="">Select</option>
+                        <option value="Same Date Expiration">Same Date Expiration</option>
+                        <option value="End of Month Expiration">End of Month Expiration</option>
+                        <option value="November 30 Expiration">November 30 Expiration</option>
+                    </select>
+                    <span asp-validation-for="fld_imte" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_calibDate" class="control-label"></label>
+                    <input required type="date" id="calibrationDateInput" onchange="updateCalibrationDate()" asp-for="fld_calibDate" class="form-control" />
+                    <span asp-validation-for="fld_calibDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_calibMonth" class="control-label"></label>
+                    <select required asp-for="fld_calibMonth" asp-items="@(ViewBag.Months)" class="form-control"></select>
+                    <span asp-validation-for="fld_calibMonth" class="text-danger"></span>
+                </div>
+            </div>
+            <hr style="border-top: 3px double #000000;" />
+            <div class="col-md-6">
+                 <div class="form-group">
+                    <label asp-for="fld_calibYear" class="control-label"></label>
+                    <input type="number" asp-for="fld_calibYear" id="calibrationYearInput" readonly class="form-control" />
+                    <span asp-validation-for="fld_calibYear" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_nextCalibDate" class="control-label"></label>
+                    <input type="date" id="nextCalibrationDateInput" readonly asp-for="fld_nextCalibDate" class="form-control" />
+                    <span asp-validation-for="fld_nextCalibDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_nextCalibMonth" class="control-label"></label>
+                    <input asp-for="fld_nextCalibMonth" id="nextCalibrationMonthInput" readonly class="form-control" />
+                    <span asp-validation-for="fld_nextCalibMonth" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_nextCalibYear" class="control-label"></label>
+                    <input type="number" id="nextCalibrationYearInput" readonly asp-for="fld_nextCalibYear" class="form-control" />
+                    <span asp-validation-for="fld_nextCalibYear" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="fld_internalExternal" class="control-label"></label>
+                    <select asp-for="fld_internalExternal" asp-items="@(ViewBag.IntExt)" class="form-control"></select>
+                    <span asp-validation-for="fld_internalExternal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_supplierExternal" class="control-label"></label>
+                    <input asp-for="fld_supplierExternal" class="form-control" />
+                    <span asp-validation-for="fld_supplierExternal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_comment" class="control-label"></label>
+                    <input asp-for="fld_comment" class="form-control" />
+                    <span asp-validation-for="fld_comment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_appStandardEqp" class="control-label"></label>
+                    <input asp-for="fld_appStandardEqp" class="form-control" />
+                    <span asp-validation-for="fld_appStandardEqp" class="text-danger"></span>
+                </div>
+            </div>
+            <hr style="border-top: 3px double #000000;" />
+            <div class="col-md-6">
+                <div class="form-group"><div>
+                        <div class="form-group">
+                            <label for="_pathIMG">Image Upload:</label>
+                            <input type="file" id="_pathIMG" name="_pathIMG" class="form-control-file" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="_pathDoc">PDF Upload:  &nbsp;&nbsp;</label>
+                            <input type="file" id="_pathDoc" name="_pathDoc" class="form-control-file" />
+                        </div>
+
+                </div>
+
+                    <div class="form-group">
+                       
+                    <label asp-for="fld_stat" class="control-label"></label>
+                        <select required asp-for="fld_stat" class="form-control">
+                            <option value="">Select</option>
+                            <option value="OK">OK</option>
+                            <option value="SUSPENDED">SUSPENDED</option>
+                            <option value="DISPOSED">DISPOSED</option>
+                        </select>
+                    <span asp-validation-for="fld_stat" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group paddingTop">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                    <a style="padding-left:20px" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+
+
+
+
+
+
+                
+                
+
+           
+        </div>
+    </div>
+    </div>
+
+</form>
+
+

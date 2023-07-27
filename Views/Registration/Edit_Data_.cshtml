@@ -1,0 +1,216 @@
+﻿@model Calibration_Management_System.Models.RegistrationClass
+
+@{
+    ViewData["Title"] = "Edit_Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Equipment</h1>
+
+<h4>Update Data</h4>
+<hr />
+
+<form asp-action="Edit_Data">
+<div class="container">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-6">
+            <div class="form-group paddingTop">
+                <input hidden asp-for="fld_dateReg" class="form-control" />
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_reqFunction" class="control-label"></label>
+                <select id="requestingFunctionSelect" asp-for="fld_reqFunction" asp-items="@(ViewBag.RequestingFunction)" class="form-control"></select>
+                <span asp-validation-for="fld_reqFunction" class="text-danger"></span>
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_incharge" class="control-label"></label>
+                <input asp-for="fld_incharge" class="form-control" />
+                <span asp-validation-for="fld_incharge" class="text-danger"></span>
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_approvedBy" class="control-label"></label>
+                <input asp-for="fld_approvedBy" class="form-control" />
+                <span asp-validation-for="fld_approvedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_codeNo" class="control-label"></label>
+                <input readonly id="codeInput" name="fld_codeNo" asp-for="fld_codeNo" class="form-control" />
+                <span asp-validation-for="fld_codeNo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+                <div class="form-group paddingTop">
+                    <input hidden asp-for="fld_dateReg" class="form-control" />
+                </div>
+            <div class="form-group paddingTop">
+                    <label  class="control-label">Control Number - ***For Re-registraion only***</label>
+                    <input  asp-for="fld_ctrlNo" class="form-control" />
+                    <span  asp-validation-for="fld_ctrlNo" class="text-danger"></span>
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_eqpName" class="control-label"></label>
+                <input asp-for="fld_eqpName" class="form-control" />
+                <span asp-validation-for="fld_eqpName" class="text-danger"></span>
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_eqpModelNo" class="control-label"></label>
+                <input asp-for="fld_eqpModelNo" class="form-control" />
+                <span asp-validation-for="fld_eqpModelNo" class="text-danger"></span>
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_serial" class="control-label"></label>
+                <input asp-for="fld_serial" class="form-control" />
+                <span asp-validation-for="fld_serial" class="text-danger"></span>
+            </div>
+            <div class="form-group paddingTop">
+                <label asp-for="fld_brand" class="control-label"></label>
+                <input asp-for="fld_brand" class="form-control" />
+                <span asp-validation-for="fld_brand" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="fld_submissionDate" class="control-label"></label>
+                <input type="date" asp-for="fld_submissionDate" class="form-control" />
+                <span asp-validation-for="fld_submissionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fld_receivedBy" class="control-label"></label>
+                <input asp-for="fld_receivedBy" class="form-control" />
+                <span asp-validation-for="fld_receivedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fld_status" class="control-label"></label>
+                <select asp-for="fld_status" asp-items="@(ViewBag.Status)" class="form-control"></select>
+                <span asp-validation-for="fld_status" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group paddingTop">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a style="padding-left:20px" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+@*<div class="col-md-4">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="id" />
+    <div class="form-group">
+        <label asp-for="fld_dateReg" class="control-label"></label>
+        <input asp-for="fld_dateReg" class="form-control" />
+        <span asp-validation-for="fld_dateReg" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_reqFunction" class="control-label"></label>
+        <input asp-for="fld_reqFunction" class="form-control" />
+        <span asp-validation-for="fld_reqFunction" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_incharge" class="control-label"></label>
+        <input asp-for="fld_incharge" class="form-control" />
+        <span asp-validation-for="fld_incharge" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_approvedBy" class="control-label"></label>
+        <input asp-for="fld_approvedBy" class="form-control" />
+        <span asp-validation-for="fld_approvedBy" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_codeNo" class="control-label"></label>
+        <input asp-for="fld_codeNo" class="form-control" />
+        <span asp-validation-for="fld_codeNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_reRegEquipmentCtrlNo" class="control-label"></label>
+        <input asp-for="fld_reRegEquipmentCtrlNo" class="form-control" />
+        <span asp-validation-for="fld_reRegEquipmentCtrlNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_eqpName" class="control-label"></label>
+        <input asp-for="fld_eqpName" class="form-control" />
+        <span asp-validation-for="fld_eqpName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_eqpModelNo" class="control-label"></label>
+        <input asp-for="fld_eqpModelNo" class="form-control" />
+        <span asp-validation-for="fld_eqpModelNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_serial" class="control-label"></label>
+        <input asp-for="fld_serial" class="form-control" />
+        <span asp-validation-for="fld_serial" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_brand" class="control-label"></label>
+        <input asp-for="fld_brand" class="form-control" />
+        <span asp-validation-for="fld_brand" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_submissionDate" class="control-label"></label>
+        <input asp-for="fld_submissionDate" class="form-control" />
+        <span asp-validation-for="fld_submissionDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_receivedBy" class="control-label"></label>
+        <input asp-for="fld_receivedBy" class="form-control" />
+        <span asp-validation-for="fld_receivedBy" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_status" class="control-label"></label>
+        <input asp-for="fld_status" class="form-control" />
+        <span asp-validation-for="fld_status" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_emailOne" class="control-label"></label>
+        <input asp-for="fld_emailOne" class="form-control" />
+        <span asp-validation-for="fld_emailOne" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_emailTwo" class="control-label"></label>
+        <input asp-for="fld_emailTwo" class="form-control" />
+        <span asp-validation-for="fld_emailTwo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_emailThree" class="control-label"></label>
+        <input asp-for="fld_emailThree" class="form-control" />
+        <span asp-validation-for="fld_emailThree" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_jigName" class="control-label"></label>
+        <input asp-for="fld_jigName" class="form-control" />
+        <span asp-validation-for="fld_jigName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_drawingNo" class="control-label"></label>
+        <input asp-for="fld_drawingNo" class="form-control" />
+        <span asp-validation-for="fld_drawingNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_reRegJigCtrlNo" class="control-label"></label>
+        <input asp-for="fld_reRegJigCtrlNo" class="form-control" />
+        <span asp-validation-for="fld_reRegJigCtrlNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_jigCategory" class="control-label"></label>
+        <input asp-for="fld_jigCategory" class="form-control" />
+        <span asp-validation-for="fld_jigCategory" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="fld_remarks" class="control-label"></label>
+        <input asp-for="fld_remarks" class="form-control" />
+        <span asp-validation-for="fld_remarks" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+
+</div>*@

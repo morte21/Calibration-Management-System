@@ -1,0 +1,315 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.EquipmentRegistration>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>EQUIPMENT MASTERLIST</h1>
+
+
+<div >
+    <div class="d-flex justify-content-between">
+        <div>
+            <a asp-action="Create" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Create New</a>
+        </div>
+        <div>
+            <button type="button" class="btn btn-dark button-export" onclick="exportToExcel()">Export to Excel</button>
+        </div>
+    </div>
+</div>
+    
+
+<div class="card" style="padding:5px;">
+    <h5 class="card-header">Equipment Calibration Data</h5>
+    <hr />
+    <div class="table-responsive text-nowrap">
+        <table id="equipment-registration" class="display table">
+            <thead>
+                <tr>
+                    <th>
+                        Action
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_codeNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_ctrlNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_division)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_code2)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_eqpName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_eqpModelNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_serial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_brand)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_term)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_reqFunction)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_passFail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_registrationDate)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.fld_imte)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibMonth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibYear)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_nextCalibDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_nextCalibMonth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_nextCalibYear)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_internalExternal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_supplierExternal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_comment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_appStandardEqp)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.fld_pathIMG)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.fld_pathDoc)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.fld_stat)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibResult)
+                    </th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            
+                             &nbsp;&nbsp;<a asp-action="Edit" asp-route-id="@item.id">Edit</a>&nbsp;&nbsp; |
+                            &nbsp;&nbsp;<a asp-action="Details" asp-route-id="@item.id">Details</a>  @*|
+                            <a asp-action="Delete" asp-route-id="@item.id">Delete</a> *@
+                            
+                        </td>
+                         
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_codeNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_ctrlNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_division)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_code2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_eqpName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_eqpModelNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_serial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_brand)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_term)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_reqFunction)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_passFail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_registrationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_imte)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_calibDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_calibMonth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_calibYear)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_nextCalibDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_nextCalibMonth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_nextCalibYear)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_internalExternal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_supplierExternal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_comment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_appStandardEqp)
+                        </td>
+                        <td hidden>
+                            @Html.DisplayFor(modelItem => item.fld_pathIMG)
+                        </td>
+                        <td hidden>
+                            @Html.DisplayFor(modelItem => item.fld_pathDoc)
+                        </td>
+                        <td hidden>
+                            @Html.DisplayFor(modelItem => item.fld_stat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_calibResult)
+                        </td>
+                       
+                          
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th ></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_codeNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_ctrlNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_division)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_code2)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_eqpName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_eqpModelNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_serial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_brand)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_term)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_reqFunction)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_passFail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_registrationDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_imte)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibMonth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibYear)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_nextCalibDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_nextCalibMonth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_nextCalibYear)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_internalExternal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_supplierExternal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_comment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_appStandardEqp)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.fld_pathIMG)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.fld_pathDoc)
+                    </th>
+                    <th hidden>
+                        @Html.DisplayNameFor(model => model.fld_stat)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_calibResult)
+                    </th>
+                    
+                    
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

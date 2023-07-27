@@ -1,0 +1,198 @@
+﻿@model Calibration_Management_System.Models.EquipmentRegistration
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Calibration Information</h4>
+    
+    <hr />
+        <div>
+            <div class="card paddAl">
+                <div class="col">
+                <a href="@Url.Content("~/images/" + Model.fld_pathIMG)" target="_blank">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANBJREFUSEvtlWsNwjAURs8UgAPAARLmACygDFAAEpAwHCABFEA+siZN10fapoQE7s9m9zv3vY7G1jXW56OAHtgDy4KsbsAOuLi+dgb6aFEgblzkv4oBnhXixnVScvvhD1CZqkt0BObAJtCvKsAV0CjLNDEzDyQboIi1F+tRfBhFt8CpFmAilrggB0fwDAgUtdCYPpyIfSLqxb0UoLV3I45pmR3K7oFP1HcgvwOgevpGL3S/UqflnamdrmZcdU9dVOOTDUgNRHWTfxsQzL75T/8FgEAoGdn7svAAAAAASUVORK5CYII=" />
+                    View Image
+                </a>
+                ||
+                <a href="@Url.Content("~/documents/" + Model.fld_pathDoc)" target="_blank">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAOxJREFUSEvtlv8JwjAQhb9O4gjqBLqBjqAbiAuok+gIuoEruIEuovIghbREL9dY9A8PAoVe3pfLj5dU9BxVz/qkAHNgA4wM+AFYWgNMAa7AwOoY/puQFOCRIa6R73MgXQHqt8iBlABUgAkpBZiQTwDakIZmV8C7ffAHmKfkt6ZIo5EnyZ8UR+AOrAFZiqxCtnKO6nJVoGR13gLT0IbAOBwyQXTYJiUAic+AUwCoIjUJCy5x5dThrqA2v100Rfq+BEVZexwugLllEgnfB3gunHYBmrbGTfjqytSiabd44gaswjqlV9yjlpvb+6viCShKNBln3rfLAAAAAElFTkSuQmCC" />
+                    View PDF
+                </a>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div class="card paddAl">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_codeNo)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_codeNo)" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_ctrlNo)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_ctrlNo)" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_division)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_division)" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_category)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_category)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Us</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_code2)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_eqpName)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_eqpName)" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_eqpModelNo)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_eqpModelNo)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_serial)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_serial)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_brand)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_brand)" />
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_term)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_term)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_reqFunction)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_reqFunction)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_passFail)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_passFail)" />
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card paddAl">
+                <div class="row"> 
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_registrationDate)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_registrationDate)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Expiration Period</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_imte)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_calibDate)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_calibDate)" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_calibMonth)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_calibMonth)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_calibYear)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_calibYear)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_nextCalibDate)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_nextCalibDate)" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_nextCalibMonth)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_nextCalibMonth)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_nextCalibYear)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_nextCalibYear)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_internalExternal)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_internalExternal)" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_supplierExternal)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_supplierExternal)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_comment)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_comment)" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">@Html.DisplayNameFor(model => model.fld_appStandardEqp)</label>
+                            <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_appStandardEqp)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    @*<img src="~/images/@Model.fld_pathIMG" alt="Current Image" style="width:500px"/>*@
+    
+
+
+
+
+
+    @* <dl class="row">
+          
+            
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.fld_pathIMG)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.fld_pathIMG)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.fld_pathDoc)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.fld_pathDoc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.fld_stat)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.fld_stat)
+            </dd>
+            
+        </dl>*@
+</div>
+
+
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

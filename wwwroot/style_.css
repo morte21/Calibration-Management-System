@@ -1,0 +1,68 @@
+﻿.bg {
+    background-color:black;
+}
+
+.inputWidth {
+    width: 100%;
+    text-align: center;
+    margin: 0px auto;
+}
+
+div section {
+    text-align: center;
+    margin: 150px auto;
+    top: 210px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.textLeft {
+    text-align: left;
+}
+
+.containerIMG {
+    /*position: fixed;*/
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+    .containerIMG img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+.containerLogo {
+    position: fixed;
+    left: 0;
+    top: 55px;
+    width: 100%;
+    text-align: center;
+    opacity: 0.7;
+}
+
+    .containerLogo img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+.fontRoboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+

@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.RegistrationClass>
+
+@{
+    ViewData["Title"] = "IndexJig";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>JIG REGISTRATION</h1>
+<div class="containero">
+    <div class="lefto">
+        <a asp-action="Create_Reg_Jig" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">New Registration</a>
+        <a asp-action="Create_ReReg_Jig" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Re-Registration</a>
+    </div>
+    <div class="righto">
+        <b>
+            <label id="completeJig"></label>
+            <label id="pendingJig"></label>
+            <label id="ongoingJig"></label>
+        </b>
+    </div>
+</div>
+
+<hr />
+<div class="card" style="padding:5px;">
+    <h5 class="card-header">Calibration Management System</h5>
+    <hr />
+    
+    <div class="table-responsive text-nowrap">
+        <table id="table-registration-jig" class="display table">
+            <thead>
+                <tr>
+                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_approvedBy)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_codeNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_jigName)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_drawingNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_eqpName)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_eqpModelNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_serial)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_brand)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_submissionDate)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_receivedBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_status)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_emailOne)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_emailTwo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_emailThree)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_reRegJigCtrlNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_jigCategory)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_remarks)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td hidden>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateReg)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_reqFunction)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_incharge)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_approvedBy)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_codeNo)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_jigName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_drawingNo)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_eqpName)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_eqpModelNo)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_serial)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_brand)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_submissionDate)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_receivedBy)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_status)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_emailOne)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_emailTwo)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_emailThree)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_reRegJigCtrlNo)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_jigCategory)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_remarks)</td>
+                        <td>
+                           @*<div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bx bx-dots-horizontal-rounded "></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="font-size:x-small;" asp-action="Edit_Data" asp-route-id="@item.id">Edit</a>
+                                    <a class="dropdown-item" style="font-size:x-small;" asp-controller="EquipmentMaster" asp-action="EditGet" asp-route-fld_codeNo="@item.fld_codeNo" asp-route-fld_eqpName="@item.fld_eqpName" asp-route-fld_eqpModelNo="@item.fld_eqpModelNo" asp-route-fld_serial="@item.fld_serial" asp-route-fld_brand="@item.fld_brand" asp-route-fld_reqFunction="@item.fld_reqFunction" asp-route-fld_ctrlNo="@item.fld_ctrlNo">Register Calibration</a>
+                                    <a class="dropdown-item" style="font-size:x-small;" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                </div>
+                            </div>*@
+
+                            <a style="font-size:x-small;" asp-action="Edit_DataJig" asp-route-id="@item.id">Edit</a> |
+                            <a style="font-size:x-small;" asp-controller="JigMaster" asp-action="EditGet" asp-route-fld_codeNo="@item.fld_codeNo" asp-route-fld_jigName="@item.fld_jigName" asp-route-fld_drawingNo="@item.fld_drawingNo" asp-route-fld_serial="@item.fld_serial" asp-route-fld_reqFunction="@item.fld_reqFunction" asp-route-fld_ctrlNo="@item.fld_ctrlNo">Register Calibration</a>
+
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th hidden></th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_approvedBy)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_codeNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_jigName)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_drawingNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_eqpName)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_eqpModelNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_serial)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_brand)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_submissionDate)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_receivedBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_status)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_emailOne)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_emailTwo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_emailThree)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_reRegJigCtrlNo)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_jigCategory)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_remarks)</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+ 
+
+
+

@@ -1,0 +1,89 @@
+﻿@model Calibration_Management_System.Models.RegistrationClass
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Equipment</h1>
+
+<h4>Update Data</h4>
+<hr />
+<form asp-action="Edit_Data">
+<div class="container">
+    <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6">
+                <div class="form-group paddingTop">
+                    <input hidden asp-for="fld_dateReg" class="form-control" />
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_reqFunction" class="control-label"></label>
+                    <select id="requestingFunctionSelect" asp-for="fld_reqFunction" asp-items="@(ViewBag.RequestingFunction)" class="form-control"></select>
+                    <span asp-validation-for="fld_reqFunction" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_incharge" class="control-label"></label>
+                    <input asp-for="fld_incharge" class="form-control" />
+                    <span asp-validation-for="fld_incharge" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_approvedBy" class="control-label"></label>
+                    <input asp-for="fld_approvedBy" class="form-control" />
+                    <span asp-validation-for="fld_approvedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_codeNo" class="control-label"></label>
+                    <input readonly id="codeInput" name="fld_codeNo" asp-for="fld_codeNo" class="form-control" />
+                    <span asp-validation-for="fld_codeNo" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_ctrlNo" class="control-label"></label>
+                    <input asp-for="fld_ctrlNo" class="form-control" />
+                    <span asp-validation-for="fld_ctrlNo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group paddingTop">
+                    <input hidden asp-for="fld_dateReg" class="form-control" />
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_eqpName" class="control-label"></label>
+                    <input asp-for="fld_eqpName" class="form-control" />
+                    <span asp-validation-for="fld_eqpName" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_eqpModelNo" class="control-label"></label>
+                    <input asp-for="fld_eqpModelNo" class="form-control" />
+                    <span asp-validation-for="fld_eqpModelNo" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_serial" class="control-label"></label>
+                    <input asp-for="fld_serial" class="form-control" />
+                    <span asp-validation-for="fld_serial" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_brand" class="control-label"></label>
+                    <input asp-for="fld_brand" class="form-control" />
+                    <span asp-validation-for="fld_brand" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group paddingTop">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                    <a style="padding-left:20px" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+
+            
+    </div>
+</div>
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+}
