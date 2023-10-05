@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.SuspendDisposeRegistration>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SUSPEND MASTERLIST</h1>
+
+
+<hr />
+<div class="card" style="padding:5px;">
+    <h5 class="card-header">Calibration Management System</h5>
+    
+    <hr />
+    <div class="table-responsive text-nowrap">
+        <table id="table-suspendMaster" class="display table">
+            <thead>
+                <tr>
+                    <th>--A c t i o n--</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_itemName)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibType)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_modelNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_serial)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_brand)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_fixedAsset)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_requestBy)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_approvedBy)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_reason)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_drawingNo)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_suspendedDate)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_disposalDate)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_submitdate)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_receivedBy)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_reqStatus)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_inchargeQA)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_followUpDate)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_nextFollowUp)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_inchargeRequestor)</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;<a asp-action="Edit_Suspend2" asp-route-id="@item.id">Edit</a>&nbsp;&nbsp; |
+                            &nbsp;&nbsp;<a asp-action="DetailsSuspend" asp-route-id="@item.id">Details</a>
+                        </td>
+                        <th hidden>@Html.DisplayNameFor(model => model.id)</th>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateReg)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_itemName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_calibType)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_modelNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_serial)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_brand)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_reqFunction)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_fixedAsset)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_requestBy)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_approvedBy)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_reason)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_drawingNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_suspendedDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_disposalDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_submitdate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_receivedBy)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_reqStatus)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_inchargeQA)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_followUpDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_nextFollowUp)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_inchargeRequestor)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_itemName)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibType)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_modelNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_serial)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_brand)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_fixedAsset)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_requestBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_approvedBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reason)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_drawingNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_suspendedDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_disposalDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_submitdate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_receivedBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reqStatus)</t>
+                    <th>@Html.DisplayNameFor(model => model.fld_inchargeQA)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_followUpDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_nextFollowUp)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_inchargeRequestor)</th>
+                    
+                </tr>
+            </tfoot>
+        </table>
+       
+    </div>
+</div>

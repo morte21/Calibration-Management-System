@@ -5,137 +5,86 @@
     Layout = Request.Path.StartsWithSegments("/Account/Login") ? null : "~/Views/Shared/_LoginLayout.cshtml";
 
 }
+  
 
+    <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+        <div >
+            <div class="row">
+                <div >
+                    <div class="authentication-wrapper authentication-basic container-p-y">
+                        <div class="authentication-inner">
+                            <!-- Register Card -->
+                            <div class="card" style="width:400px">
+                                <div class="card-body">
+                                    <!-- Logo -->
+                                    <div class="app-brand justify-content-center">
+                                        <a href="index.html" class="app-brand-link gap-2">
+                                            @*logo*@
+                                        </a>
+                                    </div>
+                                    <!-- /Logo -->
+                                    <h4 class="mb-2">User Registration 🚀</h4>
+                                    <p class="mb-4">Authorized user access only</p>
+                                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" class="mb-3" method="post">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="mb-3">
+                                            <label class="form-label">First Name</label>
+                                            <input asp-for="Input.Firstname"
+                                                   type="text"
+                                                   class="form-control"
+                                                   placeholder="Enter your first name"
+                                                   autofocus />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Last Name</label>
+                                            <input asp-for="Input.Lastname" type="text" class="form-control" placeholder="Enter your last name" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input asp-for="Input.Email" type="text" class="form-control" placeholder="Enter your email address" />
+                                        </div>
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label">Password</label>
+                                            <div class="input-group input-group-merge">
+                                                <input asp-for="Input.Password"
+                                                       class="form-control"
+                                                       placeholder="password"
+                                                       aria-describedby="Enter password" />
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label">Confirm Password</label>
+                                            <div class="input-group input-group-merge">
+                                                <input asp-for="Input.ConfirmPassword"
+                                                       class="form-control"
+                                                       placeholder="Confirm password"
+                                                       aria-describedby="password" />
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                        </div>
 
-@*<div class="row">
-    <div class="col-md-4">
-        <div class="card text-bg-light mb-3 shadow-sm p-3 mb-5 bg-body rounded">
-            <div class="card-body">
-                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Firstname" class="form-control" autocomplete="Firstname" aria-required="true" />
-                <label asp-for="Input.Firstname">First Name</label>
-                <span asp-validation-for="Input.Firstname" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Lastname" class="form-control" autocomplete="Lastname" aria-required="true" />
-                <label asp-for="Input.Lastname">Last Name</label>
-                <span asp-validation-for="Input.Lastname" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Email"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <select asp-for="Input.Role" asp-items="@((IEnumerable<SelectListItem>)ViewData["RoleList"])" class="form-select" aria-required="true">
-                
-                    <option disabled selected> Select Role </option>
-                </select>
-                <span asp-validation-for="Input.Role" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-            </div>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    
-</div>
-*@
+                                        <div class="mb-3">
+                                            <div class="form-floating mb-3">
+                                                <select asp-for="Input.Role" asp-items="@((IEnumerable<SelectListItem>)ViewData["RoleList"])" class="form-select" aria-required="true">
+                                                    <option disabled selected> Select Role </option>
+                                                </select>
+                                                <span asp-validation-for="Input.Role" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <button id="registerSubmit" type="submit" class="btn btn-primary d-grid w-100">Register</button>
+                                    </form>
 
+                                <a asp-action="Index">Back to Main</a>
+                                </div>
 
-<div class="container-xxl d-flex justify-content-center align-items-center">
-    <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
-            <!-- Register Card -->
-            <div class="card" style="width:400px">
-                <div class="card-body">
-                    <!-- Logo -->
-                    <div class="app-brand justify-content-center">
-                        <a href="index.html" class="app-brand-link gap-2">
-                            @*logo*@
-                        </a>
+                            </div>
+                            <!-- Register Card -->
+                        </div>
                     </div>
-                    <!-- /Logo -->
-                    <h4 class="mb-2">User Registration 🚀</h4>
-                    <p class="mb-4">Authorized user access only</p>
-                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" class="mb-3" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="mb-3">
-                            <label class="form-label">First Name</label>
-                            <input asp-for="Input.Firstname"
-                                   type="text"
-                                   class="form-control"
-                                   placeholder="Enter your first name"
-                                   autofocus />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Last Name</label>
-                            <input asp-for="Input.Lastname" type="text" class="form-control" placeholder="Enter your last name" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input asp-for="Input.Email" type="text" class="form-control" placeholder="Enter your email address" />
-                        </div>
-                        <div class="mb-3 form-password-toggle">
-                            <label class="form-label" >Password</label>
-                            <div class="input-group input-group-merge">
-                                <input 
-                                       asp-for="Input.Password"
-                                       class="form-control"
-                                       placeholder="password"
-                                       aria-describedby="Enter password" />
-                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                            </div>
-                        </div>
-                        <div class="mb-3 form-password-toggle">
-                            <label class="form-label">Confirm Password</label>
-                            <div class="input-group input-group-merge">
-                                <input 
-                                       asp-for="Input.ConfirmPassword"
-                                       class="form-control"
-                                       placeholder="Confirm password"
-                                       aria-describedby="password" />
-                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="form-floating mb-3">
-                                <select asp-for="Input.Role" asp-items="@((IEnumerable<SelectListItem>)ViewData["RoleList"])" class="form-select" aria-required="true">
-                                    <option disabled selected> Select Role </option>
-                                </select>
-                                <span asp-validation-for="Input.Role" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <button id="registerSubmit" type="submit" class="btn btn-primary d-grid w-100">Register</button>
-                    </form>
-
-                    
                 </div>
-                
             </div>
-            <!-- Register Card -->
+
         </div>
     </div>
-</div>
 
-<!-- / Content -->
-
-<div style="display: flex; justify-content: flex-end;">
-    <a asp-action="Index">Back to Main</a>
-</div>

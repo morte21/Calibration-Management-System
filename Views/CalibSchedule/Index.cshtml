@@ -1,0 +1,205 @@
+﻿@model DateModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CALIBRATION SCHEDULER</h1>
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group card" style="padding: 20px; height: 350px"  >
+                    <div class="form-group">
+                        <label class="control-label">Calibration Type:</label>
+                        <select id="selectType" class="form-control">
+                            <option selected>Select calibration type</option>
+                            <option value="Equipment">Equipment</option>
+                            <option value="Jig">Jig</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Month:</label>
+                        <select id="selectMonth" class="form-select" >
+                            <option selected>Select month</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="font-style: oblique">Select date coverage:</label><br />
+                        From: <input type="date" id="myDateInput1" class="form-control" />
+
+                        To: <input type="date" id="myDateInput2" class="form-control" />
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group card" style="padding: 20px; height: 150px">
+                        <div class="row">
+                            <label><b>Selected Calibration Dates:</b></label>
+                            <div class="col-md-12" style="margin-bottom: 10px;" >
+                                <input value="Select date here.." type="text" id="selectedDates" class="form-control">
+                            </div>
+                            <div class="col-md-12">
+                                <input hidden id="addDate" value="Add date" class="btn btn-secondary"  />
+                                <input class="btn btn-primary" value="① Get Data and Add schedule" id="searchButton" style="width:100%;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group card" style="padding: 20px; height: 150px">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="display: flex; justify-content: space-evenly;">
+                                    <label>
+                                        <input disabled id="checkboxEquipment" type="checkbox" />
+                                        Equipment Export Status
+                                    </label>
+                                    <label>
+                                        <input disabled id="checkboxJig" type="checkbox" />
+                                        Jig Export Status
+                                    </label>
+                                </div>
+                                <input class="btn btn-primary" value="② Export to Excel" id="exportButton" style="width:100%;" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+
+            <div class="col-md-8" >
+                <div class="form-group card" style="padding: 10px;height: 300px;">
+                    <div style="height: 300px; overflow-y: auto;">
+                        <table id="searchResultsTable" class="display table">
+                            <thead>
+                                <tr>
+                                    <th style="font-size: smaller">Calibration Date</th>
+                                    <th style="font-size: smaller">Schedule Date</th>
+                                    <th style="font-size: smaller">Code</th>
+                                    <th style="font-size: smaller">Control Number</th>
+                                    <th style="font-size: smaller">Equipment Name</th>
+                                    <th style="font-size: smaller">Model Number</th>
+                                    <th style="font-size: smaller">Serial</th>
+                                    <th style="font-size: smaller">Brand</th>
+                                    <th style="font-size: smaller">Term</th>
+                                    <th style="font-size: smaller">Dept/Sec</th>
+                                    <th style="font-size: smaller">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResultsBody">
+
+                                <!-- Data fetched from the database will be displayed here -->
+                            </tbody>
+                        </table>
+                        <table id="searchResultsTable2" class="display table" >
+                            <thead>
+                                <tr>
+                                    <th style="font-size: smaller">Calibration Date</th>
+                                    <th style="font-size: smaller">Schedule Date</th>
+                                    <th style="font-size: smaller">Control Number</th>
+                                    <th style="font-size: smaller">Jig Name</th>
+                                    <th style="font-size: smaller">Drawing Number</th>
+                                    <th style="font-size: smaller">Terms</th>
+                                    <th style="font-size: smaller">Dept/Sec</th>
+                                    <th style="font-size: smaller">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResultsBody">
+
+                                <!-- Data fetched from the database will be displayed here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card" style="padding:10px; height:360px;">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <select id="monthInput" asp-items="@(ViewBag.Months)" class="form-select"> </select>
+                                <input type="number" id="yearInput" style="margin-top:10px;" class="form-select" placeholder="Input Year">
+                            </div>
+                            @*<input class="btn btn-primary" value="② Take Data" id="searchButtonDb" style="margin-bottom:5px;" />
+                            <input class="btn btn-primary" value="② Take Data" id="searchButtonDb" style="margin-bottom:5px;" />*@
+
+                            <div style="display: flex; justify-content: space-between;">
+                                <input class="btn btn-primary" value="Ⓐ Take Data" id="searchButtonDb" style="margin-bottom: 5px;" />
+                                <input class="btn btn-primary" value="Ⓑ Reset Schedule" id="resetcalibdate" style="margin-bottom: 5px;" />
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div id="cardTb3" class="card" style="height:200px; padding:5px">
+                                    <div style="overflow-y: auto; padding:6px;">
+                                        <table id="searchResultsTable3" class="display table" style="height:150px">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th style="font-size: smaller">Schedule Date</th>
+                                                    <th style="font-size: smaller">Code</th>
+                                                    <th style="font-size: smaller">Control Number</th>
+                                                    <th style="font-size: smaller">Equipment Name</th>
+                                                    <th style="font-size: smaller">Model Number</th>
+                                                    <th style="font-size: smaller">Serial</th>
+                                                    <th style="font-size: smaller">Brand</th>
+                                                    <th style="font-size: smaller">Term</th>
+                                                    <th style="font-size: smaller">Dept/Sec</th>
+                                                    <th style="font-size: smaller">Remarks</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="searchResultsBody3">
+                                                <!-- Data fetched from the database will be displayed here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                                <div id="cardTb4" class="card" style="height:200px; padding:5px">
+                                    <div style="overflow-y: auto; padding:6px;">
+                                        <table id="searchResultsTable4" class="display table" style="height:150px">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th style="font-size: smaller">Schedule Date</th>
+                                                    <th style="font-size: smaller">Control Number</th>
+                                                    <th style="font-size: smaller">Jig Name</th>
+                                                    <th style="font-size: smaller">Drawing Number</th>
+                                                    <th style="font-size: smaller">Terms</th>
+                                                    <th style="font-size: smaller">Dept/Sec</th>
+                                                    <th style="font-size: smaller">Remarks</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="searchResultsBody3">
+                                                <!-- Data fetched from the database will be displayed here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

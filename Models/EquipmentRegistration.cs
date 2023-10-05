@@ -1,4 +1,8 @@
-﻿using System.ComponentModel;
+﻿using Calibration_Management_System.Controllers;
+using Calibration_Management_System.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -46,13 +50,13 @@ namespace Calibration_Management_System.Models
         public string? fld_passFail { get; set; } = "";
 
         [DisplayName("Registration Date")]
-        public string? fld_registrationDate { get; set; } = "";
+        public DateTime? fld_registrationDate { get; set; }
 
         [DisplayName("IMTE")]
         public string? fld_imte { get; set; } = "";
 
         [DisplayName("Calibration Date")]
-        public string? fld_calibDate { get; set; } = "";
+        public DateTime? fld_calibDate { get; set; }
 
         [DisplayName("Calibration Month")]
         public string? fld_calibMonth { get; set; } = "";
@@ -61,7 +65,7 @@ namespace Calibration_Management_System.Models
         public string? fld_calibYear { get; set; } = "";
 
         [DisplayName("Next Calibration Date")]
-        public string? fld_nextCalibDate { get; set; } = "";
+        public DateTime? fld_nextCalibDate { get; set; } 
 
         [DisplayName("Next Calibration Month")]
         public string? fld_nextCalibMonth { get; set; } = "";
@@ -117,11 +121,10 @@ namespace Calibration_Management_System.Models
         [DisplayName("With Dis/Sus")]
         public string? fld_withDisSus { get; set; } = "";
 
-        
-        
-        
+       
 
-        
+
+
 
 
     }

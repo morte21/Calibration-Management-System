@@ -1,10 +1,10 @@
 ﻿using Calibration_Management_System.Data;
+using Calibration_Management_System.Migrations;
 using Calibration_Management_System.Models;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace Calibration_Management_System.Controllers
@@ -20,13 +20,15 @@ namespace Calibration_Management_System.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        
 
         public IActionResult Index()
         {
             List<EquipmentRegistration> equipmentRegistrations;
             //equipmentRegistrations = _context.Equipment_table.ToList();
-            equipmentRegistrations = _context.Equipment_table.OrderByDescending(x => x.id).ToList();
+            //equipmentRegistrations = _context.Equipment_table.OrderByDescending(x => x.id).ToList();
+
+            //SORT THE TABLE
+            equipmentRegistrations = _context.Equipment_table.Where(x => x.fld_stat == "OK").ToList();
 
 
             ViewBag.Category = GetCategory();
@@ -41,7 +43,7 @@ namespace Calibration_Management_System.Controllers
             return View(equipmentRegistrations);
         }
 
-        [Authorize(Roles = "Control Function,Admin")]
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -55,12 +57,47 @@ namespace Calibration_Management_System.Controllers
             ViewBag.Status = GetStatus();
             ViewBag.Division = GetDivision();
             ViewBag.IntExt = GetIntExt();
-
-
-            
-
             return View(equipmentRegistration);
         }
+
+
+        [HttpPost]
+        public IActionResult Create(EquipmentRegistration equipmentRegistration, IFormFile _pathIMG, IFormFile _pathDoc)
+        {
+            //img
+            if (_pathIMG != null && _pathIMG.Length > 0)
+            {
+                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{"equipment"}-{equipmentRegistration.fld_ctrlNo}-{_pathIMG.FileName}";
+                string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", uniqueFileNameIMG);
+
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    _pathIMG.CopyTo(fileStream);
+                }
+
+                equipmentRegistration.fld_pathIMG = uniqueFileNameIMG;
+            }
+
+            //doc
+            if (_pathDoc != null && _pathDoc.Length > 0)
+            {
+                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{"equipment"}-{equipmentRegistration.fld_ctrlNo}-{_pathDoc.FileName}";
+                string docPath = Path.Combine(_webHostEnvironment.WebRootPath, "documents", uniqueFileNameDoc);
+
+                using (var fileStream = new FileStream(docPath, FileMode.Create))
+                {
+                    _pathDoc.CopyTo(fileStream);
+                }
+
+                equipmentRegistration.fld_pathDoc = uniqueFileNameDoc;
+            }
+
+            _context.Equipment_table.Add(equipmentRegistration);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
 
         public int GetRecentValue(string category, string code2)
         {
@@ -101,52 +138,15 @@ namespace Calibration_Management_System.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult Create(EquipmentRegistration equipmentRegistration, IFormFile _pathIMG, IFormFile _pathDoc)
-        {
-            //img
-            if (_pathIMG != null && _pathIMG.Length > 0)
-            {
-                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{equipmentRegistration.fld_ctrlNo}-{_pathIMG.FileName}";
-                string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", uniqueFileNameIMG);
-
-                using (var fileStream = new FileStream(imagePath, FileMode.Create))
-                {
-                    _pathIMG.CopyTo(fileStream);
-                }
-
-                equipmentRegistration.fld_pathIMG = uniqueFileNameIMG;
-            }
-
-            //doc
-            if (_pathDoc != null && _pathDoc.Length > 0)
-            {
-                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{equipmentRegistration.fld_ctrlNo}-{_pathDoc.FileName}";
-                string docPath = Path.Combine(_webHostEnvironment.WebRootPath, "documents", uniqueFileNameDoc);
-
-                using (var fileStream = new FileStream(docPath, FileMode.Create))
-                {
-                    _pathDoc.CopyTo(fileStream);
-                }
-
-                equipmentRegistration.fld_pathDoc = uniqueFileNameDoc;
-            }
-
-            _context.Equipment_table.Add(equipmentRegistration);
-            _context.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
 
 
-
-        [Authorize(Roles = "Control Function,Admin")]
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         public IActionResult EditGet(string fld_codeNo, string fld_eqpName, string fld_eqpModelNo, string fld_serial, string fld_brand, string fld_reqFunction, string fld_ctrlNo)
         {
             // Create a new instance of the EquipmentMaster model and assign the values from RegistrationController
             EquipmentRegistration model = new EquipmentRegistration
             {
-                
+
                 fld_codeNo = fld_codeNo,
                 fld_eqpName = fld_eqpName,
                 fld_eqpModelNo = fld_eqpModelNo,
@@ -168,7 +168,7 @@ namespace Calibration_Management_System.Controllers
             ViewBag.Division = GetDivision();
             ViewBag.IntExt = GetIntExt();
 
-            
+
 
             // Pass the model to the Edit view
             return View(model);
@@ -198,7 +198,7 @@ namespace Calibration_Management_System.Controllers
         }
 
 
-        [Authorize(Roles = "Control Function,Admin")]
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit(int Id)
         {
@@ -281,7 +281,7 @@ namespace Calibration_Management_System.Controllers
                 }
 
                 // Save the new image
-                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{equipmentRegistration.fld_ctrlNo}-{_pathIMG.FileName}";
+                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{"equipment"}-{equipmentRegistration.fld_ctrlNo}-{_pathIMG.FileName}";
                 string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", uniqueFileNameIMG);
 
                 using (var fileStream = new FileStream(imagePath, FileMode.Create))
@@ -305,7 +305,7 @@ namespace Calibration_Management_System.Controllers
                 }
 
                 // Save the new document
-                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{equipmentRegistration.fld_ctrlNo}-{_pathDoc.FileName}";
+                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{"equipment"}-{equipmentRegistration.fld_ctrlNo}-{_pathDoc.FileName}";
                 string docPath = Path.Combine(_webHostEnvironment.WebRootPath, "documents", uniqueFileNameDoc);
 
                 using (var fileStream = new FileStream(docPath, FileMode.Create))
@@ -316,7 +316,10 @@ namespace Calibration_Management_System.Controllers
                 existingEquipment.fld_pathDoc = uniqueFileNameDoc;
             }
 
-            
+            _context.Attach(existingEquipment);
+            _context.Entry(existingEquipment).State = EntityState.Modified;
+            _context.Entry(existingEquipment).Property(f => f.fld_pathIMG).IsModified = _pathIMG != null;
+            _context.Entry(existingEquipment).Property(f => f.fld_pathDoc).IsModified = _pathDoc != null;
             _context.SaveChanges();
 
             return RedirectToAction("Index");
@@ -482,7 +485,7 @@ namespace Calibration_Management_System.Controllers
             return selStatus;
         }
 
-       
+
         private List<SelectListItem> GetIntExt()
         {
             List<SelectListItem> selStatus = new List<SelectListItem>();

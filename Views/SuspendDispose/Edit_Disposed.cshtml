@@ -1,0 +1,157 @@
+﻿@model Calibration_Management_System.Models.SuspendDisposeRegistration
+
+@{
+    ViewData["Title"] = "Edit_Disposed";
+}
+
+<h1>DISPOSAL</h1>
+
+<h4>Registration Update</h4>
+<hr />
+<form asp-action="Edit_Disposed">
+    <div class="container">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <input hidden asp-for="fld_dateReg" class="form-control" />
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="fld_ctrlNo" class="control-label"></label>
+                    <input asp-for="fld_ctrlNo" class="form-control" />
+                    <span asp-validation-for="fld_ctrlNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_itemName" class="control-label"></label>
+                    <input asp-for="fld_itemName" class="form-control" />
+                    <span asp-validation-for="fld_itemName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_calibType" class="control-label"></label>
+                    <input asp-for="fld_calibType" class="form-control" />
+                    <span asp-validation-for="fld_calibType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_modelNo" class="control-label"></label>
+                    <input asp-for="fld_modelNo" class="form-control" />
+                    <span asp-validation-for="fld_modelNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_serial" class="control-label"></label>
+                    <input asp-for="fld_serial" class="form-control" />
+                    <span asp-validation-for="fld_serial" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="fld_brand" class="control-label"></label>
+                    <input asp-for="fld_brand" class="form-control" />
+                    <span asp-validation-for="fld_brand" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_reqFunction" class="control-label"></label>
+                    <input asp-for="fld_reqFunction" class="form-control" />
+                    <span asp-validation-for="fld_reqFunction" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_fixedAsset" class="control-label"></label>
+                    <input asp-for="fld_fixedAsset" class="form-control" />
+                    <span asp-validation-for="fld_fixedAsset" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_requestBy" class="control-label"></label>
+                    <input asp-for="fld_requestBy" class="form-control" />
+                    <span asp-validation-for="fld_requestBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_approvedBy" class="control-label"></label>
+                    <input asp-for="fld_approvedBy" class="form-control" />
+                    <span asp-validation-for="fld_approvedBy" class="text-danger"></span>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="fld_reason" class="control-label"></label>
+                    <input asp-for="fld_reason" class="form-control" />
+                    <span asp-validation-for="fld_reason" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_drawingNo" class="control-label"></label>
+                    <input asp-for="fld_drawingNo" class="form-control" />
+                    <span asp-validation-for="fld_drawingNo" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="fld_suspendedDate" class="control-label"></label>
+                    <input type="date" asp-for="fld_suspendedDate" class="form-control" />
+                    <span asp-validation-for="fld_suspendedDate" class="text-danger"></span>
+                </div>*@
+                <div class="form-group">
+                    <label asp-for="fld_disposalDate" class="control-label"></label>
+                    <input type="date" asp-for="fld_disposalDate" class="form-control" />
+                    <span asp-validation-for="fld_disposalDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_submitdate" class="control-label"></label>
+                    <input type="date" asp-for="fld_submitdate" class="form-control" />
+                    <span asp-validation-for="fld_submitdate" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="fld_receivedBy" class="control-label"></label>
+                    <input asp-for="fld_receivedBy" class="form-control" />
+                    <span asp-validation-for="fld_receivedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_reqStatus" class="control-label"></label>
+                    <select asp-for="fld_reqStatus" class="form-select">
+                        <option value="">Select calibration type</option>
+                        <option value="DISPOSED">DISPOSED</option>
+                        <option value="ON-PROCESS">ON-PROCESS</option>
+                        <option value="WAITING FOR DOCUMENTS">WAITING FOR DOCUMENTS</option>
+                    </select>
+                    <span asp-validation-for="fld_reqStatus" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_inchargeQA" class="control-label"></label>
+                    <input asp-for="fld_inchargeQA" class="form-control" />
+                    <span asp-validation-for="fld_inchargeQA" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_followUpDate" class="control-label"></label>
+                    <input type="date" asp-for="fld_followUpDate" class="form-control" />
+                    <span asp-validation-for="fld_followUpDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_nextFollowUp" class="control-label"></label>
+                    <input type="date" asp-for="fld_nextFollowUp" class="form-control" />
+                    <span asp-validation-for="fld_nextFollowUp" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_inchargeRequestor" class="control-label"></label>
+                    <input asp-for="fld_inchargeRequestor" class="form-control" />
+                    <span asp-validation-for="fld_inchargeRequestor" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="IndexDisposed">Back to List</a>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

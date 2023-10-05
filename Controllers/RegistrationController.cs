@@ -1,16 +1,11 @@
 ﻿using Calibration_Management_System.Data;
 using Calibration_Management_System.Models;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Vml;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.Extensions.Configuration;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Calibration_Management_System.Controllers
 {
@@ -48,7 +43,7 @@ namespace Calibration_Management_System.Controllers
 
 
         // JIG
-        [Authorize(Roles = "Control Function,Admin,Using Function")]
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpGet]
         public IActionResult Create_Reg_Jig()
         {
@@ -61,7 +56,7 @@ namespace Calibration_Management_System.Controllers
 
 
         //VIEW EQP
-        [Authorize(Roles = "Control Function,Admin,Using Function")]
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpGet]
 
         //VIEW EQP
@@ -324,6 +319,7 @@ namespace Calibration_Management_System.Controllers
 
 
             MailMessage message = new MailMessage();
+            message.Subject = "Calibration System - Request Notification";
             message.IsBodyHtml = true;
             message.From = (new MailAddress("sdp.system@outlook.ph", "Calibration System"));
             message.Priority = MailPriority.High;
@@ -357,11 +353,11 @@ namespace Calibration_Management_System.Controllers
         [HttpPost]
         public IActionResult Create_Reg(RegistrationClass RegistrationClass)
         {
-            
+
             _context.Registration_Table.Add(RegistrationClass);
             _context.SaveChanges();
 
-            
+
             string HTML = @"<html>
                     <head>
                     <title></title>
@@ -602,6 +598,7 @@ namespace Calibration_Management_System.Controllers
 
 
             MailMessage message = new MailMessage();
+            message.Subject = "Calibration System - Request Notification";
             message.IsBodyHtml = true;
             message.From = (new MailAddress("sdp.system@outlook.ph", "Calibration System"));
             message.Priority = MailPriority.High;
@@ -612,7 +609,7 @@ namespace Calibration_Management_System.Controllers
 
             //CC
             message.CC.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
-            
+
 
             SmtpClient emailClient = new SmtpClient();
             emailClient.Host = "smtp-mail.outlook.com";
@@ -632,7 +629,7 @@ namespace Calibration_Management_System.Controllers
         }
 
         //VIEW JIG
-        [Authorize(Roles = "Control Function,Admin,Using Function")]
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpGet]
         public IActionResult Create_ReReg_Jig()
         {
@@ -644,7 +641,7 @@ namespace Calibration_Management_System.Controllers
         }
 
         //VIEW EQP
-        [Authorize(Roles = "Control Function,Admin,Using Function")]
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpGet]
         public IActionResult Create_ReReg()
         {
@@ -906,6 +903,7 @@ namespace Calibration_Management_System.Controllers
 
 
             MailMessage message = new MailMessage();
+            message.Subject = "Calibration System - Request Notification";
             message.IsBodyHtml = true;
             message.From = (new MailAddress("sdp.system@outlook.ph", "Calibration System"));
             message.Priority = MailPriority.High;
@@ -1186,6 +1184,7 @@ namespace Calibration_Management_System.Controllers
 
 
             MailMessage message = new MailMessage();
+            message.Subject = "Calibration System - Request Notification";
             message.IsBodyHtml = true;
             message.From = (new MailAddress("sdp.system@outlook.ph", "Calibration System"));
             message.Priority = MailPriority.High;
@@ -1266,29 +1265,18 @@ namespace Calibration_Management_System.Controllers
         }
 
 
-        [Authorize(Roles = "Control Function,Admin")]
-        [HttpGet]
-        public IActionResult Edit_Data(int Id)
-        {
 
-            RegistrationClass registration = _context.Registration_Table.FirstOrDefault(r => r.id == Id);
-
-           ViewBag.RequestingFunction = GetRequestingFunctions();
-            
-            ViewBag.Status = GetStatus();
-            return View("Edit_Data", registration);
-        }
 
         [HttpPost]
         public IActionResult Edit_DataJig(RegistrationClass registrationClass)
         {
             _context.Attach(registrationClass);
-            _context.Entry(registrationClass).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(registrationClass).State = EntityState.Modified;
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexJig");
         }
 
-        [Authorize(Roles = "Control Function,Admin")]
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit_DataJig(int Id)
         {
@@ -1299,6 +1287,19 @@ namespace Calibration_Management_System.Controllers
 
             ViewBag.Status = GetStatus();
             return View("Edit_DataJig", registration);
+        }
+
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
+        [HttpGet]
+        public IActionResult Edit_Data(int Id)
+        {
+
+            RegistrationClass registration = _context.Registration_Table.FirstOrDefault(r => r.id == Id);
+
+            ViewBag.RequestingFunction = GetRequestingFunctions();
+
+            ViewBag.Status = GetStatus();
+            return View("Edit_Data", registration);
         }
 
         [HttpPost]

@@ -1,0 +1,70 @@
+﻿@model Calibration_Management_System.Models.CalibrationNotice
+
+@{
+    ViewData["Title"] = "Approval";
+}
+
+<h1>CALIBRATION NOTICE</h1>
+
+<h4>APPROVAL</h4>
+<hr />
+<form asp-action="Approval">
+<div class="row">
+    <div class="col-md-4">
+        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="fld_dateCreated" class="control-label"></label>
+                <input readonly type="date" asp-for="fld_dateCreated" class="form-control" />
+            </div>
+            
+           
+            <div class="form-group">
+                <label asp-for="fld_stat" class="control-label"></label>
+                <select id="approvalStat" asp-for="fld_stat"  class="form-control">
+                    <option selected>Select status</option>
+                    <option value="FOR APPROVAL">FOR APPROVAL</option>
+                    <option value="APPROVED">APPROVED</option>
+                    <option value="NEED TO REVISE">NEED TO REVISE</option>
+                </select>
+                <span asp-validation-for="fld_stat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fld_dateApproved" class="control-label"></label>
+                <input type="date" id="myDateInputs" asp-for="fld_dateApproved" class="form-control" />
+                <span asp-validation-for="fld_dateApproved" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input readonly hidden asp-for="fld_calibMonth" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input readonly hidden asp-for="fld_calibYear" class="form-control" />
+            </div>
+            <hr style="border-top: 3px double #000000;" />
+            <div class="col-md-12">
+                <div class="form-group"></div>
+                <div class="form-group" >
+                    <a href="@Url.Content("~/CalibrationNotice\\Equipment/" + Model.fld_pathEQP)" target="_blank">
+                        <img src="/assets/img/download-solid.svg" style="height:15px; width:15px;"  />
+                        Download calibration schedule - Equipment
+                    </a>
+                </div>
+                <div class="form-group" >
+                    <a href="@Url.Content("~/CalibrationNotice\\Jig/" + Model.fld_pathJIG)" target="_blank">
+                        <img src="/assets/img/download-solid.svg" style="height:15px; width:15px;" />
+                        Download calibration schedule - Jig
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group paddingTop">
+                        <input type="submit" value="Save update" class="btn btn-primary" />
+
+                    </div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        
+    </div>
+</div>
+</form>

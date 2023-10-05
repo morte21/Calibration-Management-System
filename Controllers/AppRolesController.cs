@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Calibration_Management_System.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Control Function,Admin-Calibration")]
     public class AppRolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

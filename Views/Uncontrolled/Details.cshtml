@@ -1,0 +1,70 @@
+﻿@model Calibration_Management_System.Models.Uncontrolled
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Uncontrolled</h4>
+    <hr />
+
+    <div>
+        <div class="card paddAl">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="fld_nameEquip" class="control-label"></label>
+                        <input readonly asp-for="fld_nameEquip" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_modelType" class="control-label"></label>
+                        <input readonly asp-for="fld_modelType" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_serial" class="control-label"></label>
+                        <input readonly asp-for="fld_serial" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_maker" class="control-label"></label>
+                        <input readonly asp-for="fld_maker" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_reasonUncontrolled" class="control-label"></label>
+                        <input readonly asp-for="fld_reasonUncontrolled" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="fld_qty" class="control-label"></label>
+                        <input readonly type="number" asp-for="fld_qty" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_reqDate" class="control-label"></label>
+                        <input readonly type="date" id="myDateInput" asp-for="fld_reqDate" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_reqBy" class="control-label"></label>
+                        <input readonly asp-for="fld_reqBy" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_department" class="control-label"></label>
+                        <input readonly asp-for="fld_department" class="form-control" asp-items="@(ViewBag.Dept)"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_commento" class="control-label"></label>
+                        <input readonly asp-for="fld_commento" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+   
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

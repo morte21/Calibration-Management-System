@@ -6,7 +6,7 @@ function updateCalibrationDate() {
 
     //console.log('Function called'); // Add this line to check if the function is called.
 
-    var termSelect = document.getElementById('fld_term');
+    var termSelect = document.getElementById('term');
     var expirationSelect = document.getElementById('expirationSelect');
     var calibrationDateInput = document.getElementById('calibrationDateInput');
     var nextCalibrationDateInput = document.getElementById('nextCalibrationDateInput');
@@ -55,15 +55,16 @@ function updateCalibrationDate() {
     nextCalibrationYearInput.value = nextCalibrationDate.getFullYear().toString();
 }
 
+document.addEventListener('DOMContentLoaded', function () {
 // Add event listeners to the input elements
-document.getElementById('fld_term').addEventListener('change', updateCalibrationDate);
+document.getElementById('term').addEventListener('change', updateCalibrationDate);
 document.getElementById('expirationSelect').addEventListener('change', updateCalibrationDate);
 document.getElementById('calibrationDateInput').addEventListener('change', updateCalibrationDate);
 
 // Call the function initially to set the initial values
 updateCalibrationDate();
 
-
+});
 
 //date format
 //// Get the date input element
@@ -410,3 +411,8 @@ function updateLabelCountsJig() {
 document.addEventListener('DOMContentLoaded', updateLabelCountsJig);
 
 
+//notification
+
+
+
+ //datepicker for calib schudule

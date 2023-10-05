@@ -1,0 +1,71 @@
+﻿@model Calibration_Management_System.Models.CalibrationNotice
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>CALIBRATION NOTICE</h1>
+
+<h4>Upload Calibration Schedule</h4>
+<hr />
+<form asp-action="Create" enctype="multipart/form-data">
+<div class="row">
+    <div class="col-md-4">
+        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden readonly asp-for="fld_stat" value="FOR APPROVAL" class="form-control" />
+            <div class="form-group">
+                <label asp-for="fld_dateCreated" class="control-label"></label>
+                <input required type="date" id="myDateInputs" asp-for="fld_dateCreated" class="form-control" />
+                <span asp-validation-for="fld_dateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fld_calibMonth" class="control-label"></label>
+                <select id="selectMonth" asp-for="fld_calibMonth" class="form-control">
+                    <option selected>Select month</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <span asp-validation-for="fld_calibMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fld_calibYear" class="control-label"></label>
+                <input type="number" id="yearInput" style="margin-top:10px;" asp-for="fld_calibYear" class="form-select" placeholder="Input Year">
+                <span asp-validation-for="fld_calibYear" class="text-danger"></span>
+            </div>
+            
+            <hr style="border-top: 3px double #000000;" />
+            <div class="col-md-6">
+                <div class="form-group"></div>
+                <div class="form-group">
+                    <label for="_pathEQP">Upload Excel - Equipment</label>
+                    <input type="file" id="_pathEQP" name="_pathEQP" class="form-control-file" />
+                </div>
+                <div class="form-group">
+                    <label for="_pathJIG">Upload Excel - Jig</label>
+                    <input type="file" id="_pathJIG" name="_pathJIG" class="form-control-file" />
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group paddingTop">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        
+                    </div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+           
+        
+    </div>
+</div>
+
+</form>

@@ -37,13 +37,13 @@ namespace Calibration_Management_System.Models
         public string? fld_passfail { get; set; } = "";
 
         [DisplayName("Register Date")]
-        public string? fld_registrationDate { get; set; } = "";
+        public DateTime? fld_registrationDate { get; set; } 
 
         [DisplayName("IMTE")]
         public string? fld_imte { get; set; } = "";
 
         [DisplayName("Calibration Date")]
-        public string? fld_calibDate { get; set; } = "";
+        public DateTime? fld_calibDate { get; set; }
 
         [DisplayName("Calibration Month")]
         public string? fld_calibMonth { get; set; } = "";
@@ -52,7 +52,7 @@ namespace Calibration_Management_System.Models
         public string? fld_calibYear { get; set; } = "";
 
         [DisplayName("Next Calibration")]
-        public string? fld_nextCalibDate { get; set; } = "";
+        public DateTime? fld_nextCalibDate { get; set; } 
 
         [DisplayName("Next Calib. Month")]
         public string? fld_nextCalibMonth { get; set; } = "";

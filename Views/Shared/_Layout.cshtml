@@ -21,6 +21,16 @@
     <meta name="description" content="" />
     
 
+    <!-- Other head elements -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ... other stylesheets ... -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ... other scripts ... -->
+
+
+
+
     <!-- Favicon -->@*
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />*@
 
@@ -37,9 +47,9 @@
     @*<link rel="stylesheet" href="../assets/vendor/css/pages/page-auth.css" />*@
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+@*    <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <link rel="stylesheet" href="./assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="./assets/vendor/libs/apex-charts/apex-charts.css" />*@
 
     <!-- Original Page CSS -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -57,8 +67,12 @@
 
     <link href="~/css/style.min.css" rel="stylesheet">
 
+
+
+
+
     <!-- Helpers -->
-    <script src="~/assets/vendor/js/helpers.js"></script>
+    @*<script src="~/assets/vendor/js/helpers.js"></script>*@
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -69,6 +83,20 @@
     @*<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">*@
+
+
+    <!--datepicker-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+
+
+    <script src="/js/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
   </head>
 
   <body>
@@ -83,7 +111,7 @@
               <span class="app-brand-logo demo">
                 
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">SANYO DENKI</span>
+              <span style="color:white" class="app-brand-text demo menu-text fw-bolder ms-2">SANYO DENKI</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -96,7 +124,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
-              <a asp-area="" asp-controller="Home" asp-action="Index" class="menu-link">
+              <a style="color:white" asp-area="" asp-controller="Home" asp-action="Index" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -104,29 +132,29 @@
 
             <!-- Layouts -->
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Registration">Registration</div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a asp-area="" asp-controller="Registration" asp-action="Index" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="Registration" asp-action="Index" class="menu-link">
                      <div data-i18n="Equipment">Equipment</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a asp-area="" asp-controller="Registration" asp-action="IndexJig" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="Registration" asp-action="IndexJig" class="menu-link">
                     <div data-i18n="Jigs">Jigs</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexSuspend" class="menu-link">
                     <div data-i18n="Suspended">Suspended</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-fluid.html" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexDisposed" class="menu-link">
                     <div data-i18n="Disposed">Disposed</div>
                   </a>
                 </li>
@@ -138,13 +166,13 @@
               <span class="menu-header-text">Masterlist</span>
             </li>
             <li class="menu-item">
-              <a class="menu-link menu-toggle">
+              <a style="color:white" class="menu-link menu-toggle">
                   <i href="javascript:void(0);" class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Equipment">Equipment</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                    <a asp-area="" asp-controller="EquipmentMaster" asp-action="Index" class="menu-link">
+                    <a style="color:white" asp-area="" asp-controller="EquipmentMaster" asp-action="Index" class="menu-link">
                     <div data-i18n="Data">Data</div>
                   </a>
                 </li>
@@ -152,13 +180,13 @@
               </ul>
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Jigs">Jigs</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                 <a asp-area="" asp-controller="JigMaster" asp-action="Index" class="menu-link">
+                 <a style="color:white" asp-area="" asp-controller="JigMaster" asp-action="Index" class="menu-link">
                     <div data-i18n="Data">Data</div>
                   </a>
                 </li>
@@ -166,293 +194,138 @@
               </ul>
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle" >
                 <i class="menu-icon tf-icons bx bx-no-entry"></i>
                 <div data-i18n="Suspended">Suspended</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                 <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexSuspend2" class="menu-link">
                     <div data-i18n="Data">Data</div>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-trash"></i>
                 <div data-i18n="Disposed">Disposed</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexDisposed2" class="menu-link">
                     <div data-i18n="Data">Data</div>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-report"></i>
                 <div data-i18n="Failure Report">Failure Report</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="FailureReport" asp-action="Index" class="menu-link">
                     <div data-i18n="Data">Data</div>
                   </a>
                 </li>
               </ul>
             </li>
              <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-error"></i>
                 <div data-i18n="Uncontrolled">Uncontrolled</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="Uncontrolled" asp-action="Index" class="menu-link">
                      <div data-i18n="Data">Data</div>
                   </a>
                 </li>
               </ul>
             </li>
              <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book-bookmark"></i>
                 <div data-i18n="NCR">NCR</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="NCR" asp-action="Index" class="menu-link">
                     <div data-i18n="Data">Data</div>
                   </a>
                 </li>
               </ul>
             </li>
              <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layer"></i>
                 <div data-i18n="General Form">General Form</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a style="color:white" asp-area="" asp-controller="GeneralForm" asp-action="Index" class="menu-link">
                     <div data-i18n="Data">Data</div>
                   </a>
                 </li>
               </ul>
             </li>
-            <!-- Components -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <!-- Scheduler -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Calibration</span></li>
             <!-- Cards -->
+            <li class="menu-item" >
+              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-calendar"></i>
+                <div data-i18n="Scheduler">Scheduler</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a style="color:white" asp-area="" asp-controller="CalibSchedule" asp-action="Index" class="menu-link">
+                    <div data-i18n="Create">Create Schedule</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a style="color:white" asp-area="" asp-controller="CalibrationNotice" asp-action="Index" class="menu-link">
+                     <div data-i18n="Approval">Approval</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a style="color:white" asp-area="" asp-controller="CalibSchedule" asp-action="Index" class="menu-link">
+                     <div data-i18n="Notification">Notification Request</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            
+             <!-- Calibration -->
             <li class="menu-item">
-              <a href="" class="menu-link">
+              <a style="color:white" href="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Cards</div>
-              </a>
-            </li>
-            <!-- User interface -->
-            <li class="menu-item">
-              <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="User interface">User interface</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Accordion">Accordion</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Alerts">Alerts</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Badges">Badges</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Buttons">Buttons</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Carousel">Carousel</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Collapse">Collapse</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Dropdowns">Dropdowns</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Footer">Footer</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="List Groups">List groups</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Modals">Modals</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Navbar">Navbar</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Offcanvas">Offcanvas</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Pagination &amp; Breadcrumbs">Pagination &amp; Breadcrumbs</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Progress">Progress</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Spinners">Spinners</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Tabs &amp; Pills">Tabs &amp; Pills</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Toasts">Toasts</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Tooltips & Popovers">Tooltips &amp; popovers</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Typography">Typography</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- Extended components -->
-            <li class="menu-item">
-              <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-copy"></i>
-                <div data-i18n="Extended UI">Extended UI</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Text Divider">Text Divider</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="menu-item">
-              <a href="" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div data-i18n="Boxicons">Boxicons</div>
+                <div data-i18n="Daily Calibration">Daily Calibration</div>
               </a>
             </li>
 
-            <!-- Forms & Tables -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
-            <!-- Forms -->
+            <!-- Code Management -->
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Form Elements</div>
+              <a style="color:white" href="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Code Management">Code Management</div>
               </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Basic Inputs">Basic Inputs</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Input groups">Input groups</div>
-                  </a>
-                </li>
-              </ul>
             </li>
+
+            <!-- User -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
+           
+            <!-- User -->
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">Form Layouts</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Vertical Form">Vertical Form</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Horizontal Form">Horizontal Form</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <!-- Tables -->
-            <li class="menu-item">
-              <a href="" class="menu-link">
+              <a style="color:white" class="menu-link" id="register" asp-area="Identity" asp-page="/Account/Register">
                 <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Tables</div>
+                <div data-i18n="User Registration">User Registration</div>
               </a>
+              
             </li>
-            <!-- Misc -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-            <li class="menu-item">
-              <a
-                href=""
-                target="_blank"
-                class="menu-link"
-              >
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Support</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href=""
-                target="_blank"
-                class="menu-link"
-              >
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
-              </a>
-            </li>
-          </ul>
+           </ul>
         </aside>
         <!-- / Menu -->
 
@@ -486,6 +359,8 @@
                     <main role="main" class="pb-3">
                         @RenderBody()        
                         @RenderSection("Scripts", required: false)
+                        <!--notification-->
+                       
                     </main>
                 </div>
               </div>
@@ -536,18 +411,18 @@
     <script src="/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="/assets/vendor/libs/popper/popper.js"></script>
     <script src="/assets/vendor/js/bootstrap.js"></script>
-    <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    @*<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>*@
 
-    <script src="/assets/vendor/js/menu.js"></script>
+    @*<script src="/assets/vendor/js/menu.js"></script>*@
 
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    @*<script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>*@
 
     <!-- Main JS -->
-    <script src="/assets/js/main.js"></script>
+    @*<script src="/assets/js/main.js"></script>*@
 
     <!-- Page JS -->
     <script src="/assets/js/dashboards-analytics.js"></script>
@@ -562,8 +437,13 @@
     <script src="/dataTables/Buttons-2.3.6/js/buttons.print.min.js"></script>
     <script src="/dataTables/Buttons-2.3.6/js/dataTables.buttons.min.js"></script>*@
 
+    @*<script src="/js/xlsx.full.min.js"></script>*@
     <script src="/js/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
     <script src="/js/custom.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
     
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -572,8 +452,8 @@
 
     <script src="/js/scriptData.js"></script>
 
-
-    
+    <!--NOTIFICATION-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -582,5 +462,14 @@
     @*<script src="/lib/jquery/dist/jquery.min.js"></script>*@
     @*<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="/js/site.js"></script>
+
+
+    <!--scheduler-->
+    <script src="~/js/scheduler.js"></script>
+
+    <!--progress-->
+    <script src="~/js/progress.js"></script>
+   
+
   </body>
 </html>

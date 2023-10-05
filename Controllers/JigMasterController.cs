@@ -1,4 +1,5 @@
 ﻿using Calibration_Management_System.Data;
+using Calibration_Management_System.Migrations;
 using Calibration_Management_System.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace Calibration_Management_System.Controllers
             return View(jigRegistrations);
         }
 
-        [Authorize(Roles = "Control Function,Admin")]
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -59,7 +60,7 @@ namespace Calibration_Management_System.Controllers
             //img
             if (_pathIMG != null && _pathIMG.Length > 0)
             {
-                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{jigRegistrations.fld_ctrlNo}-{_pathIMG.FileName}";
+                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{"jig"}-{jigRegistrations.fld_ctrlNo}-{_pathIMG.FileName}";
                 string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", uniqueFileNameIMG);
 
                 using (var fileStream = new FileStream(imagePath, FileMode.Create))
@@ -73,7 +74,7 @@ namespace Calibration_Management_System.Controllers
             //doc
             if (_pathDoc != null && _pathDoc.Length > 0)
             {
-                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{jigRegistrations.fld_ctrlNo}-{_pathDoc.FileName}";
+                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{"jig"}-{jigRegistrations.fld_ctrlNo}-{_pathDoc.FileName}";
                 string docPath = Path.Combine(_webHostEnvironment.WebRootPath, "documents", uniqueFileNameDoc);
 
                 using (var fileStream = new FileStream(docPath, FileMode.Create))
@@ -90,7 +91,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Control Function,Admin")]
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         public IActionResult EditGet(string fld_codeNo, string fld_jigName, string fld_drawingNo, string fld_serial, string fld_reqFunction, string fld_ctrlNo)
         {
             // Create a new instance of the EquipmentMaster model and assign the values from RegistrationController
@@ -101,7 +102,7 @@ namespace Calibration_Management_System.Controllers
                 fld_jigName = fld_jigName,
                 fld_drawingNo = fld_drawingNo,
                 fld_serialNo = fld_serial,
-                
+
                 fld_reqFunction = fld_reqFunction,
                 fld_division = fld_reqFunction,
                 fld_ctrlNo = fld_ctrlNo,
@@ -124,7 +125,7 @@ namespace Calibration_Management_System.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Control Function,Admin")]
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit(int Id)
         {
@@ -197,7 +198,7 @@ namespace Calibration_Management_System.Controllers
                 }
 
                 // Save the new image
-                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{jigRegistrations.fld_ctrlNo}-{_pathIMG.FileName}";
+                string uniqueFileNameIMG = $"{Guid.NewGuid()}-{"jig"}-{jigRegistrations.fld_ctrlNo}-{_pathIMG.FileName}";
                 string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", uniqueFileNameIMG);
 
                 using (var fileStream = new FileStream(imagePath, FileMode.Create))
@@ -221,7 +222,7 @@ namespace Calibration_Management_System.Controllers
                 }
 
                 // Save the new document
-                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{jigRegistrations.fld_ctrlNo}-{_pathDoc.FileName}";
+                string uniqueFileNameDoc = $"{Guid.NewGuid()}-{"jig"}-{jigRegistrations.fld_ctrlNo}-{_pathDoc.FileName}";
                 string docPath = Path.Combine(_webHostEnvironment.WebRootPath, "documents", uniqueFileNameDoc);
 
                 using (var fileStream = new FileStream(docPath, FileMode.Create))
@@ -232,8 +233,10 @@ namespace Calibration_Management_System.Controllers
                 existingJig.fld_pathDoc = uniqueFileNameDoc;
             }
 
-            //_context.Attach(jigRegistrations);
-            //_context.Entry(jigRegistrations).State = EntityState.Modified;
+            _context.Attach(existingJig);
+            _context.Entry(existingJig).State = EntityState.Modified;
+            _context.Entry(existingJig).Property(f => f.fld_pathIMG).IsModified = _pathIMG != null;
+            _context.Entry(existingJig).Property(f => f.fld_pathDoc).IsModified = _pathDoc != null;
             _context.SaveChanges();
 
             return RedirectToAction("Index");
@@ -243,11 +246,11 @@ namespace Calibration_Management_System.Controllers
         [HttpGet]
         public IActionResult Details(int Id)
         {
-            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             JigRegistration init = _context.Jig_table
                 .Where(a => a.id == Id)
                 .FirstOrDefault();
-            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             ViewBag.Category = GetCategory();
             //ViewBag.EqpCode = GetEqpCode();

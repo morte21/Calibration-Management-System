@@ -1,0 +1,172 @@
+﻿
+@model DateModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h1>CALIBRATION SCHEDULER</h1>
+
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                <div class ="form-group card" style="padding:5px; height:350px">
+                    <div class="form-group">
+                        <label class="control-label">Calibration Type:</label>
+                        <select id="selectType" class="form-control">
+                            <option selected>Select calibration type</option>
+                            <option value="Equipment">Equipment</option>
+                            <option value="Jig">Jig</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Month:</label>
+                        <select id="selectMonth" class="form-select">
+                            <option selected>Select month</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="font-style:oblique">Select date coverage:</label><br />
+                        From: <input type="date" id="myDateInput1" class="form-control" />
+
+                        To: <input type="date" id="myDateInput2" class="form-control" />
+                    </div>
+                </div>
+                    
+                    
+                    <br />
+                    <div>
+                        <div class="form-group card" style="padding:5px; height:300px">
+                            <div class="row">
+                                <label><b>Selected Calibration Dates:</b></label>
+                                <div class="col-md-4">
+                                    @*<input type="date" id="selectedDates" class="form-control datepicker-here">*@
+                                    <input style="width:100px;" value="Date" type="text" id="selectedDates" class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="addDate" value="Add date" class="btn btn-secondard" />
+                                </div>
+                            </div>
+
+                            <!--Table-->
+                            <div style="max-height: 250px; overflow-y: auto;">
+                                <table id="dateTable" class="display table">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-size:smaller">Date</th>
+                                            <th style="font-size:smaller">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var date in Model.SelectedDates.OrderByDescending(d => d))
+                                        {
+                                            <tr>
+                                                <td style="font-size:smaller">@date.ToShortDateString()</td>
+                                                <td style="font-size:smaller"><input class="btn btn-primary deleteDate" value="DELETE" /></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                <input class="btn btn-primary" value="Get Data" />
+                </div>
+
+
+            <div class="col-md-8">
+                <div style="height: 250px; overflow-y: auto;">
+                    <table id="getDataEquip" class="display table">
+                        <thead>
+                            <tr>
+                                <th style="font-size:smaller">Calibration Date</th>
+                                <th style="font-size:smaller">Schedule Date</th>
+                                <th style="font-size:smaller">Code</th>
+                                <th style="font-size:smaller">Control Number</th>
+                                <th style="font-size:smaller">Equipment Name</th>
+                                <th style="font-size:smaller">Model Number</th>
+                                <th style="font-size:smaller">Serial</th>
+                                <th style="font-size:smaller">Brand</th>
+                                <th style="font-size:smaller">Term</th>
+                                <th style="font-size:smaller">Dept/Sec</th>
+                                <th style="font-size:smaller">Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="date" value="asdsad"/></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                var selectedDates = [];
+
+                // Initialize flatpickr
+                flatpickr("#selectedDates", {
+                    mode: "multiple",
+                    dateFormat: "Y-m-d",
+                    onClose: function (selectedDatesArray) {
+                        selectedDates = selectedDatesArray.map(function (dateStr) {
+                            return new Date(dateStr);
+                        });
+                        refreshDateTable();
+                    }
+                });
+
+                $(document).on("click", ".deleteDate", function () {
+                    var row = $(this).closest("tr");
+                    var rowIndex = row.index();
+                    selectedDates.splice(rowIndex, 1); // Remove the date from the array
+                    refreshDateTable();
+                });
+
+                function refreshDateTable() {
+                    var tableBody = $("#dateTable tbody");
+                    tableBody.empty();
+
+                    selectedDates.sort(function (a, b) {
+                        return a - b; // Sort in ascending order (oldest to latest)
+                    });
+
+                    selectedDates.forEach(function (date) {
+                        var formattedDate = date.toLocaleDateString();
+                    var row = $("<tr><td style='font - size: smaller'>" + formattedDate + "</td><td style='font - size: smaller'><input style='width:100px;' class='btn btn-primary deleteDate' value='DELETE' /></td></tr>");
+                        tableBody.append(row);
+                    });
+                }
+            });
+        </script>
+    }
+
+

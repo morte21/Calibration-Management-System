@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace Calibration_Management_System.Controllers
 {
-    [Authorize(Roles = "Control Function,Guest,Using Function,Admin")]
+    [Authorize(Roles = "Control Function,Guest,Using Function,Admin-Calibration")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

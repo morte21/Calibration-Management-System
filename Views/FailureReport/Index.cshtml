@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.FailureReport>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>FAILURE REPORT MASTERLIST</h1>
+
+<div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <a asp-action="Create" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Create New</a>
+        </div>
+        <div>
+            <button type="button" class="btn btn-dark button-export" onclick="exportToExcelFR()">Export to Excel</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="card" style="padding:5px;">
+    <h5 class="card-header">Failure Report Data</h5>
+    <hr />
+    <div class="table-responsive text-nowrap">
+        <table id="failurereport-registration" class="display table">
+            <thead>
+                <tr>
+                    <th> --A c t i o n--</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reportNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateIssue)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_deptsec)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_mainincharge)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_EquipName)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_qty)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_contents)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;<a asp-action="Edit" asp-route-id="@item.id">Edit</a>&nbsp;&nbsp; |
+                            &nbsp;&nbsp;<a asp-action="Details" asp-route-id="@item.id">Details</a>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_reportNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateIssue)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_deptsec)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_incharge)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_mainincharge)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_EquipName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_qty)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_contents)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_pathDoc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_pathIMG)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Html.DisplayNameFor(model => model.fld_reportNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateIssue)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_deptsec)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_mainincharge)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_EquipName)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_qty)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_contents)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>
+
+

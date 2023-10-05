@@ -1,0 +1,80 @@
+﻿@model Calibration_Management_System.Models.FailureReport
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FailureReport</h4>
+    <hr />
+    <div>
+        <div class="card paddAl">
+            <div class="col">
+                <a href="@Url.Content("~/images/" + Model.fld_pathIMG)" target="_blank">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANBJREFUSEvtlWsNwjAURs8UgAPAARLmACygDFAAEpAwHCABFEA+siZN10fapoQE7s9m9zv3vY7G1jXW56OAHtgDy4KsbsAOuLi+dgb6aFEgblzkv4oBnhXixnVScvvhD1CZqkt0BObAJtCvKsAV0CjLNDEzDyQboIi1F+tRfBhFt8CpFmAilrggB0fwDAgUtdCYPpyIfSLqxb0UoLV3I45pmR3K7oFP1HcgvwOgevpGL3S/UqflnamdrmZcdU9dVOOTDUgNRHWTfxsQzL75T/8FgEAoGdn7svAAAAAASUVORK5CYII=" />
+                    View Image
+                </a>
+                ||
+                <a href="@Url.Content("~/documents/" + Model.fld_pathDoc)" target="_blank">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAOxJREFUSEvtlv8JwjAQhb9O4gjqBLqBjqAbiAuok+gIuoEruIEuovIghbREL9dY9A8PAoVe3pfLj5dU9BxVz/qkAHNgA4wM+AFYWgNMAa7AwOoY/puQFOCRIa6R73MgXQHqt8iBlABUgAkpBZiQTwDakIZmV8C7ffAHmKfkt6ZIo5EnyZ8UR+AOrAFZiqxCtnKO6nJVoGR13gLT0IbAOBwyQXTYJiUAic+AUwCoIjUJCy5x5dThrqA2v100Rfq+BEVZexwugLllEgnfB3gunHYBmrbGTfjqytSiabd44gaswjqlV9yjlpvb+6viCShKNBln3rfLAAAAAElFTkSuQmCC" />
+                    View PDF
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <div class="card paddAl">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="fld_reportNo" class="control-label"></label>
+                        <input readonly asp-for="fld_reportNo" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_dateIssue" class="control-label"></label>
+                        <input readonly type="date" id="myDateInput" asp-for="fld_dateIssue" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_deptsec" class="control-label"></label>
+                        <input readonly asp-for="fld_deptsec" asp-items="@(ViewBag.Dept)" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_incharge" class="control-label"></label>
+                        <input readonly asp-for="fld_incharge" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_mainincharge" class="control-label"></label>
+                        <input readonly asp-for="fld_mainincharge" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="fld_ctrlNo" class="control-label"></label>
+                        <input readonly asp-for="fld_ctrlNo" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_EquipName" class="control-label"></label>
+                        <input readonly asp-for="fld_EquipName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_qty" class="control-label"></label>
+                        <input readonly asp-for="fld_qty" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fld_contents" class="control-label"></label>
+                        <input readonly asp-for="fld_contents" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

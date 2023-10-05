@@ -10,6 +10,7 @@
 <h4>New Registration</h4>
 <hr />
 <form asp-action="Edit_DataJig">
+    <input type="hidden" asp-for="id" id="id" name="id" />
 <div class="container">
     <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -59,8 +60,11 @@
                     <input asp-for="fld_serial" class="form-control" />
                     <span asp-validation-for="fld_serial" class="text-danger"></span>
                 </div>
-               
+                <div class="form-group paddingTop">
+                    <input hidden readonly asp-for="fld_jigCategory" value="JIG" class="form-control" />
+                </div>
             </div>
+            
             <div class="col-md-12">
                 <div class="form-group">
                     <label asp-for="fld_submissionDate" class="control-label"></label>

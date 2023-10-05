@@ -1,0 +1,84 @@
+﻿@model Calibration_Management_System.Models.Uncontrolled
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Uncontrolled</h1>
+
+<h4>Registration</h4>
+<hr />
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="fld_nameEquip" class="control-label"></label>
+                    <input required asp-for="fld_nameEquip" class="form-control" />
+                    <span asp-validation-for="fld_nameEquip" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_modelType" class="control-label"></label>
+                    <input required asp-for="fld_modelType" class="form-control" />
+                    <span asp-validation-for="fld_modelType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_serial" class="control-label"></label>
+                    <input required asp-for="fld_serial" class="form-control" />
+                    <span asp-validation-for="fld_serial" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_maker" class="control-label"></label>
+                    <input required asp-for="fld_maker" class="form-control" />
+                    <span asp-validation-for="fld_maker" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_reasonUncontrolled" class="control-label"></label>
+                    <input required asp-for="fld_reasonUncontrolled" class="form-control" />
+                    <span asp-validation-for="fld_reasonUncontrolled" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="fld_qty" class="control-label"></label>
+                    <input required type="number" asp-for="fld_qty" class="form-control" />
+                    <span asp-validation-for="fld_qty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_reqDate" class="control-label"></label>
+                    <input required type="date" id="myDateInput" asp-for="fld_reqDate" class="form-control" />
+                    <span asp-validation-for="fld_reqDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_reqBy" class="control-label"></label>
+                    <input required asp-for="fld_reqBy" class="form-control" />
+                    <span asp-validation-for="fld_reqBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_department" class="control-label"></label>
+                    <select required asp-for="fld_department" class="form-control" asp-items="@(ViewBag.Dept)"></select>
+                    <span asp-validation-for="fld_department" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_commento" class="control-label"></label>
+                    <input required asp-for="fld_commento" class="form-control" />
+                    <span asp-validation-for="fld_commento" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <hr style="border-top: 3px double #000000;" />
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <div class="form-group paddingTop">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a style="padding-left:20px" asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+</form>

@@ -17,10 +17,23 @@ namespace Calibration_Management_System.Data
         public DbSet<RequestingFunction> RequestingFunction_table { get; set; }
         public DbSet<Category> Category_table { get; set; }
         public DbSet<EquipmentCode> EquipmentCode_table { get; set; }
-        public DbSet<Months> Months_table { get;set; }
+        public DbSet<Months> Months_table { get; set; }
         public DbSet<Terms> Terms_table { get; set; }
 
         public DbSet<JigRegistration> Jig_table { get; set; }
+
+        public DbSet<SuspendDisposeRegistration> SuspendDispose_table { get; set; }
+
+        public DbSet<FailureReport> FailureReport_table { get; set; }
+
+        public DbSet<Uncontrolled> Uncontrolled_table { get; set; }
+
+        public DbSet<NCR> NCR_table { get; set; }
+        public DbSet<GeneralForm> GeneralForm_table { get; set; }
+
+        public DbSet<CalibrationNotice> CalibrationNotice_table { get; set; }
+
+        
 
     }
 }

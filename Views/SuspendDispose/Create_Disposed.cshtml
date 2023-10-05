@@ -1,0 +1,113 @@
+﻿@model Calibration_Management_System.Models.SuspendDisposeRegistration
+
+@{
+    ViewData["Title"] = "Create_Suspend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>DISPOSAL</h1>
+
+<h4>Registration</h4>
+<hr />
+<form asp-action="Create_Disposed">
+
+    <div class="container">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group paddingTop">
+                <input hidden asp-for="fld_dateReg" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input hidden asp-for="fld_reqStatus" value="DISPOSED" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_ctrlNo" class="control-label"></label>
+                    <input asp-for="fld_ctrlNo" class="form-control" />
+                    <span asp-validation-for="fld_ctrlNo" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_itemName" class="control-label"></label>
+                    <input asp-for="fld_itemName" class="form-control" />
+                    <span asp-validation-for="fld_itemName" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_calibType" class="control-label"></label>
+                    <select asp-for="fld_calibType" class="form-select">
+                        <option value="">Select calibration type</option>
+                        <option value="EQUIPMENT">EQUIPMENT</option>
+                        <option value="JIG">JIG</option>
+                    </select>
+                    <span asp-validation-for="fld_calibType" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_modelNo" class="control-label"></label>
+                    <input asp-for="fld_modelNo" class="form-control" />
+                    <span asp-validation-for="fld_modelNo" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_serial" class="control-label"></label>
+                    <input asp-for="fld_serial" class="form-control" />
+                    <span asp-validation-for="fld_serial" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_drawingNo" class="control-label"></label>
+                    <input asp-for="fld_drawingNo" class="form-control" />
+                    <span asp-validation-for="fld_drawingNo" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_brand" class="control-label"></label>
+                    <input asp-for="fld_brand" class="form-control" />
+                    <span asp-validation-for="fld_brand" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_reqFunction" class="control-label"></label>
+                    <select asp-for="fld_reqFunction" asp-for="fld_reqFunction" asp-items="@(ViewBag.RequestingFunction)" class="form-control"></select>
+                    <span asp-validation-for="fld_reqFunction" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_fixedAsset" class="control-label"></label>
+                    <input asp-for="fld_fixedAsset" class="form-control" />
+                    <span asp-validation-for="fld_fixedAsset" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_requestBy" class="control-label"></label>
+                    <input asp-for="fld_requestBy" class="form-control" />
+                    <span asp-validation-for="fld_requestBy" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_approvedBy" class="control-label"></label>
+                    <input asp-for="fld_approvedBy" class="form-control" />
+                    <span asp-validation-for="fld_approvedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_reason" class="control-label"></label>
+                    <input asp-for="fld_reason" class="form-control" />
+                    <span asp-validation-for="fld_reason" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <label asp-for="fld_inchargeRequestor" class="control-label"></label>
+                    <input asp-for="fld_inchargeRequestor" class="form-control" />
+                    <span asp-validation-for="fld_inchargeRequestor" class="text-danger"></span>
+                </div>
+            </div>
+            <hr style="border-top: 3px double #000000;" />
+            <div class="col-md-4">
+                <div class="form-group paddingTop">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a style="padding-left:20px" asp-action="IndexDisposed">Back to List</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

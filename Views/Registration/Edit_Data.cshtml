@@ -10,6 +10,7 @@
 <h4>New Registration</h4>
 <hr />
 <form asp-action="Edit_Data">
+    <input type="hidden" asp-for="id" id="id" name="id" />
 <div class="container">
     <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -36,6 +37,9 @@
                     <label asp-for="fld_codeNo" class="control-label"></label>
                     <input readonly id="codeInput" name="fld_codeNo" asp-for="fld_codeNo" class="form-control" />
                     <span asp-validation-for="fld_codeNo" class="text-danger"></span>
+                </div>
+                <div class="form-group paddingTop">
+                    <input hidden readonly asp-for="fld_jigCategory" value="EQP" class="form-control" />
                 </div>
             </div>
             <div class="col-md-6">

@@ -1,0 +1,140 @@
+﻿@model Calibration_Management_System.Models.SuspendDisposeRegistration
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Disposed Item Information</h4>
+    <hr />
+
+    <div>
+        <div class="card paddAl">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_dateReg)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_dateReg)" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_ctrlNo)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_ctrlNo)" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_itemName)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_itemName)" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_calibType)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_calibType)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_modelNo)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_modelNo)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_serial)</label>
+                        <input readonly class="form-control" value="@Html.DisplayNameFor(model => model.fld_serial)" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label"> @Html.DisplayFor(model => model.fld_serial)</label>
+                        <input readonly class="form-control" value="@Html.DisplayNameFor(model => model.fld_brand)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_reqFunction)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_reqFunction)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_fixedAsset)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_fixedAsset)" />
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_requestBy)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_requestBy)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_approvedBy)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_approvedBy)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_reason)</label>
+                        <input readonly class="form-control" value=" @Html.DisplayFor(model => model.fld_reason)" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card paddAl">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label"> @Html.DisplayNameFor(model => model.fld_drawingNo)</label>
+                        <input readonly class="form-control" value=" @Html.DisplayFor(model => model.fld_drawingNo)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_suspendedDate)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_suspendedDate)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_disposalDate)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_disposalDate)" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_submitdate)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_submitdate)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_receivedBy)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_receivedBy)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_reqStatus)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_reqStatus)" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_inchargeQA)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_inchargeQA)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_followUpDate)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_followUpDate)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_nextFollowUp)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_nextFollowUp)" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">@Html.DisplayNameFor(model => model.fld_inchargeRequestor)</label>
+                        <input readonly class="form-control" value="@Html.DisplayFor(model => model.fld_inchargeRequestor)" />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+</div>
+<div>
+    <a asp-action="IndexSuspend2">Back to List</a>
+</div>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.CalibrationNotice>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CALIBRATION NOTICE</h1>
+
+<div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <a asp-action="Create" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Upload Schedule</a>
+        </div>
+    </div>
+</div>
+<div class="card" style="margin-top:15px; padding:10px;">
+    <h5 class="card-header">Calibration Schedule Approval</h5>
+    <hr />
+    <div class="table-responsive text-nowrap">
+        <table id="calib-notice" class="display table">
+            <thead>
+                <tr>
+                    <th style="text-align:center"> ---A c t i o n---</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateCreated)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathEQP)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathJIG)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_stat)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateApproved)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibMonth)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibYear)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;<a asp-action="Approval" asp-route-id="@item.Id">Approval</a>&nbsp;&nbsp; |
+                            &nbsp;&nbsp;<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>&nbsp;&nbsp; |
+                            &nbsp;&nbsp;<a asp-action="Notification" asp-route-id="@item.Id">Notification</a>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateCreated)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_pathEQP)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_pathJIG)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_stat)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateApproved)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_calibMonth)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_calibYear)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateCreated)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathEQP)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathJIG)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_stat)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateApproved)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibMonth)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibYear)</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+

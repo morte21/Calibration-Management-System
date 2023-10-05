@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.GeneralForm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>GENERAL FORM</h1>
+
+<div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <a asp-action="Create" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Create New</a>
+        </div>
+        <div>
+            <button type="button" class="btn btn-dark button-export" onclick="exportToExcelFR()">Export to Excel</button>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="padding:5px;">
+    <h5 class="card-header">Failure Report Data</h5>
+    <hr />
+    <div class="table-responsive text-nowrap">
+        <table id="generalform-registration" class="display table">
+            <thead>
+                <tr>
+                    <th> --A c t i o n--</th>
+                    <th width="150px">@Html.DisplayNameFor(model => model.fld_no)</th>
+                    <th width="200px">@Html.DisplayNameFor(model => model.fld_dateEst)</th>
+                    <th width="200px">@Html.DisplayNameFor(model => model.fld_appEquipment)</th>
+                    <th width="200px">@Html.DisplayNameFor(model => model.fld_docNo)</th>
+                    <th width="200px">@Html.DisplayNameFor(model => model.fld_rev)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;<a asp-action="Edit" asp-route-id="@item.id">Edit</a>&nbsp;&nbsp; |
+                            &nbsp;&nbsp;<a asp-action="Details" asp-route-id="@item.id">Details</a>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_no)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateEst)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_appEquipment)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_docNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_rev)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>@Html.DisplayNameFor(model => model.fld_no)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateEst)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_appEquipment)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_docNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_rev)</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+

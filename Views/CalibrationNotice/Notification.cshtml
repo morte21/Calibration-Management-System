@@ -1,0 +1,138 @@
+﻿@using DocumentFormat.OpenXml.Office2010.PowerPoint;
+@*@model Calibration_Management_System.Models.CalibrationNotice*@
+@model Calibration_Management_System.Models.GlobalControllerClass
+
+@{
+    ViewData["Title"] = "Notification";
+}
+
+<h1>Notification</h1>
+
+<div>
+    <h4>Calibration Notice </h4>
+
+    <hr style="border-top: 3px double #000000;" />
+    <div class="col-md-12" >
+        <div class="form-group"></div>
+        <div style="display: flex; justify-content:flex-start; margin-bottom:20px;">
+
+                <a style="margin-right:20px" href="@Url.Content("~/CalibrationNotice\\Equipment/" + Model.CalibrationNoticeData.fld_pathEQP)" target="_blank">
+                    <img src="/assets/img/download-solid.svg" style="height:15px; width:15px;" />
+                    Download calibration schedule - Equipment
+                </a>
+
+                <a href="@Url.Content("~/CalibrationNotice\\Jig/" + Model.CalibrationNoticeData.fld_pathJIG)" target="_blank">
+                    <img src="/assets/img/download-solid.svg" style="height:15px; width:15px;" />
+                    Download calibration schedule - Jig
+                </a>
+
+        </div>
+        
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CalibrationNoticeData.fld_dateCreated)
+        </dt>
+        <dd class = "col-sm-10">
+         <input readonly type="date" asp-for="@Model.CalibrationNoticeData.fld_dateCreated" class="form-control" />
+        </dd>
+       @* <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fld_pathEQP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fld_pathEQP)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fld_pathJIG)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fld_pathJIG)
+        </dd>*@
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CalibrationNoticeData.fld_stat)
+        </dt>
+        <dd class = "col-sm-10">
+            <input readonly id="approvalStat" asp-for="@Model.CalibrationNoticeData.fld_stat" class="form-control" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CalibrationNoticeData.fld_dateApproved)
+        </dt>
+        <dd class = "col-sm-10">
+            <input readonly type="date" id="myDateInputs" asp-for="@Model.CalibrationNoticeData.fld_dateApproved" class="form-control" />
+        </dd>
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fld_calibMonth)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fld_calibMonth)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fld_calibYear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fld_calibYear)
+        </dd>*@
+    </dl>
+</div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CalibrationNoticeData.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<form method="post" action="@Url.Action("SendEmailNotification", "CalibrationNotice")" id="emailForm">
+    <input type="submit" value="Send Email" class="btn btn-primary" id="sendEmailBtn" />
+</form>
+<hr />
+<div class="progress"  id="progressBarContainer">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" id="progressBar"></div>
+</div>
+
+<div id="resultMessage"></div>
+
+<script>
+    $(document).ready(function () {
+        $("#emailForm").on("submit", function (e) {
+            e.preventDefault();
+
+            // Hide the submit button and show the progress bar
+            $("#sendEmailBtn").hide();
+            $("#progressBarContainer").show();
+
+            // Create a FormData object to send the form data asynchronously
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "@Url.Action("SendEmailNotification","CalibrationNotice")",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                xhr: function () {
+                    // Create an XHR object to track progress
+                    var xhr = new window.XMLHttpRequest();
+
+                    xhr.upload.addEventListener("progress", function (e) {
+                        if (e.lengthComputable) {
+                            var percentComplete = (e.loaded / e.total) * 100;
+                            $("#progressBar").css("width", percentComplete + "%");
+                        }
+                    }, false);
+
+                    return xhr;
+                },
+                success: function (data) {
+                    // Hide the progress bar and show a success message
+                    $("#progressBarContainer").hide();
+                    $("#sendEmailBtn").show();
+                    $("#resultMessage").html("<div class='alert alert-success'>Email sent successfully.</div>");
+                },
+                error: function (error) {
+                    // Hide the progress bar and show an error message
+                    $("#progressBarContainer").hide();
+                    $("#resultMessage").html("<div class='alert alert-danger'>Error sending email: " + error.responseText + "</div>");
+                }
+            });
+        });
+    });
+</script>

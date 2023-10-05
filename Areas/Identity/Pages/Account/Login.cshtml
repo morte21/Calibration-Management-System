@@ -6,12 +6,28 @@
     Layout = Request.Path.StartsWithSegments("/Account/Login") ? null : "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<title>Calibration Management System</title>
-
-<div>
-    <h1 class="fontTxt">CALIBRATION SYSTEM</h1>
-</div>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calibration Management System</title>
+    <style>
+        body {
+            background-image: url('/assets/img/backgrounds/bg_main.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* Additional styles for centering the content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <!-- Add your other CSS and Bootstrap references here -->
+</head>
+<body>
 <div class="container-xxl" style="display: flex; justify-content: flex-end;">
     <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
@@ -57,10 +73,13 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                                
                                 <label style="font-size:xx-small;" class="form-check-label" for="remember-me"><b>For guest user you may use this id.</b>  <br />User: guest@sanyodenki.com<br /> Pass: Password01*</label>
                             </div>
                         </div>
+                        <p>
+                            <a style="font-size:x-small; id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a><br />
+                            <a style="font-size:x-small; id="registeruser" asp-area="Identity" asp-page="/Account/RegisterUser">Register as a new user</a>
+                        </p>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary d-grid w-100">Sign in</button>
                         </div>
@@ -75,3 +94,6 @@
         </div>
     </div>
 </div>
+
+</body>
+</html>

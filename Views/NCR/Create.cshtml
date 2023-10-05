@@ -1,0 +1,118 @@
+﻿@model Calibration_Management_System.Models.NCR
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>NON-CONFORMITY REPORT</h1>
+
+<h4>Registration</h4>
+<hr />
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="fld_nonConReportNo" class="control-label"></label>
+                    <input required asp-for="fld_nonConReportNo" class="form-control" />
+                    <span asp-validation-for="fld_nonConReportNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_dateIssue" class="control-label"></label>
+                    <input required type="date" id="myDateInput" asp-for="fld_dateIssue" class="form-control" />
+                    <span asp-validation-for="fld_dateIssue" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_ctrlNo" class="control-label"></label>
+                    <input required asp-for="fld_ctrlNo" class="form-control" />
+                    <span asp-validation-for="fld_ctrlNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_IssueTo" class="control-label"></label>
+                    <select required asp-for="fld_IssueTo" asp-items="@(ViewBag.Dept)" class="form-control"></select>
+                    <span asp-validation-for="fld_IssueTo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_mainIncharge" class="control-label"></label>
+                    <input required asp-for="fld_mainIncharge" class="form-control" />
+                    <span asp-validation-for="fld_mainIncharge" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="fld_modelNo" class="control-label"></label>
+                    <input required asp-for="fld_modelNo" class="form-control" />
+                    <span asp-validation-for="fld_modelNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_qty" class="control-label"></label>
+                    <input required type="number" asp-for="fld_qty" class="form-control" />
+                    <span asp-validation-for="fld_qty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_withDisposalForm" class="control-label"></label>
+                    <select required asp-for="fld_withDisposalForm" asp-items="@(ViewBag.NCR)" class="form-control"></select>
+                    <span asp-validation-for="fld_withDisposalForm" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_contents" class="control-label"></label>
+                    <input required asp-for="fld_contents" class="form-control" />
+                    <span asp-validation-for="fld_contents" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_dateCompleted" class="control-label"></label>
+                    <input required type="date" id="myDateInput" asp-for="fld_dateCompleted" class="form-control" />
+                    <span asp-validation-for="fld_dateCompleted" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="fld_status" class="control-label"></label>
+                    <select required asp-for="fld_status" asp-items="@(ViewBag.Status)" class="form-control"></select>
+                    <span asp-validation-for="fld_status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_calibReportNo" class="control-label"></label>
+                    <input required asp-for="fld_calibReportNo" class="form-control" />
+                    <span asp-validation-for="fld_calibReportNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_giveDisposeSuspendedForm" class="control-label"></label>
+                    <input required asp-for="fld_giveDisposeSuspendedForm" class="form-control" />
+                    <span asp-validation-for="fld_giveDisposeSuspendedForm" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_givenTo" class="control-label"></label>
+                    <input required asp-for="fld_givenTo" class="form-control" />
+                    <span asp-validation-for="fld_givenTo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fld_rcvDisposeSuspendedForm" class="control-label"></label>
+                    <input required asp-for="fld_rcvDisposeSuspendedForm" class="form-control" />
+                    <span asp-validation-for="fld_rcvDisposeSuspendedForm" class="text-danger"></span>
+                </div>
+            </div>
+            <hr style="border-top: 3px double #000000;" />
+            <div class="col-md-6">
+                <div class="form-group"></div>
+                <div class="form-group">
+                    <label for="_pathIMG">Image Upload:</label>
+                    <input type="file" id="_pathIMG" name="_pathIMG" class="form-control-file" />
+                </div>
+                <div class="form-group">
+                    <label for="_pathDoc">PDF Upload:  &nbsp;&nbsp;</label>
+                    <input type="file" id="_pathDoc" name="_pathDoc" class="form-control-file" />
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group paddingTop">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a style="padding-left:20px" asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            </div>
+            
+    </div>
+</div>
+</form>
