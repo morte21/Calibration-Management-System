@@ -137,6 +137,9 @@ namespace Calibration_Management_System.Areas.Identity.Pages.Account
 
                 user.Firstname = Input1.Firstname;
                 user.Lastname = Input1.Lastname;
+                user.EmailConfirmed = true;
+                
+
 
                 var result = await _userManager.CreateAsync(user, Input1.Password);
 
@@ -144,7 +147,7 @@ namespace Calibration_Management_System.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    await _userManager.AddToRoleAsync(user, Input1.Role);
+                    await _userManager.AddToRoleAsync(user, "Using Function");
 
 
                     await _signInManager.SignInAsync(user, isPersistent: false);

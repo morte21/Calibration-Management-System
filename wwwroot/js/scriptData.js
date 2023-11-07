@@ -370,8 +370,8 @@ function exportToExcelMaster() {
     // Get the DataTable instance
     var dataTable = $('#equipment-registration').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the visible rows and their data
+    var visibleRows = dataTable.rows({ 'search': 'applied' }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -405,20 +405,19 @@ function exportToExcelMaster() {
         "External Supplier",
         "Comment",
         "Standard Equipment",
-
         "Status",
         "Calibration Result",
         "IMG Result"
     ];
 
-    var filteredData = data.map(function (row) {
+    var visibleData = visibleRows.map(function (row) {
         return row.filter(function (_, index) {
             // Exclude column 0 (Action) and columns 25 to 34
             return index !== 0 && (index < 25 || index > 34);
         });
     });
 
-    var dataWithHeaders = [headers].concat(filteredData);
+    var dataWithHeaders = [headers].concat(visibleData);
 
     XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
 
@@ -432,13 +431,14 @@ function exportToExcelMaster() {
     saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'equipment_registration.xlsx');
 }
 
+
 //EXPORT TO EXCEL JIG
 function exportToExcel2() {
     // Get the DataTable instance
     var dataTable = $('#jig-registration').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the visible data from the DataTable
+    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -451,11 +451,9 @@ function exportToExcel2() {
         "Code",
         "Control Number",
         "Division",
-
         "Jig Name",
         "Drawing No.",
         "Serial",
-
         "Term",
         "Employment Place",
         "Pass/Fail",
@@ -468,19 +466,16 @@ function exportToExcel2() {
         "Next Calibration Month",
         "Next Calibration Year",
         "Internal/External",
-
         "Comment",
-
         "Path IMG",
         "Path DOC",
         "Status",
         "Description"
-
     ];
 
     var filteredData = data.map(function (row) {
         return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 25 to 34
+            // Exclude any columns that need to be excluded
             return index !== 0 && (index < 24 || index > 34);
         });
     });
@@ -505,8 +500,8 @@ function exportToExcelFR() {
     // Get the DataTable instance
     var dataTable = $('#failurereport-registration').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the visible rows and their data
+    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -521,11 +516,10 @@ function exportToExcelFR() {
         "Department/Section",
         "In Charge",
         "Main Incharge",
-        "Contol Number",
+        "Control Number",
         "Equipment Name",
         "Quantity",
         "Contents"
-        
     ];
 
     var filteredData = data.map(function (row) {
@@ -550,13 +544,14 @@ function exportToExcelFR() {
 }
 
 
+
 //EXPORT TO EXCEL UNCONTROLLED
 function exportToExcelUC() {
     // Get the DataTable instance
     var dataTable = $('#uncontrolled-registration').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the visible rows data from the DataTable
+    var data = dataTable.rows({ search: "applied" }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -576,7 +571,6 @@ function exportToExcelUC() {
         "Request By",
         "Department",
         "Comment"
-
     ];
 
     var filteredData = data.map(function (row) {
@@ -601,13 +595,14 @@ function exportToExcelUC() {
 }
 
 
+
 //EXPORT TO EXCEL NCR
 function exportToExcelNCR() {
     // Get the DataTable instance
     var dataTable = $('#ncr-registration').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the visible rows from the DataTable
+    var visibleRows = dataTable.rows({ 'search': 'applied' }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -632,18 +627,17 @@ function exportToExcelNCR() {
         "With Dispose/Suspended Form",
         "Given to",
         "Dispose/Suspend Form Receiver"
-        
-
     ];
 
-    var filteredData = data.map(function (row) {
+    // Extract data from visible rows
+    var visibleData = visibleRows.map(function (row) {
         return row.filter(function (_, index) {
             // Exclude column 0 (Action) and columns 10 to 11
             return index !== 0 && (index < 16 || index > 17);
         });
     });
 
-    var dataWithHeaders = [headers].concat(filteredData);
+    var dataWithHeaders = [headers].concat(visibleData);
 
     XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
 
@@ -658,13 +652,14 @@ function exportToExcelNCR() {
 }
 
 
+
 //EXPORT TO EXCEL GEN. FORM
 function exportToExcelGF() {
     // Get the DataTable instance
     var dataTable = $('#generalform-registration').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the visible rows' data
+    var data = dataTable.rows({ filter: 'applied' }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -679,9 +674,6 @@ function exportToExcelGF() {
         "Equipment",
         "Doc. No.",
         "Revision"
-        
-
-
     ];
 
     var filteredData = data.map(function (row) {
@@ -707,13 +699,14 @@ function exportToExcelGF() {
 
 
 
+
 //EXPORT TO EXCEL EQP SCHEDULE
 function exportToExcelResultEQP() {
     // Get the DataTable instance
     var dataTable = $('#dailyCalibEQP').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the data of visible rows from the DataTable
+    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -745,7 +738,6 @@ function exportToExcelResultEQP() {
         "External Supplier",
         "Comment",
         "Application Standard Equipment",
-
         "Date Return",
         "With NC",
         "With FR",
@@ -756,15 +748,15 @@ function exportToExcelResultEQP() {
         "Change Sticker",
         "Actual Calibration Due Date",
         "Date Received"
-
-
-
     ];
 
+    // Filter the data to exclude specific columns (e.g., columns 0 and 10-11)
     var filteredData = data.map(function (row) {
         return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 10 to 11
-            return index !== 0 && (index < 23 || index > 24) && (index < 35 || index > 36);
+            // Exclude column 0 and columns 10-11
+            return (
+                index !== 0 && (index < 23 || index > 24) && (index < 35 || index > 36)
+            );
         });
     });
 
@@ -784,13 +776,14 @@ function exportToExcelResultEQP() {
 
 
 
+
 //EXPORT TO EXCEL JIG SCHEDULE
 function exportToExcelResultJIG() {
     // Get the DataTable instance
     var dataTable = $('#dailyCalibJig').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
+    // Get the filtered (visible) data from the DataTable
+    var data = dataTable.rows({ search: 'applied' }).data().toArray();
 
     // Create a new workbook
     var workbook = XLSX.utils.book_new();
@@ -827,7 +820,6 @@ function exportToExcelResultJIG() {
         "In charge",
         "Change Sticker",
         "Actual Calibration Due Date"
-
     ];
 
     var filteredData = data.map(function (row) {

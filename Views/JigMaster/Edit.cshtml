@@ -137,15 +137,18 @@
                         <div class="form-group">
                             <label for="_pathIMG">Image Upload:</label>
                             <input type="file" id="_pathIMG" name="_pathIMG" class="form-control-file" />
-                            <input readonly id="edit_pathIMG" name="edit_pathIMG" asp-for="fld_pathIMG" class="form-control" />
+                            <input readonly id="edit_pathIMG" name="edit_pathIMG" asp-for="fld_pathIMG" class="form-control" accept=".jpg, .jpeg, .png, .gif, .bmp" />
                         </div>
 
                         <div class="form-group">
                             <label for="_pathDoc">PDF Upload:  &nbsp;&nbsp;</label>
                             <input type="file" id="_pathDoc" name="_pathDoc" class="form-control-file" />
-                            <input readonly id="edit_pathDoc" name="edit_pathDoc" asp-for="fld_pathDoc" class="form-control" />
+                            <input readonly id="edit_pathDoc" name="edit_pathDoc" asp-for="fld_pathDoc" class="form-control" accept=".pdf, .xls, .xlsx, .doc, .docx" />
                         </div>
 
+
+
+                        
                 </div>
 
                     <div class="form-group">

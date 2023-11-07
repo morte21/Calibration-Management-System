@@ -91,9 +91,10 @@ namespace Calibration_Management_System.Areas.Identity.Pages.Account
         private void SendEmailToAdministrator(string emailBody)
         {
             string adminEmailAddress = "jason.casupanan@sanyodenki.com";
-            string emailSubject = "Password Reset Request";
+            
 
             MailMessage message = new MailMessage();
+            message.Subject = "Password Reset Request";
             message.IsBodyHtml = true;
             message.From = new MailAddress("sdp.system@outlook.ph", "Calibration System");
             message.Priority = MailPriority.High;
@@ -118,6 +119,7 @@ namespace Calibration_Management_System.Areas.Identity.Pages.Account
         private void SendEmailToUser(string toEmail, string subject, string emailBody)
         {
             MailMessage message = new MailMessage();
+            message.Subject = "Password Reset Request";
             message.IsBodyHtml = true;
             message.From = new MailAddress("sdp.system@outlook.ph", "Calibration System");
             message.Priority = MailPriority.High;
@@ -125,6 +127,8 @@ namespace Calibration_Management_System.Areas.Identity.Pages.Account
 
             // To
             message.To.Add(new MailAddress(toEmail));
+
+            Console.WriteLine(message);
 
             SmtpClient emailClient = new SmtpClient();
             emailClient.Host = "smtp-mail.outlook.com";

@@ -1,53 +1,34 @@
 ﻿<!DOCTYPE html>
 
 <!-- beautify ignore:start -->
-<html
-  lang="en"
-  class="light-style layout-menu-fixed"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../assets/"
-  data-template="vertical-menu-template-free"
->
-  <head>
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Calibration Management System</title>
 
     <meta name="description" content="" />
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!--dataTables-->
-    <link rel="stylesheet" href="~/dataTables/datatables.css" />
-    <link rel="stylesheet" href="~/dataTables/datatables.min.css" />
-    @*<link href="DataTables/datatables.min.css" rel="stylesheet">*@
-    <script src="~/dataTables/DataTables-1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="~/dataTables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
-    <script src="~/dataTables/datatables.min.js"></script>
 
 
     <!-- Other head elements -->
-    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- ... other stylesheets ... -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- ... other scripts ... -->
-
-
-
-
     <!-- Favicon -->@*
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />*@
 
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="~/assets/vendor/fonts/boxicons.css" />
-
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="~/assets/vendor/css/core.css" class="template-customizer-core-css" />
@@ -67,12 +48,14 @@
 
     <link rel="stylesheet" href="~/style_.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-@*    <link rel="stylesheet" href="/lib/bootstrap-5.3/css/bootstrap.min.css" />*@
-   @* <link rel="stylesheet" href="/dataTables/Buttons-2.3.6/css/buttons.bootstrap.min.css" />*@
 
-    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*    <link rel="stylesheet" href="/lib/bootstrap-5.3/css/bootstrap.min.css" />*@
+    @* <link rel="stylesheet" href="/dataTables/Buttons-2.3.6/css/buttons.bootstrap.min.css" />*@
+
+    <!--dataTables-->
+    <link rel="stylesheet" href="~/dataTables/datatables.css" />
+    <link rel="stylesheet" href="~/dataTables/datatables.min.css" />
 
     <link href="~/css/style.min.css" rel="stylesheet">
 
@@ -106,343 +89,326 @@
     <script src="/js/custom.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
-        <!-- Menu -->
+        <div class="layout-container">
+            <!-- Menu -->
 
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo">
-            <a asp-area="" asp-controller="Home" asp-action="Index" class="app-brand-link">
-              <span class="app-brand-logo demo">
-                
-              </span>
-              <span style="color:white" class="app-brand-text demo menu-text fw-bolder ms-2">SANYO DENKI</span>
-            </a>
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="app-brand-link">
+                        <span class="app-brand-logo demo">
 
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a>
-          </div>
+                        </span>
+                        <span style="color:white" class="app-brand-text demo menu-text fw-bolder ms-2">SANYO DENKI</span>
+                    </a>
 
-          <div class="menu-inner-shadow"></div>
-
-          <ul class="menu-inner py-1">
-            <!-- Dashboard -->
-            <li class="menu-item">
-              <a style="color:white" asp-area="" asp-controller="Home" asp-action="Index" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-              </a>
-            </li>
-
-            <!-- Layouts -->
-            <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Registration">Registration</div>
-              </a>
-
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="Registration" asp-action="Index" class="menu-link">
-                     <div data-i18n="Equipment">Equipment</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="Registration" asp-action="IndexJig" class="menu-link">
-                    <div data-i18n="Jigs">Jigs</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexSuspend" class="menu-link">
-                    <div data-i18n="Suspended">Suspended</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexDisposed" class="menu-link">
-                    <div data-i18n="Disposed">Disposed</div>
-                  </a>
-                </li>
-                
-              </ul>
-            </li>
-
-            <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Masterlist</span>
-            </li>
-            <li class="menu-item">
-              <a style="color:white" class="menu-link menu-toggle">
-                  <i href="javascript:void(0);" class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Equipment">Equipment</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                    <a style="color:white" asp-area="" asp-controller="EquipmentMaster" asp-action="Index" class="menu-link">
-                    <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-                
-              </ul>
-            </li>
-            <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Jigs">Jigs</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                 <a style="color:white" asp-area="" asp-controller="JigMaster" asp-action="Index" class="menu-link">
-                    <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-              
-              </ul>
-            </li>
-            <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-no-entry"></i>
-                <div data-i18n="Suspended">Suspended</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                 <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexSuspend2" class="menu-link">
-                    <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-trash"></i>
-                <div data-i18n="Disposed">Disposed</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexDisposed2" class="menu-link">
-                    <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-report"></i>
-                <div data-i18n="Failure Report">Failure Report</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="FailureReport" asp-action="Index" class="menu-link">
-                    <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-             <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-error"></i>
-                <div data-i18n="Uncontrolled">Uncontrolled</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="Uncontrolled" asp-action="Index" class="menu-link">
-                     <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-             <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-book-bookmark"></i>
-                <div data-i18n="NCR">NCR</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="NCR" asp-action="Index" class="menu-link">
-                    <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-             <li class="menu-item">
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layer"></i>
-                <div data-i18n="General Form">General Form</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="GeneralForm" asp-action="Index" class="menu-link">
-                    <div data-i18n="Data">Data</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <!-- Scheduler -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Calibration</span></li>
-            <!-- Cards -->
-            <li class="menu-item" >
-              <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-calendar"></i>
-                <div data-i18n="Scheduler">Scheduler</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="CalibSchedule" asp-action="Index" class="menu-link">
-                    <div data-i18n="Create">Create Schedule</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="CalibrationNotice" asp-action="Index" class="menu-link">
-                     <div data-i18n="Calib">Schedule</div>
-                  </a>
-                </li>
-                
-              </ul>
-            </li>
-            
-             <!-- Calibration -->
-            <li class="menu-item">
-                <a style="color:white" href="" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Daily Calibration">Daily Calibration</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="ResultEQP" asp-action="Index" class="menu-link">
-                    <div data-i18n="EQP">Equipment Calibration</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="ResultJIG" asp-action="Index" class="menu-link">
-                     <div data-i18n="JIG">Jig Calibration</div>
-                  </a>
-                </li>
-               
-              </ul>
-            </li>
-
-            <!-- Code Management -->
-            <li class="menu-item">
-              <a style="color:white" href="" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Management">Management</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="EmailReg" asp-action="Index" class="menu-link">
-                     <div data-i18n="Register">Email Registration</div>
-                  </a>
-                </li>
-               
-              </ul>
-            </li>
-
-            <!-- User -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
-           
-            <!-- User -->
-            <li class="menu-item">
-              <a style="color:white" class="menu-link" id="register" asp-area="Identity" asp-page="/Account/Register">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="User Registration">User Registration</div>
-              </a>
-              
-            </li>
-           </ul>
-        </aside>
-        <!-- / Menu -->
-
-        <!-- Layout container -->
-        <div class="layout-page">
-          <!-- Navbar -->
-
-          <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
-           
-            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                    <i class="bx bx-menu bx-sm"></i>
-                </a>
-            </div>
-
-            <div class="navbar-nav-right d-flex align-content-end justify-content-end">
-                <div class="ml-auto text-end">
-                    <partial name="_LoginPartial" />
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                    </a>
                 </div>
-            </div>
-            
-                
-          </nav>
-               
 
-          <!-- / Navbar -->
+                <div class="menu-inner-shadow"></div>
 
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
+                <ul class="menu-inner py-1">
+                    <!-- Dashboard -->
+                    <li class="menu-item">
+                        <a style="color:white" asp-area="" asp-controller="Home" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Dashboard</div>
+                        </a>
+                    </li>
 
-            <div class="container-xxl flex-grow-1 container-p-y">
-              <div class="row">
-                <div class="container">
-                    <main role="main" class="pb-3">
-                        @RenderBody()        
-                        @RenderSection("Scripts", required: false)
-                        <!--notification-->
-                       
-                    </main>
-                </div>
-              </div>
-              <div class="row">
-                
-              </div>
-            </div>
-            <!-- / Content -->
+                    <!-- Layouts -->
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Registration">Registration</div>
+                        </a>
 
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                  ©
-                  <script>
-                                    document.write(new Date().getFullYear());  
-                  </script>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="Registration" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Equipment">Equipment</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="Registration" asp-action="IndexJig" class="menu-link">
+                                    <div data-i18n="Jigs">Jigs</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexSuspend" class="menu-link">
+                                    <div data-i18n="Suspended">Suspended</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexDisposed" class="menu-link">
+                                    <div data-i18n="Disposed">Disposed</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Masterlist</span>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" class="menu-link menu-toggle">
+                            <i href="javascript:void(0);" class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <div data-i18n="Equipment">Equipment</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="EquipmentMaster" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                            <div data-i18n="Jigs">Jigs</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="JigMaster" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-no-entry"></i>
+                            <div data-i18n="Suspended">Suspended</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexSuspend2" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bxs-trash"></i>
+                            <div data-i18n="Disposed">Disposed</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="SuspendDispose" asp-action="IndexDisposed2" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bxs-report"></i>
+                            <div data-i18n="Failure Report">Failure Report</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="FailureReport" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-error"></i>
+                            <div data-i18n="Uncontrolled">Uncontrolled</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="Uncontrolled" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-book-bookmark"></i>
+                            <div data-i18n="NCR">NCR</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="NCR" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-layer"></i>
+                            <div data-i18n="General Form">General Form</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="GeneralForm" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Data">Data</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Scheduler -->
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Calibration</span></li>
+                    <!-- Cards -->
+                    <li class="menu-item">
+                        <a style="color:white" href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-calendar"></i>
+                            <div data-i18n="Scheduler">Scheduler</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="CalibSchedule" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Create">Create Schedule</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="CalibrationNotice" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Calib">Schedule</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <!-- Calibration -->
+                    <li class="menu-item">
+                        <a style="color:white" href="" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Daily Calibration">Daily Calibration</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="ResultEQP" asp-action="Index" class="menu-link">
+                                    <div data-i18n="EQP">Equipment Calibration</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="ResultJIG" asp-action="Index" class="menu-link">
+                                    <div data-i18n="JIG">Jig Calibration</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <!-- Code Management -->
+                    <li class="menu-item">
+                        <a style="color:white" href="" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Management">Management</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a style="color:white" asp-area="" asp-controller="EmailReg" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Register">Email Registration</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <!-- User -->
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
+
+                    <!-- User -->
+                    <li class="menu-item">
+                        <a style="color:white" class="menu-link" id="register" asp-area="Identity" asp-page="/Account/Register">
+                            <i class="menu-icon tf-icons bx bx-table"></i>
+                            <div data-i18n="User Registration">User Registration</div>
+                        </a>
+
+                    </li>
+                </ul>
+            </aside>
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="bx bx-menu bx-sm"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-nav-right d-flex align-content-end justify-content-end">
+                        <div class="ml-auto text-end">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="row">
+                            <div class="container">
+                                <main role="main" class="pb-3">
+                                    @RenderBody()
+                                    @RenderSection("Scripts", required: false)
+                                    <!--notification-->
+
+                                </main>
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                    </div>
+                    <!-- / Content -->
+                    <!-- Footer -->
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
                                 SANYO DENKI PHILIPPINES INC., All Rights Reserved.
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
                 </div>
-              </div>
-            </footer>
-            <!-- / Footer -->
-
-            <div class="content-backdrop fade"></div>
-          </div>
-          <!-- Content wrapper -->
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
         </div>
-        <!-- / Layout page -->
-      </div>
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-
     <!-- floating button-->
     @*<div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
+    <a
+    href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
+    target="_blank"
+    class="btn btn-danger btn-buy-now"
+    >Upgrade to Pro</a
+    >
     </div>*@
-    <!-- DataTables JS -->
-    @*<script src="/dataTables/datatables.min.js"></script>*@
-    @*<script src="/dataTables/jquery-3-5.1.js"></script>*@
-    @*<script src="/dataTables/DataTables-1.13.4/js/jquery.dataTables.min.js"></script>*@
-    <script src="~/dataTables/DataTables-1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="~/dataTables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
-    <script src="~/dataTables/datatables.min.js"></script>
-
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -455,7 +421,6 @@
 
 
     <!-- endbuild -->
-
     <!-- Vendors JS -->
     <script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
@@ -465,9 +430,12 @@
     <!-- Page JS -->
     <script src="/assets/js/dashboards-analytics.js"></script>
 
-    
-    
-    
+    <!-- DataTables JS -->
+    <script src="/dataTables/datatables.min.js"></script>
+    @*<script src="/dataTables/jquery-3-5.1.js"></script>*@
+    <script src="/dataTables/DataTables-1.13.6/js/jquery.dataTables.min.js"></script>
+
+
     @*<script src="/dataTables/Buttons-2.3.6/js/buttons.html5.min.js"></script>
     <script src="/dataTables/Buttons-2.3.6/js/buttons.print.min.js"></script>
     <script src="/dataTables/Buttons-2.3.6/js/dataTables.buttons.min.js"></script>*@
@@ -479,10 +447,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
-    
+
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
     <script src="/js/scriptData.js"></script>
@@ -504,9 +472,7 @@
 
     <!--progress-->
     <script src="~/js/progress.js"></script>
-   
-    <!--calib schedule-->
-    <script src="~/js/calibresult.js"></script>
-    
-  </body>
+
+
+</body>
 </html>

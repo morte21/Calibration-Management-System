@@ -17,13 +17,15 @@ builder.Services.AddScoped<JigService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
 
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-////user management
-builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+////user management
+//builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+//    .AddRoles<IdentityRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 //builder.Services.Configure<MailSettings>(builder.Configuration.GetSection(nameof(MailSettings)));
 
