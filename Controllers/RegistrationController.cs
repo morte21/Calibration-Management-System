@@ -1,11 +1,16 @@
 ﻿using Calibration_Management_System.Data;
 using Calibration_Management_System.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Mail;
+using Microsoft.AspNetCore.Identity;
+
+
 
 namespace Calibration_Management_System.Controllers
 {
@@ -13,12 +18,15 @@ namespace Calibration_Management_System.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private UserManager<IdentityUser> _userManager;
 
-        public RegistrationController(ApplicationDbContext context, IConfiguration configuration)
+       
+
+        public RegistrationController(ApplicationDbContext context, IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _configuration = configuration;
-
+            _userManager = userManager;
         }
 
         //VIEW EQUPMENT REGISTRATION PAGE
@@ -74,6 +82,8 @@ namespace Calibration_Management_System.Controllers
         [HttpPost]
         public IActionResult Create_Reg_Jig(RegistrationClass RegistrationClass)
         {
+            
+
 
             _context.Registration_Table.Add(RegistrationClass);
             _context.SaveChanges();
@@ -326,11 +336,20 @@ namespace Calibration_Management_System.Controllers
             message.Priority = MailPriority.High;
             message.Body = HTML;
 
+
+            //get user email
+            string userName = _userManager.GetUserName(User);
+            
             //To
-            message.To.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.To.Add(new MailAddress(userName));
+            
 
             //CC
             message.CC.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.CC.Add(new MailAddress("edmon.isip@sanyodenki.com"));
+            message.CC.Add(new MailAddress("sdp-qacalibration@sanyodenki.com"));
+            message.CC.Add(new MailAddress("ronald.ramos@sanyodenki.com"));
+
 
 
             SmtpClient emailClient = new SmtpClient();
@@ -606,11 +625,18 @@ namespace Calibration_Management_System.Controllers
             message.Priority = MailPriority.High;
             message.Body = HTML;
 
+            //get user email
+            string userName = _userManager.GetUserName(User);
+
             //To
-            message.To.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.To.Add(new MailAddress(userName));
+
 
             //CC
             message.CC.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.CC.Add(new MailAddress("edmon.isip@sanyodenki.com"));
+            message.CC.Add(new MailAddress("sdp-qacalibration@sanyodenki.com"));
+            message.CC.Add(new MailAddress("ronald.ramos@sanyodenki.com"));
 
 
             SmtpClient emailClient = new SmtpClient();
@@ -912,11 +938,18 @@ namespace Calibration_Management_System.Controllers
             message.Priority = MailPriority.High;
             message.Body = HTML;
 
+            //get user email
+            string userName = _userManager.GetUserName(User);
+
             //To
-            message.To.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.To.Add(new MailAddress(userName));
+
 
             //CC
             message.CC.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.CC.Add(new MailAddress("edmon.isip@sanyodenki.com"));
+            message.CC.Add(new MailAddress("sdp-qacalibration@sanyodenki.com"));
+            message.CC.Add(new MailAddress("ronald.ramos@sanyodenki.com"));
 
 
             SmtpClient emailClient = new SmtpClient();
@@ -1194,11 +1227,18 @@ namespace Calibration_Management_System.Controllers
             message.Priority = MailPriority.High;
             message.Body = HTML;
 
+            //get user email
+            string userName = _userManager.GetUserName(User);
+
             //To
-            message.To.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.To.Add(new MailAddress(userName));
+
 
             //CC
             message.CC.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.CC.Add(new MailAddress("edmon.isip@sanyodenki.com"));
+            message.CC.Add(new MailAddress("sdp-qacalibration@sanyodenki.com"));
+            message.CC.Add(new MailAddress("ronald.ramos@sanyodenki.com"));
 
 
             SmtpClient emailClient = new SmtpClient();

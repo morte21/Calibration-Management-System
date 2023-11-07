@@ -2,6 +2,7 @@
 using Calibration_Management_System.Models;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -16,12 +17,13 @@ namespace Calibration_Management_System.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private UserManager<IdentityUser> _userManager;
 
-        public SuspendDisposeController(ApplicationDbContext context, IConfiguration configuration)
+        public SuspendDisposeController(ApplicationDbContext context, IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _configuration = configuration;
-
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -318,11 +320,19 @@ namespace Calibration_Management_System.Controllers
             message.Priority = MailPriority.High;
             message.Body = HTML;
 
+            //get user email
+            string userName = _userManager.GetUserName(User);
+
             //To
-            message.To.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.To.Add(new MailAddress(userName));
+
 
             //CC
             message.CC.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.CC.Add(new MailAddress("edmon.isip@sanyodenki.com"));
+            message.CC.Add(new MailAddress("sdp-qacalibration@sanyodenki.com"));
+            message.CC.Add(new MailAddress("ronald.ramos@sanyodenki.com"));
+
 
 
             SmtpClient emailClient = new SmtpClient();
@@ -729,11 +739,19 @@ namespace Calibration_Management_System.Controllers
             message.Priority = MailPriority.High;
             message.Body = HTML;
 
+            //get user email
+            string userName = _userManager.GetUserName(User);
+
             //To
-            message.To.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.To.Add(new MailAddress(userName));
+
 
             //CC
             message.CC.Add(new MailAddress("sdp-qa1systemdevt@sanyodenki.com"));
+            message.CC.Add(new MailAddress("edmon.isip@sanyodenki.com"));
+            message.CC.Add(new MailAddress("sdp-qacalibration@sanyodenki.com"));
+            message.CC.Add(new MailAddress("ronald.ramos@sanyodenki.com"));
+
 
 
             SmtpClient emailClient = new SmtpClient();
