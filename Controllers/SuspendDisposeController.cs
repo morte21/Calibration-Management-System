@@ -11,6 +11,7 @@ using System.Net.Mail;
 
 namespace Calibration_Management_System.Controllers
 {
+    
     public class SuspendDisposeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -337,7 +338,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("IndexSuspend");
         }
 
-
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit_Suspend(int Id)
         {
@@ -355,6 +356,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("IndexSuspend");
         }
 
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit_Suspend2(int Id)
         {
@@ -372,7 +374,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("IndexSuspend2");
         }
 
-
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult ActivateSuspend(int Id)
         {
@@ -380,7 +382,7 @@ namespace Calibration_Management_System.Controllers
             return View("ActivateSuspend", SusDisRegistration);
         }
 
-
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpPost]
         public IActionResult ActivateSuspendConfirmed(int Id) // Assuming you're passing an ID to identify the specific row
         {
@@ -749,7 +751,7 @@ namespace Calibration_Management_System.Controllers
 
 
 
-
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit_Disposed(int Id)
         {
@@ -767,6 +769,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("IndexDisposed");
         }
 
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit_Disposed2(int Id)
         {
@@ -784,7 +787,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("IndexDisposed2");
         }
 
-
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult ActivateDisposed(int Id)
         {
@@ -792,7 +795,7 @@ namespace Calibration_Management_System.Controllers
             return View("ActivateDisposed", SusDisRegistration);
         }
 
-
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpPost]
         public IActionResult ActivateDisposedConfirmed(int Id) // Assuming you're passing an ID to identify the specific row
         {

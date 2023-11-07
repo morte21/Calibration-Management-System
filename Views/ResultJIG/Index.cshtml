@@ -1,0 +1,189 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.CalibrationResultJIG>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>CALIBRATION MANAGEMENT SCHEDULE [JIG]</h1>
+
+<div>
+    <div style="text-align: right;">
+        <div>
+            <button type="button" class="btn btn-dark button-export" onclick="exportToExcelResultJIG()">Export to Excel</button>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="margin-top:15px; padding:10px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Enter Month:</label>
+                    <select id="searchMonthJig" class="form-select">
+                        <option selected value="">Select month </option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Enter Year:</label>
+                    <input type="number" id="searchYearJig" class="form-control" placeholder="Enter Year" min="2020" max="3000">
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="form-group" style="text-align: right;">
+                    <div>
+                        <label id="completionRateJig"></label>
+                        <label id="totalRateJig"></label>
+                        <label id="totalCalibratedJig"></label>
+                    </div>
+                    <div>
+                        <button id="viewScheduleJig" type="button" class="btn btn-primary">
+                            View Calibration Schedule
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr style="border-top: 2px solid #000000;" />
+    <div class="table-responsive text-nowrap">
+        <table id="dailyCalibJig" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>A c t i o n</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_stat)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_jigName)</th>
+                    <th>@Html.DisplayNameFor(model => model.calibrationdate)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_codeNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_drawingNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_term)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_remarks)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_passfail)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_imte)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateRecv)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibMonth)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibYear)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_nextCalibDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_nextCalibMonth)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_nextCalibYear)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateReturned)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_internalExternal)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_withNC)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_CalibFR)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibDisSusForm)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_withCalibResult)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_changeSticker)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_actualCalibDueDate)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_month)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_year)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;<a style="pointer-events:none; color:gray; text-decoration:none; cursor:not-allowed;" href='/ResultEQP/Edit/" + @item.id + '>Edit</a>&nbsp;&nbsp;
+                        </td>
+
+                        <td>@Html.DisplayFor(modelItem => item.fld_stat)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_jigName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.calibrationdate)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_codeNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_drawingNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_term)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_reqFunction)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_remarks)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_passfail)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_imte)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateRecv)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_calibDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_calibMonth)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_calibYear)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_nextCalibDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_nextCalibMonth)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_nextCalibYear)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_dateReturned)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_internalExternal)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_withNC)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_CalibFR)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_calibDisSusForm)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_withCalibResult)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_pathDoc)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_pathIMG)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_incharge)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_changeSticker)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_actualCalibDueDate)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_month)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_year)</td>
+
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>@Html.DisplayNameFor(model => model.fld_stat)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_jigName)</th>
+                    <th>@Html.DisplayNameFor(model => model.calibrationdate)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_codeNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_drawingNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_term)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_remarks)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_passfail)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_imte)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateRecv)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibMonth)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibYear)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_nextCalibDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_nextCalibMonth)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_nextCalibYear)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_dateReturned)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_internalExternal)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_withNC)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_CalibFR)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibDisSusForm)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_withCalibResult)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_changeSticker)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_actualCalibDueDate)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_month)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_year)</th>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+

@@ -9,12 +9,12 @@ namespace Calibration_Management_System.Models
         public int Id { get; set; }
 
         [DisplayName("Email")]
-        public DateTime? fld_emailAddress { get; set; }
+        public string? fld_emailAddress { get; set; } = "";
 
         [DisplayName("Department/Section")]
-        public DateTime? fld_dept { get; set; }
+        public string? fld_dept { get; set; } = "";
 
         [DisplayName("Contact Person")]
-        public DateTime? fld_contactPerson { get; set; }
+        public string? fld_contactPerson { get; set; } = "";
     }
 }

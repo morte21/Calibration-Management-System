@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Calibration_Management_System.Models.EmailList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Email Registration</h1>
+
+<div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <a asp-action="Create" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Register Email</a>
+        </div>
+    </div>
+</div>
+<div class="card" style="margin-top:15px; padding:10px;">
+    <h5 class="card-header">Calibration Schedule Approval</h5>
+    <hr />
+    <div class="table-responsive text-nowrap">
+        <table id="email-list" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="text-align:center">A C T I O N</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_emailAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_dept)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_contactPerson)
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_emailAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_dept)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fld_contactPerson)
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_emailAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_dept)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fld_contactPerson)
+                    </th>
+
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>

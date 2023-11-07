@@ -14,7 +14,7 @@
     <hr style="border-top: 3px double #000000;" />
     <div class="col-md-12" >
         <div class="form-group"></div>
-        <div style="display: flex; justify-content:flex-start; margin-bottom:20px;">
+        <div style="display: flex; justify-content:flex-start; margin-bottom:20px;" >
 
                 <a style="margin-right:20px" href="@Url.Content("~/CalibrationNotice\\Equipment/" + Model.CalibrationNoticeData.fld_pathEQP)" target="_blank">
                     <img src="/assets/img/download-solid.svg" style="height:15px; width:15px;" />
@@ -35,18 +35,8 @@
         <dd class = "col-sm-10">
          <input readonly type="date" asp-for="@Model.CalibrationNoticeData.fld_dateCreated" class="form-control" />
         </dd>
-       @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.fld_pathEQP)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.fld_pathEQP)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.fld_pathJIG)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.fld_pathJIG)
-        </dd>*@
+
+       
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CalibrationNoticeData.fld_stat)
         </dt>
@@ -57,7 +47,7 @@
             @Html.DisplayNameFor(model => model.CalibrationNoticeData.fld_dateApproved)
         </dt>
         <dd class = "col-sm-10">
-            <input readonly type="date" id="myDateInputs" asp-for="@Model.CalibrationNoticeData.fld_dateApproved" class="form-control" />
+            <input readonly type="date" asp-for="@Model.CalibrationNoticeData.fld_dateApproved" class="form-control" />
         </dd>
         @*<dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.fld_calibMonth)
@@ -71,6 +61,11 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.fld_calibYear)
         </dd>*@
+        <dd hidden>
+            <input id="eqpFileName" asp-for="@Model.CalibrationNoticeData.fld_pathEQP" />
+            <input id="jigFileName" asp-for="@Model.CalibrationNoticeData.fld_pathJIG" />
+            <input id="num" asp-for="@Model.CalibrationNoticeData.Id" />
+        </dd>
     </dl>
 </div>
 </div>
@@ -79,17 +74,146 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+<div>
+    
+    <div style="text-align: right;">
+        <button id="modalNotif" style="width: 20%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            ① Create Email Notification
+        </button>
 
-<form method="post" action="@Url.Action("SendEmailNotification", "CalibrationNotice")" id="emailForm">
-    <input type="submit" value="Send Email" class="btn btn-primary" id="sendEmailBtn" />
-</form>
-<hr />
-<div class="progress"  id="progressBarContainer">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" id="progressBar"></div>
+            <input type="hidden" id="editId" asp-for="@Model.CalibrationNoticeData.Id" />
+            <button id="openModal2" data-bs-toggle="modal" data-bs-target="#modalYearMonth" style="width: 20%;" type="button" class="btn btn-primary">
+                ② Upload to Database
+            </button>
+
+       
+    </div>
+    <br />
+    <div style="text-align: right; font-size:small;">
+        <label>Follow the instruction: Select the <b>"Create Email Notification"</b> first to send notification email, after that select the <b>"Upload to Database"</b> to upload the data to database.</label>
+    </div>
+    
+
+    @*modal*@
+    <!-- Button trigger modal -->
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Email Address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="width:auto; height:400px;">
+                    <form method="post" action="@Url.Action("SendEmailNotification", "CalibrationNotice")" id="emailForm" style="margin-top:25px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="getEmailTo">Select email address [TO]</label>
+                                        <select id="getEmailTo" asp-items="@(ViewBag.Email)" class="form-control" multiple style="height: 100px;"></select>
+                                        <span id="selectedEmailToCount">0 selected</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="getEmailCc">Select email address [CC]</label>
+                                        <select id="getEmailCc" asp-items="@(ViewBag.Email)" class="form-control" multiple style="height: 100px;"></select>
+                                        <span id="selectedEmailCcCount">0 selected</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" id="sendEmailBtn">Send Notification</button>
+                    </form>
+
+                </div>
+                <div class="progress" id="progressBarContainer">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" id="progressBar"></div>
+                </div>
+
+                <div id="resultMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal #2 -->
+    <div class="modal fade" id="modalYearMonth" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Email Address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                </div>
+                <div class="modal-body" style="width:auto; height:150px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Enter Month:</label>
+                                    <select id="monthUpload" class="form-select">
+                                        <option selected value="">Select month </option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Enter Year:</label>
+                                    <input type="number" id="yearUpload" class="form-control" placeholder="Enter Year" min="2020" max="3000">
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group" style="text-align: right;">
+                                    <button id="uploadDatabase" type="button" class="btn btn-primary">
+                                        ② Upload to Database
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="progress" id="progressBarContainer">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" id="progressBar"></div>
+                </div>
+
+                <div id="resultMessage"></div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
-<div id="resultMessage"></div>
+<hr />
 
+<div class="progress" id="progressBarContainerMain">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" id="progressBarMain"></div>
+</div>
+
+<div id="resultMessageMain"></div>
+
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#emailForm").on("submit", function (e) {
@@ -98,9 +222,19 @@
             // Hide the submit button and show the progress bar
             $("#sendEmailBtn").hide();
             $("#progressBarContainer").show();
+            $("#resultMessage").html("<div class='alert alert-info'>Please wait while the system is currently sending the email.</div>");
 
             // Create a FormData object to send the form data asynchronously
             var formData = new FormData(this);
+
+                // Get the selected values from getEmailTo and getEmailCc select elements
+                var getEmailToSelected = $("#getEmailTo").val().map(String);
+                var getEmailCcSelected = $("#getEmailCc").val().map(String);
+
+                // Include the selected values in the FormData
+                var formData = new FormData(this);
+                formData.append("getEmailTo", getEmailToSelected);
+                formData.append("getEmailCc", getEmailCcSelected);
 
             $.ajax({
                 url: "@Url.Action("SendEmailNotification","CalibrationNotice")",
@@ -130,9 +264,19 @@
                 error: function (error) {
                     // Hide the progress bar and show an error message
                     $("#progressBarContainer").hide();
-                    $("#resultMessage").html("<div class='alert alert-danger'>Error sending email: " + error.responseText + "</div>");
+                    //$("#resultMessage").html("<div class='alert alert-danger'>Error sending email: " + error.responseText + "</div>");
+                    $("#resultMessage").html("<div class='alert alert-danger'>Error sending email: " + "Please select email address for TO and CC!!" + "</div>");
+                    //$("#resultMessage").html("<div class='alert alert-danger'>Error sending email: " + "Please consult System Development Team" + "</div>");
                 }
             });
         });
+
+
+            
+        
     });
+
+       
+
 </script>
+}

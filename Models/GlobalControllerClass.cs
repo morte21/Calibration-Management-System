@@ -12,5 +12,10 @@
         public RegistrationClass RegistrationClassData { get; set; }
         public Uncontrolled UncontrolledData { get; set; }
 
+        public EmailList EmailList { get; set; }
+
+        public CalibrationResultEQP CalibrationResultEQP { get; set; }
+        public CalibrationResultJIG CalibrationResultJIG { get; set; }
+
     }
 }

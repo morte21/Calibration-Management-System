@@ -28,7 +28,7 @@ namespace Calibration_Management_System.Controllers
             //equipmentRegistrations = _context.Equipment_table.OrderByDescending(x => x.id).ToList();
 
             //SORT THE TABLE
-            equipmentRegistrations = _context.Equipment_table.Where(x => x.fld_stat == "OK").ToList();
+            equipmentRegistrations = _context.Equipment_table.Where(x => x.fld_passFail == "PASS").ToList();
 
 
             ViewBag.Category = GetCategory();

@@ -70,6 +70,7 @@ namespace Calibration_Management_System.Controllers
         }
 
         //VIEW JIG
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpPost]
         public IActionResult Create_Reg_Jig(RegistrationClass RegistrationClass)
         {
@@ -350,6 +351,7 @@ namespace Calibration_Management_System.Controllers
         }
 
         //VIEW EQP
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpPost]
         public IActionResult Create_Reg(RegistrationClass RegistrationClass)
         {
@@ -654,6 +656,7 @@ namespace Calibration_Management_System.Controllers
 
 
         //VIEW EQP
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpPost]
         public IActionResult Create_ReReg_Jig(RegistrationClass RegistrationClass)
         {
@@ -936,6 +939,7 @@ namespace Calibration_Management_System.Controllers
 
 
         //VIEW EQP
+        [Authorize(Roles = "Control Function,Admin-Calibration,Using Function")]
         [HttpPost]
         public IActionResult Create_ReReg(RegistrationClass RegistrationClass)
         {

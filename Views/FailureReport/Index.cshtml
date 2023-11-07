@@ -23,7 +23,7 @@
     <h5 class="card-header">Failure Report Data</h5>
     <hr />
     <div class="table-responsive text-nowrap">
-        <table id="failurereport-registration" class="display table">
+        <table id="failurereport-registration" class="display" style="width:100%">
             <thead>
                 <tr>
                     <th> --A c t i o n--</th>
@@ -36,8 +36,8 @@
                     <th>@Html.DisplayNameFor(model => model.fld_EquipName)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_qty)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_contents)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,15 +57,15 @@
                         <td>@Html.DisplayFor(modelItem => item.fld_EquipName)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_qty)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_contents)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_pathDoc)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_pathIMG)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_pathDoc)</td>
+                        <td hidden>@Html.DisplayFor(modelItem => item.fld_pathIMG)</td>
                     </tr>
                 }
             </tbody>
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Html.DisplayNameFor(model => model.fld_reportNo)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_reportNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateIssue)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_deptsec)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
@@ -74,8 +74,8 @@
                     <th>@Html.DisplayNameFor(model => model.fld_EquipName)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_qty)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_contents)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
                 </tr>
             </tfoot>
         </table>

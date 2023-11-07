@@ -47,6 +47,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit(int Id)
         {

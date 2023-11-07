@@ -1,6 +1,7 @@
 ﻿using Calibration_Management_System.Data;
 using Calibration_Management_System.Models;
 using ClosedXML.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Calibration_Management_System.Controllers
 {
+    [Authorize(Roles = "Control Function,Admin-Calibration")]
     public class CalibScheduleController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -73,7 +75,7 @@ namespace Calibration_Management_System.Controllers
                         searchResults.Add(new
                         {
                             //calibrationDate = calibrationDate, // Use the matching selected date
-                            fld_calibDate = e.fld_calibDate,
+                            fld_nextCalibDate = e.fld_nextCalibDate,
                             fld_codeNo = e.fld_codeNo,
                             fld_ctrlNo = e.fld_ctrlNo,
                             fld_eqpName = e.fld_eqpName,
@@ -99,7 +101,7 @@ namespace Calibration_Management_System.Controllers
                         searchResults.Add(new
                         {
                             //calibrationDate = matchingDate, // Use the matching selected date
-                            fld_calibDate = j.fld_calibDate,
+                            fld_nextCalibDate = j.fld_nextCalibDate,
                             fld_ctrlNo = j.fld_ctrlNo,
                             fld_jigName = j.fld_jigName,
                             fld_drawingNo = j.fld_drawingNo,
@@ -140,7 +142,7 @@ namespace Calibration_Management_System.Controllers
                         searchResults.Add(new
                         {
                             //calibrationDate = calibrationDate, // Use the matching selected date
-                            fld_calibDate = e.fld_calibDate,
+                            fld_nextCalibDate = e.fld_nextCalibDate,
                             fld_codeNo = e.fld_codeNo,
                             fld_ctrlNo = e.fld_ctrlNo,
                             fld_eqpName = e.fld_eqpName,
@@ -165,7 +167,7 @@ namespace Calibration_Management_System.Controllers
                         searchResults.Add(new
                         {
                             //calibrationDate = matchingDate, // Use the matching selected date
-                            fld_calibDate = j.fld_calibDate,
+                            fld_nextCalibDate = j.fld_nextCalibDate,
                             fld_ctrlNo = j.fld_ctrlNo,
                             fld_jigName = j.fld_jigName,
                             fld_drawingNo = j.fld_drawingNo,

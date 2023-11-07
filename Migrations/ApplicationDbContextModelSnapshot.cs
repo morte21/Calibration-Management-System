@@ -58,6 +58,233 @@ namespace Calibration_Management_System.Migrations
                     b.ToTable("CalibrationNotice_table");
                 });
 
+            modelBuilder.Entity("Calibration_Management_System.Models.CalibrationResultEQP", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("calibrationdate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_CalibFR")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_actualCalibDueDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_appStandardEqp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_brand")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibDisSusForm")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibMonth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibYear")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_changeSticker")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_codeNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_ctrlNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_dateRecv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_dateReturned")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_eqpModelNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_eqpName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_imte")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_incharge")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_internalExternal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_month")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_nextCalibDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_nextCalibMonth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_nextCalibYear")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_passFail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_pathDoc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_pathIMG")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_reqFunction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_serial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_stat")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_supplierExternal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_term")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_withCalibResult")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_withNC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_year")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("CalibrationResultEQP");
+                });
+
+            modelBuilder.Entity("Calibration_Management_System.Models.CalibrationResultJIG", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("calibrationdate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_CalibFR")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_actualCalibDueDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibDisSusForm")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibMonth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_calibYear")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_changeSticker")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_codeNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_ctrlNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_dateRecv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_dateReturned")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_drawingNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_imte")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_incharge")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_internalExternal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_jigName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_month")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_nextCalibDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_nextCalibMonth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_nextCalibYear")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_passfail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_pathDoc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_pathIMG")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_reqFunction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_stat")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_term")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_withCalibResult")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_withNC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_year")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("CalibrationResultJIG");
+                });
+
             modelBuilder.Entity("Calibration_Management_System.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -73,6 +300,28 @@ namespace Calibration_Management_System.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category_table");
+                });
+
+            modelBuilder.Entity("Calibration_Management_System.Models.EmailList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("fld_contactPerson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_dept")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fld_emailAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailList_table");
                 });
 
             modelBuilder.Entity("Calibration_Management_System.Models.EquipmentCode", b =>

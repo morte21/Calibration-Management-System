@@ -15094,7 +15094,8 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
   padding: 0.625rem 2rem 0.625rem 2rem;
 }
 .menu-vertical .menu-item .menu-link {
-  font-size: 0.9375rem;
+  /*font-size: 0.9375rem;*/
+  font-size:0.813rem;
 }
 .menu-vertical .menu-item.active:not(.open) > .menu-link {
   font-weight: 600;

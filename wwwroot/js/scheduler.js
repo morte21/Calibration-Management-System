@@ -130,7 +130,7 @@
             var date = new Date(dateString);
             return date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
         }
-        return 'N/A';
+        /*return 'N/A';*/
     }
 
     // Function to toggle table visibility based on selected item
@@ -180,7 +180,7 @@
             $("#searchResultsTable tbody").empty();
             // Populate the search results table with data received from the server
             data.forEach(function (item, index) {
-                var formattedDate = formatDate(item.fld_calibDate);
+                var formattedDate = formatDate(item.fld_nextCalibDate);
 
                 // Create a new row
                 var row = $("<tr></tr>");
@@ -209,7 +209,7 @@
             $("#searchResultsTable2 tbody").empty();
             // Populate the search results table with data received from the server
             data.forEach(function (item, index) {
-                var formattedDate = formatDate(item.fld_calibDate);
+                var formattedDate = formatDate(item.fld_nextCalibDate);
 
                 // Create a new row
                 var row = $("<tr></tr>");
@@ -279,7 +279,7 @@ $(document).ready(function () {
             var date = new Date(dateString);
             return date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
         }
-        return 'N/A';
+        //return 'N/A';
     }
 
 
@@ -321,7 +321,7 @@ $(document).ready(function () {
         // Iterate through the data and create rows for the Equipment table
         data.forEach(function (item) {
             var row = $("<tr></tr>");
-            var formattedDate3 = formatDate2(item.fld_calibDate);
+            var formattedDate3 = formatDate2(item.fld_nextCalibDate);
             row.append("<td><button class='transferButton'>Transfer</button></td>");
             row.append("<td>" + formattedDate3 + "</td>");
             row.append("<td>" + item.fld_codeNo + "</td>");
@@ -347,7 +347,7 @@ $(document).ready(function () {
         // Iterate through the data and create rows for the Jig table
         data.forEach(function (item) {
             var row = $("<tr></tr>");
-            var formattedDate4 = formatDate2(item.fld_calibDate);
+            var formattedDate4 = formatDate2(item.fld_nextCalibDate);
             row.append("<td><button class='transferButton'>Transfer</button></td>");
             row.append("<td>" + formattedDate4 + "</td>");
             row.append("<td>" + item.fld_ctrlNo + "</td>");

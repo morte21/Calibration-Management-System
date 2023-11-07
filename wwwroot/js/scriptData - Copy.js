@@ -239,26 +239,28 @@ function exportToExcel() {
 
 
 
-//function getCodeByDepartment() {
-//    // Get the selected department
-//    var selectedValue = $('#requestingFunctionSelect').val();
+function getCodeByDepartment() {
+    // Get the selected department
+    var selectedValue = $('#requestingFunctionSelect').val();
 
-//    // Make an AJAX request to retrieve the code based on the selected department
-//    $.ajax({
-//        url: '@Url.Action("GetCodeByDepartment", "Registration")', // Replace 'YourControllerName' with the actual name of your controller
-//        type: 'GET',
-//        data: { department: selectedValue },
-//        success: function (response) {
-//            // Update the value of the input field
-//            $('#codeInput').val(response);
-//            console.log(response);
-//        },
-//        error: function (error) {
-//            // Handle any errors that occur during the AJAX request
-//            console.log("Error:", error);
-//        }
-//    });
-//}
+    // Make an AJAX request to retrieve the code based on the selected department
+    $.ajax({
+        url: '@Url.Action("GetCodeByDepartment", "Registration")', // Replace 'YourControllerName' with the actual name of your controller
+        type: 'GET',
+        data: { department: selectedValue },
+        success: function (response) {
+            // Update the value of the input field
+            $('#codeInput').val(response);
+            console.log(response);
+        },
+        error: function (error) {
+            // Handle any errors that occur during the AJAX request
+            console.log("Error:", error);
+        }
+    });
+}
+
+getCodeByDepartment();
 
 
 ////dropdown

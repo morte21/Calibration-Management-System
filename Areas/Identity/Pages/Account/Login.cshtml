@@ -54,6 +54,7 @@
                                    placeholder="Enter your email"
                                    autofocus />
                         </div>
+                            <span asp-validation-for="Input.Email" class="text-danger" style="font-size:x-small;"></span>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
                                 <label class="form-label" for="password">Password</label>
@@ -68,8 +69,9 @@
                                        asp-for="Input.Password"
                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                        aria-describedby="password" />
-                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                
                             </div>
+                                <span asp-validation-for="Input.Password" class="text-danger" style="font-size:x-small;"></span>
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
@@ -80,14 +82,14 @@
                             <a style="font-size:x-small; id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a><br />
                             <a style="font-size:x-small; id="registeruser" asp-area="Identity" asp-page="/Account/RegisterUser">Register as a new user</a>
                         </p>
+                            <div asp-validation-summary="ModelOnly" class="text-danger" style="font-size:small;"></div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary d-grid w-100">Sign in</button>
+                               
                         </div>
                     </form>
 
-                    <p class="text-center">
-                        
-                    </p>
+                       
                 </div>
             </div>
             <!-- /Register -->

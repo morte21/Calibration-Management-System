@@ -22,7 +22,7 @@ namespace Calibration_Management_System.Models
         {
             // Filter the jig data based on both date ranges (fld_calibDate and selectedDates)
             return await _context.Jig_table
-                .Where(j => j.fld_calibDate >= startDate && j.fld_calibDate <= endDate)
+                .Where(j => j.fld_nextCalibDate >= startDate && j.fld_nextCalibDate <= endDate && j.fld_passfail == "PASS")
                 .ToListAsync();
         }
 

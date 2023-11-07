@@ -33,7 +33,13 @@ namespace Calibration_Management_System.Data
 
         public DbSet<CalibrationNotice> CalibrationNotice_table { get; set; }
 
-        
+        public DbSet<EmailList> EmailList_table { get; set; }
+
+        public DbSet<CalibrationResultEQP> CalibrationResultEQP { get; set; }
+
+        public DbSet<CalibrationResultJIG> CalibrationResultJIG { get; set; }
+
+
 
     }
 }

@@ -21,7 +21,7 @@ namespace Calibration_Management_System.Controllers
         public IActionResult Index()
         {
             List<JigRegistration> jigRegistrations;
-            jigRegistrations = _context.Jig_table.ToList();
+            jigRegistrations = _context.Jig_table.Where(x => x.fld_passfail == "PASS").ToList();
 
             ViewBag.Category = GetCategory();
             //ViewBag.EqpCode = GetEqpCode();

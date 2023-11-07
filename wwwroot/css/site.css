@@ -721,3 +721,19 @@ h1.fontTxt {
     margin-left: -5px;
     margin-right: -5px;
 }
+
+.green {
+    background-color: #00FF00; /* Green */
+}
+
+.red {
+    background-color: #fc0303; /* Red */
+}
+
+.yellow {
+    background-color: #fff200; /* Red */
+}
+
+.orange {
+    background-color: #ffa600; /* Red */
+}

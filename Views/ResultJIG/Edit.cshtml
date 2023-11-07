@@ -1,0 +1,256 @@
+﻿@model Calibration_Management_System.Models.GlobalControllerClass
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>CALIBRATION SCHEDULE</h1>
+
+<h4>Calibration information update</h4>
+<hr />
+<form asp-action="Edit" enctype="multipart/form-data">
+<div class="container">
+    <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label hidden>@(ViewBag.JigId)</label>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.calibrationdate" class="control-label"></label>
+                    <input readonly asp-for="@Model.CalibrationResultJIG.calibrationdate" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.calibrationdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_actualCalibDueDate" class="control-label"></label>
+                    <input readonly asp-for="@Model.CalibrationResultJIG.fld_actualCalibDueDate" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_actualCalibDueDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_ctrlNo" class="control-label"></label>
+                    <input readonly asp-for="@Model.CalibrationResultJIG.fld_ctrlNo" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_ctrlNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_jigName" class="control-label"></label>
+                    <input readonly asp-for="@Model.CalibrationResultJIG.fld_jigName" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_jigName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_drawingNo" class="control-label"></label>
+                    <input readonly asp-for="@Model.CalibrationResultJIG.fld_drawingNo" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_drawingNo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div hidden class="form-group">
+                    <input readonly asp-for="@Model.CalibrationResultJIG.fld_codeNo" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_term" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_term" asp-items="@(ViewBag.Terms)" id="fld_term" onchange="updateCalibrationDate()" class="form-control"></select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_term" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_reqFunction" class="control-label"></label>
+                    <select readonly asp-for="@Model.CalibrationResultJIG.fld_reqFunction" asp-items="@(ViewBag.Dept)" class="form-control"></select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_reqFunction" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_remarks" class="control-label"></label>
+                    <input required asp-for="@Model.CalibrationResultJIG.fld_remarks" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_remarks" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Pass / Fail</label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_passfail" asp-items="@(ViewBag.Status)" class="form-control"></select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_passfail" class="text-danger"></span>
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_imte" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_imte" id="expirationSelect" onchange="updateCalibrationDate()" class="form-control">
+                        <option value="">Select</option>
+                        <option value="Same Date Expiration">Same Date Expiration</option>
+                        <option value="End of Month Expiration">End of Month Expiration</option>
+                        <option value="November 30 Expiration">November 30 Expiration</option>
+                    </select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_imte" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_dateRecv" class="control-label"></label>
+                    <input required type="date" asp-for="@Model.CalibrationResultJIG.fld_dateRecv" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_dateRecv" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Actual Calibration Date</label>
+                    <input required type="date" id="calibrationDateInput" onchange="updateCalibrationDate()" asp-for="@Model.CalibrationResultJIG.fld_calibDate" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_calibDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_calibMonth" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_calibMonth" asp-items="@(ViewBag.Months)" class="form-control"></select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_calibMonth" class="text-danger"></span>
+                </div>
+                
+            </div>
+            <hr style="border-top: 1px double #000000;" />
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_calibYear" class="control-label"></label>
+                    <input type="number" asp-for="@Model.CalibrationResultJIG.fld_calibYear" id="calibrationYearInput" readonly class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_calibYear" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_nextCalibDate" class="control-label"></label>
+                    <input type="date" id="nextCalibrationDateInput" readonly asp-for="@Model.CalibrationResultJIG.fld_nextCalibDate" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_nextCalibDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_nextCalibMonth" class="control-label"></label>
+                    <input id="nextCalibrationMonthInput" readonly asp-for="@Model.CalibrationResultJIG.fld_nextCalibMonth" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_nextCalibMonth" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_nextCalibYear" class="control-label"></label>
+                    <input type="number" id="nextCalibrationYearInput" readonly asp-for="@Model.CalibrationResultJIG.fld_nextCalibYear" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_nextCalibYear" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_withNC" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_withNC" class="form-control">
+                        <option value="">Select</option>
+                        <option value="O">O</option>
+                        <option value="X">X</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_withNC" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_CalibFR" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_CalibFR" class="form-control">
+                        <option value="">Select</option>
+                        <option value="O">O</option>
+                        <option value="X">X</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_CalibFR" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_calibDisSusForm" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_calibDisSusForm" class="form-control">
+                        <option value="">Select</option>
+                        <option value="O">O</option>
+                        <option value="X">X</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_calibDisSusForm" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_withCalibResult" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_withCalibResult" class="form-control">
+                        <option value="">Select</option>
+                        <option value="O">O</option>
+                        <option value="X">X</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_withCalibResult" class="text-danger"></span>
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_internalExternal" class="control-label"></label>
+                    <select asp-for="@Model.CalibrationResultJIG.fld_internalExternal" asp-items="@(ViewBag.IntExt)" class="form-control"></select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_internalExternal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_dateReturned" class="control-label"></label>
+                    <input type="date" asp-for="@Model.CalibrationResultJIG.fld_dateReturned" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_dateReturned" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_incharge" class="control-label"></label>
+                    <input asp-for="@Model.CalibrationResultJIG.fld_incharge" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_incharge" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_changeSticker" class="control-label"></label>
+                    <input asp-for="@Model.CalibrationResultJIG.fld_changeSticker" class="form-control" />
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_changeSticker" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.CalibrationResultJIG.fld_stat" class="control-label"></label>
+                    <select required asp-for="@Model.CalibrationResultJIG.fld_stat" class="form-control">
+                        <option value="">Select</option>
+                        <option value="PASSED">PASSED</option>
+                        <option value="FAILED">FAILED</option>
+                        <option value="SUSPENDED">SUSPENDED</option>
+                        <option value="DISPOSED">DISPOSED</option>
+                    </select>
+                    <span asp-validation-for="@Model.CalibrationResultJIG.fld_stat" class="text-danger"></span>
+                </div>
+
+
+                <div hidden class="form-group">
+                    <input readonly asp-for="@Model.CalibrationResultJIG.fld_month" class="form-control" />
+                </div>
+                <div hidden class="form-group">
+                    <input readonly asp-for="@Model.CalibrationResultJIG.fld_year" class="form-control" />
+                </div>
+            </div>
+            <hr style="border-top: 1px double #000000;" />
+            <div class="col-md-6">
+                @*<div class="form-group">
+                <label asp-for="@Model.CalibrationResultJIG.fld_pathDoc" class="control-label"></label>
+                <input asp-for="@Model.CalibrationResultJIG.fld_pathDoc" class="form-control" />
+                <span asp-validation-for="@Model.CalibrationResultJIG.fld_pathDoc" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label asp-for="@Model.CalibrationResultJIG.fld_pathIMG" class="control-label"></label>
+                <input asp-for="@Model.CalibrationResultJIG.fld_pathIMG" class="form-control" />
+                <span asp-validation-for="@Model.CalibrationResultJIG.fld_pathIMG" class="text-danger"></span>
+                </div>*@
+                <div class="form-group">
+                    <div>
+                        <div class="form-group">
+                            <label for="_pathIMG">Image Upload:</label>
+                            <input type="file" id="_pathIMG" name="_pathIMG" class="form-control-file" accept=".jpg, .jpeg, .png, .gif, .bmp" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="_pathDoc">PDF Upload:  &nbsp;&nbsp;</label>
+                            <input type="file" id="_pathDoc" name="_pathDoc" class="form-control-file" accept=".pdf, .xls, .xlsx, .doc, .docx" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                
+
+                
+            </div>
+
+
+        <div class="col-md-4">
+                <input type="hidden" asp-for="@Model.CalibrationResultJIG.id" />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            
+        </div>
+    </div>
+</div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

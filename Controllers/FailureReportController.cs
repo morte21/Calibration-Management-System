@@ -8,8 +8,10 @@ using System.Data;
 
 namespace Calibration_Management_System.Controllers
 {
+    
     public class FailureReportController : Controller
     {
+
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
@@ -74,6 +76,7 @@ namespace Calibration_Management_System.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]
         public IActionResult Edit(int Id)
         {

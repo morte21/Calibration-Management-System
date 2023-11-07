@@ -6,7 +6,7 @@ function updateCalibrationDate() {
 
     //console.log('Function called'); // Add this line to check if the function is called.
 
-    var termSelect = document.getElementById('term');
+    var termSelect = document.getElementById('fld_term');
     var expirationSelect = document.getElementById('expirationSelect');
     var calibrationDateInput = document.getElementById('calibrationDateInput');
     var nextCalibrationDateInput = document.getElementById('nextCalibrationDateInput');
@@ -14,57 +14,80 @@ function updateCalibrationDate() {
     var nextCalibrationYearInput = document.getElementById('nextCalibrationYearInput');
     var calibrationYearInput = document.getElementById('calibrationYearInput');
 
-    var term = parseInt(termSelect.value);
-    var expiration = expirationSelect.options[expirationSelect.selectedIndex].value;
-    var calibrationDate = new Date(calibrationDateInput.value);
+    // Check if the element exists before trying to access its value
+    if (termSelect) {
+        var term = parseInt(termSelect.value);
+        var expiration = expirationSelect.options[expirationSelect.selectedIndex].value;
+        var calibrationDate = new Date(calibrationDateInput.value);
 
-    if (isNaN(calibrationDate.getTime())) {
-        // Return early if the calibration date is invalid
-        nextCalibrationDateInput.value = '';
-        nextCalibrationMonthInput.value = '';
-        nextCalibrationYearInput.value = '';
-        calibrationYearInput.value = '';
-        return;
+        if (isNaN(calibrationDate.getTime())) {
+            // Return early if the calibration date is invalid
+            nextCalibrationDateInput.value = '';
+            nextCalibrationMonthInput.value = '';
+            nextCalibrationYearInput.value = '';
+            calibrationYearInput.value = '';
+            return;
+        }
+
+        var calibYear = new Date(calibrationDate);
+        var year = calibYear.getFullYear();
+
+        calibrationYearInput.value = year;
+
+        // Calculate the next calibration date based on the selected term and expiration period
+        var nextCalibrationDate = new Date(calibrationDate);
+        var year = nextCalibrationDate.getFullYear();
+        var month = nextCalibrationDate.getMonth();
+
+        if (expiration === 'Same Date Expiration') {
+            nextCalibrationDate.setMonth(month + term);
+        } else if (expiration === 'End of Month Expiration') {
+            nextCalibrationDate.setMonth(month + term + 1, 0);
+        } else if (expiration === 'November 30 Expiration') {
+            nextCalibrationDate.setFullYear(year + Math.floor(term / 12));
+            nextCalibrationDate.setMonth(10, 30);
+        }
+
+        // Format the next calibration date as "yyyy-MM-dd"
+        var formattedDate = nextCalibrationDate.toISOString().split('T')[0];
+
+        // Update the next calibration date input
+        nextCalibrationDateInput.value = formattedDate;
+        nextCalibrationMonthInput.value = (nextCalibrationDate.getMonth() + 1).toString().padStart(2, '0');
+        nextCalibrationYearInput.value = nextCalibrationDate.getFullYear().toString();
     }
+    
 
-    var calibYear = new Date(calibrationDate);
-    var year = calibYear.getFullYear();
-
-    calibrationYearInput.value = year;
-
-    // Calculate the next calibration date based on the selected term and expiration period
-    var nextCalibrationDate = new Date(calibrationDate);
-    var year = nextCalibrationDate.getFullYear();
-    var month = nextCalibrationDate.getMonth();
-
-    if (expiration === 'Same Date Expiration') {
-        nextCalibrationDate.setMonth(month + term);
-    } else if (expiration === 'End of Month Expiration') {
-        nextCalibrationDate.setMonth(month + term + 1, 0);
-    } else if (expiration === 'November 30 Expiration') {
-        nextCalibrationDate.setFullYear(year + Math.floor(term / 12));
-        nextCalibrationDate.setMonth(10, 30);
-    }
-
-    // Format the next calibration date as "yyyy-MM-dd"
-    var formattedDate = nextCalibrationDate.toISOString().split('T')[0];
-
-    // Update the next calibration date input
-    nextCalibrationDateInput.value = formattedDate;
-    nextCalibrationMonthInput.value = (nextCalibrationDate.getMonth() + 1).toString().padStart(2, '0');
-    nextCalibrationYearInput.value = nextCalibrationDate.getFullYear().toString();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-// Add event listeners to the input elements
-document.getElementById('term').addEventListener('change', updateCalibrationDate);
-document.getElementById('expirationSelect').addEventListener('change', updateCalibrationDate);
-document.getElementById('calibrationDateInput').addEventListener('change', updateCalibrationDate);
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Add event listeners to the input elements
+    //document.getElementById('fld_term').addEventListener('change', updateCalibrationDate);
+    //document.getElementById('expirationSelect').addEventListener('change', updateCalibrationDate);
+    //document.getElementById('calibrationDateInput').addEventListener('change', updateCalibrationDate);
+
+    const fldTerm = document.getElementById('fld_term');
+    if (fldTerm) {
+        fldTerm.addEventListener('change', updateCalibrationDate);
+    }
+
+    const expirationSelect = document.getElementById('expirationSelect');
+    if (expirationSelect) {
+        expirationSelect.addEventListener('change', updateCalibrationDate);
+    }
+
+    const calibrationDateInput = document.getElementById('calibrationDateInput');
+    if (calibrationDateInput) {
+        calibrationDateInput.addEventListener('change', updateCalibrationDate);
+    }
+
+});
 // Call the function initially to set the initial values
 updateCalibrationDate();
 
-});
+
 
 //date format
 //// Get the date input element
@@ -92,7 +115,9 @@ updateCalibrationDate();
 //    return year + '-' + month + '-' + day;
 //}
 
-document.addEventListener('DOMContentLoaded', function () {
+
+
+
     var dateInput = document.getElementById('myDateInput');
 
     if (dateInput) {
@@ -113,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return year + '-' + month + '-' + day;
     }
-});
+
 
 
 
@@ -182,140 +207,10 @@ $(document).ready(function () {
 
 
 
-//export to excel
-function exportToExcel() {
-    // Get the DataTable instance
-    var dataTable = $('#equipment-registration').DataTable();
-
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
-
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
-
-    // Add headers to the worksheet
-    var headers = [
-        "Code",
-        "Control Number",
-        "Division",
-        "Category",
-        "Code",
-        "Equipment Name",
-        "Model",
-        "Serial",
-        "Maker",
-        "Term",
-        "Employment Place",
-        "Pass/Fail",
-        "Registration Date",
-        "IMTE",
-        "Calibration Date",
-        "Calibration Month",
-        "Calibration Year",
-        "Next Calibration Date",
-        "Next Calibration Month",
-        "Next Calibration Year",
-        "Internal/External",
-        "External Supplier",
-        "Comment",
-        "Standard Equipment",
-        
-        "Status",
-        "Calibration Result",
-        "IMG Result"
-    ];
-
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 25 to 34
-            return index !== 0 && (index < 25 || index > 34);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Equipment Registration');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'equipment_registration.xlsx');
-}
 
 
-//export to excel Jig
-function exportToExcel2() {
-    // Get the DataTable instance
-    var dataTable = $('#jig-registration').DataTable();
 
-    // Get all data from the DataTable
-    var data = dataTable.data().toArray();
 
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
-
-    // Add headers to the worksheet
-    var headers = [
-        "Code",
-        "Control Number",
-        "Division",
-        
-        "Jig Name",
-        "Drawing No.",
-        "Serial",
-        
-        "Term",
-        "Employment Place",
-        "Pass/Fail",
-        "Registration Date",
-        "IMTE",
-        "Calibration Date",
-        "Calibration Month",
-        "Calibration Year",
-        "Next Calibration Date",
-        "Next Calibration Month",
-        "Next Calibration Year",
-        "Internal/External",
-
-        "Comment",
-
-        "Path IMG",
-        "Path DOC",
-        "Status",
-        "Description"
-
-    ];
-
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 25 to 34
-            return index !== 0 && (index < 24 || index > 34);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Jig Registration');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'jig_registration.xlsx');
-}
 
 
 function updateLabelCounts() {
@@ -411,8 +306,547 @@ function updateLabelCountsJig() {
 document.addEventListener('DOMContentLoaded', updateLabelCountsJig);
 
 
-//notification
+
+
+//$(document).ready(function () {
+//    function getCodeByDepartment() {
+//        // Get the selected department
+//        var selectedValue = $('#requestingFunctionSelect').val();
+
+//        // Make an AJAX request to retrieve the code based on the selected department
+//        $.ajax({
+//            url: '@Url.Action("GetCodeByDepartment", "Registration")', // Replace 'YourControllerName' with the actual name of your controller
+//            type: 'GET',
+//            data: { department: selectedValue },
+//            success: function (response) {
+//                // Update the value of the input field
+//                $('#codeInput').val(response);
+//                console.log(response);
+//            },
+//            error: function (error) {
+//                // Handle any errors that occur during the AJAX request
+//                console.log("Error:", error);
+//            }
+//        });
+//    }
+//    getCodeByDepartment();
+//})
+
+$(document).ready(function () {
+    function getCodeByDepartment() {
+        var selectedValue = $('#requestingFunctionSelect').val();
+
+        if (!selectedValue) {
+            $('#codeInput').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '/Registration/GetCodeByDepartment',  // Replace with the actual route
+            type: 'GET',
+            data: { department: selectedValue },
+            success: function (response) {
+                if (response) {
+                    $('#codeInput').val(response);
+                } else {
+                    $('#codeInput').val('');
+                }
+            },
+            error: function (error) {
+                console.log("Error:", error);
+            }
+        });
+    }
+
+    $('#requestingFunctionSelect').on('change', getCodeByDepartment);
+    getCodeByDepartment();  // Initial load
+});
 
 
 
- //datepicker for calib schudule
+
+//EXPORT TO EXCEL EQUIPMENT MASTER
+function exportToExcelMaster() {
+    // Get the DataTable instance
+    var dataTable = $('#equipment-registration').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "Code",
+        "Control Number",
+        "Division",
+        "Category",
+        "Code",
+        "Equipment Name",
+        "Model",
+        "Serial",
+        "Maker",
+        "Term",
+        "Employment Place",
+        "Pass/Fail",
+        "Registration Date",
+        "IMTE",
+        "Calibration Date",
+        "Calibration Month",
+        "Calibration Year",
+        "Next Calibration Date",
+        "Next Calibration Month",
+        "Next Calibration Year",
+        "Internal/External",
+        "External Supplier",
+        "Comment",
+        "Standard Equipment",
+
+        "Status",
+        "Calibration Result",
+        "IMG Result"
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 25 to 34
+            return index !== 0 && (index < 25 || index > 34);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Equipment Registration');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'equipment_registration.xlsx');
+}
+
+//EXPORT TO EXCEL JIG
+function exportToExcel2() {
+    // Get the DataTable instance
+    var dataTable = $('#jig-registration').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "Code",
+        "Control Number",
+        "Division",
+
+        "Jig Name",
+        "Drawing No.",
+        "Serial",
+
+        "Term",
+        "Employment Place",
+        "Pass/Fail",
+        "Registration Date",
+        "IMTE",
+        "Calibration Date",
+        "Calibration Month",
+        "Calibration Year",
+        "Next Calibration Date",
+        "Next Calibration Month",
+        "Next Calibration Year",
+        "Internal/External",
+
+        "Comment",
+
+        "Path IMG",
+        "Path DOC",
+        "Status",
+        "Description"
+
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 25 to 34
+            return index !== 0 && (index < 24 || index > 34);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Jig Registration');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'jig_registration.xlsx');
+}
+
+
+//EXPORT TO EXCEL FAILURE
+function exportToExcelFR() {
+    // Get the DataTable instance
+    var dataTable = $('#failurereport-registration').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "Report No.",
+        "Date Issued",
+        "Department/Section",
+        "In Charge",
+        "Main Incharge",
+        "Contol Number",
+        "Equipment Name",
+        "Quantity",
+        "Contents"
+        
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 10 to 11
+            return index !== 0 && (index < 10 || index > 11);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Failure Report Masterlist');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'failure_report.xlsx');
+}
+
+
+//EXPORT TO EXCEL UNCONTROLLED
+function exportToExcelUC() {
+    // Get the DataTable instance
+    var dataTable = $('#uncontrolled-registration').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "Equipment Name",
+        "Model Type",
+        "Serial",
+        "Maker",
+        "Reason",
+        "Quantity",
+        "Request Date",
+        "Request By",
+        "Department",
+        "Comment"
+
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 10 to 11
+            return index !== 0 && (index < 10 || index > 11);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Uncontrolled Masterlist');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'uncontrolled.xlsx');
+}
+
+
+//EXPORT TO EXCEL NCR
+function exportToExcelNCR() {
+    // Get the DataTable instance
+    var dataTable = $('#ncr-registration').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "NCR No.",
+        "Date Issue",
+        "Control No.",
+        "Issue to",
+        "Main In charge",
+        "Model No.",
+        "Quantity",
+        "With Disposal Form",
+        "Contents",
+        "Date Completed",
+        "Status",
+        "Report No.",
+        "With Dispose/Suspended Form",
+        "Given to",
+        "Dispose/Suspend Form Receiver"
+        
+
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 10 to 11
+            return index !== 0 && (index < 16 || index > 17);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'NCR Masterlist');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'ncr.xlsx');
+}
+
+
+//EXPORT TO EXCEL GEN. FORM
+function exportToExcelGF() {
+    // Get the DataTable instance
+    var dataTable = $('#generalform-registration').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "No.",
+        "Date Estimate",
+        "Equipment",
+        "Doc. No.",
+        "Revision"
+        
+
+
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 10 to 11
+            return index !== 0 && (index < 16 || index > 17);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'General Form Masterlist');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'general_form.xlsx');
+}
+
+
+
+//EXPORT TO EXCEL EQP SCHEDULE
+function exportToExcelResultEQP() {
+    // Get the DataTable instance
+    var dataTable = $('#dailyCalibEQP').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "Status",
+        "Code",
+        "Control No.",
+        "Calibration Date",
+        "Equipment Name",
+        "Model No.",
+        "Serial",
+        "Brand",
+        "Term",
+        "Department/Section",
+        "Pass/Fail",
+        "Expiration Period",
+        "Actual Calibration Date",
+        "Calibration Month",
+        "Calibration Year",
+        "Next Calib. Date",
+        "Next Calib. Month",
+        "Next Calib. Year",
+        "Internal/External",
+        "External Supplier",
+        "Comment",
+        "Application Standard Equipment",
+
+        "Date Return",
+        "With NC",
+        "With FR",
+        "With Dispose/Suspended Form",
+        "With Calibration Result",
+        "In charge",
+        "Remarks",
+        "Change Sticker",
+        "Actual Calibration Due Date",
+        "Date Received"
+
+
+
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 10 to 11
+            return index !== 0 && (index < 23 || index > 24) && (index < 35 || index > 36);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Calibration Schedule Equipment');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'calib_schedule_equipment.xlsx');
+}
+
+
+
+//EXPORT TO EXCEL JIG SCHEDULE
+function exportToExcelResultJIG() {
+    // Get the DataTable instance
+    var dataTable = $('#dailyCalibJig').DataTable();
+
+    // Get all data from the DataTable
+    var data = dataTable.data().toArray();
+
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+    // Add headers to the worksheet
+    var headers = [
+        "Status",
+        "Control No.",
+        "Jig Name",
+        "Calibration Date",
+        "Code No.",
+        "Drawing No.",
+        "Term",
+        "Department/Section",
+        "Remarks",
+        "Pass/Fail",
+        "Expiration Period",
+        "Date Received",
+        "Actual Calibration Date",
+        "Calibration Month",
+        "Calibration Year",
+        "Next Calib. Date",
+        "Next Calib. Month",
+        "Next Calib. Year",
+        "Date Return",
+        "External/External",
+        "With NC",
+        "With FR",
+        "With Dispose/Suspended Form",
+        "With Calibration Result",
+        "In charge",
+        "Change Sticker",
+        "Actual Calibration Due Date"
+
+    ];
+
+    var filteredData = data.map(function (row) {
+        return row.filter(function (_, index) {
+            // Exclude column 0 (Action) and columns 10 to 11
+            return index !== 0 && (index < 25 || index > 26) && (index < 30 || index > 31);
+        });
+    });
+
+    var dataWithHeaders = [headers].concat(filteredData);
+
+    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Calibration Schedule Equipment');
+
+    // Generate the Excel file
+    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file
+    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'calib_schedule_equipment.xlsx');
+}

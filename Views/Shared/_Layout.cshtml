@@ -19,10 +19,20 @@
     <title>Calibration Management System</title>
 
     <meta name="description" content="" />
-    
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!--dataTables-->
+    <link rel="stylesheet" href="~/dataTables/datatables.css" />
+    <link rel="stylesheet" href="~/dataTables/datatables.min.css" />
+    @*<link href="DataTables/datatables.min.css" rel="stylesheet">*@
+    <script src="~/dataTables/DataTables-1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="~/dataTables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
+    <script src="~/dataTables/datatables.min.js"></script>
+
 
     <!-- Other head elements -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">*@
     <!-- ... other stylesheets ... -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
@@ -38,6 +48,7 @@
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="~/assets/vendor/fonts/boxicons.css" />
 
+
     <!-- Core CSS -->
     <link rel="stylesheet" href="~/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="~/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
@@ -47,7 +58,7 @@
     @*<link rel="stylesheet" href="../assets/vendor/css/pages/page-auth.css" />*@
 
     <!-- Vendors CSS -->
-@*    <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    @*<link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="./assets/vendor/libs/apex-charts/apex-charts.css" />*@
 
@@ -61,9 +72,7 @@
 @*    <link rel="stylesheet" href="/lib/bootstrap-5.3/css/bootstrap.min.css" />*@
    @* <link rel="stylesheet" href="/dataTables/Buttons-2.3.6/css/buttons.bootstrap.min.css" />*@
 
-    <!--dataTables-->
-    <link rel="stylesheet" href="~/dataTables/datatables.css" />
-    <link rel="stylesheet" href="~/dataTables/datatables.min.css" />
+    
 
     <link href="~/css/style.min.css" rel="stylesheet">
 
@@ -72,7 +81,7 @@
 
 
     <!-- Helpers -->
-    @*<script src="~/assets/vendor/js/helpers.js"></script>*@
+    <script src="~/assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -107,7 +116,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="app-brand-link">
               <span class="app-brand-logo demo">
                 
               </span>
@@ -287,31 +296,48 @@
                 </li>
                 <li class="menu-item">
                   <a style="color:white" asp-area="" asp-controller="CalibrationNotice" asp-action="Index" class="menu-link">
-                     <div data-i18n="Approval">Approval</div>
+                     <div data-i18n="Calib">Schedule</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a style="color:white" asp-area="" asp-controller="CalibSchedule" asp-action="Index" class="menu-link">
-                     <div data-i18n="Notification">Notification Request</div>
-                  </a>
-                </li>
+                
               </ul>
             </li>
             
              <!-- Calibration -->
             <li class="menu-item">
-              <a style="color:white" href="" class="menu-link">
+                <a style="color:white" href="" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Daily Calibration">Daily Calibration</div>
               </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a style="color:white" asp-area="" asp-controller="ResultEQP" asp-action="Index" class="menu-link">
+                    <div data-i18n="EQP">Equipment Calibration</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a style="color:white" asp-area="" asp-controller="ResultJIG" asp-action="Index" class="menu-link">
+                     <div data-i18n="JIG">Jig Calibration</div>
+                  </a>
+                </li>
+               
+              </ul>
             </li>
 
             <!-- Code Management -->
             <li class="menu-item">
-              <a style="color:white" href="" class="menu-link">
+              <a style="color:white" href="" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Code Management">Code Management</div>
+                <div data-i18n="Management">Management</div>
               </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a style="color:white" asp-area="" asp-controller="EmailReg" asp-action="Index" class="menu-link">
+                     <div data-i18n="Register">Email Registration</div>
+                  </a>
+                </li>
+               
+              </ul>
             </li>
 
             <!-- User -->
@@ -334,18 +360,22 @@
           <!-- Navbar -->
 
           <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
-                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                        <i class="bx bx-menu bx-sm"></i>
-                    </a>
+           
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                    <i class="bx bx-menu bx-sm"></i>
+                </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-content-end justify-content-end">
+                <div class="ml-auto text-end">
+                    <partial name="_LoginPartial" />
                 </div>
-                    
-                <div class="navbar-nav-right d-flex align-content-end justify-content-end">
-                        <div class="ml-auto text-end">
-                            <partial name="_LoginPartial" />
-                        </div>
-                </div>
+            </div>
+            
+                
           </nav>
+               
 
           <!-- / Navbar -->
 
@@ -405,32 +435,37 @@
         >Upgrade to Pro</a
       >
     </div>*@
+    <!-- DataTables JS -->
+    @*<script src="/dataTables/datatables.min.js"></script>*@
+    @*<script src="/dataTables/jquery-3-5.1.js"></script>*@
+    @*<script src="/dataTables/DataTables-1.13.4/js/jquery.dataTables.min.js"></script>*@
+    <script src="~/dataTables/DataTables-1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="~/dataTables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
+    <script src="~/dataTables/datatables.min.js"></script>
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="/assets/vendor/libs/popper/popper.js"></script>
     <script src="/assets/vendor/js/bootstrap.js"></script>
-    @*<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>*@
+    <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    @*<script src="/assets/vendor/js/menu.js"></script>*@
+    <script src="/assets/vendor/js/menu.js"></script>
 
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    @*<script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>*@
+    <script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    @*<script src="/assets/js/main.js"></script>*@
+    <script src="/assets/js/main.js"></script>
 
     <!-- Page JS -->
     <script src="/assets/js/dashboards-analytics.js"></script>
 
-    <!-- DataTables JS -->
-    <script src="/dataTables/datatables.min.js"></script>
-    <script src="/dataTables/jquery-3-5.1.js"></script>
-    <script src="/dataTables/DataTables-1.13.4/js/jquery.dataTables.min.js"></script>
+    
     
     
     @*<script src="/dataTables/Buttons-2.3.6/js/buttons.html5.min.js"></script>
@@ -447,7 +482,7 @@
     
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>*@
 
 
     <script src="/js/scriptData.js"></script>
@@ -465,11 +500,13 @@
 
 
     <!--scheduler-->
-    <script src="~/js/scheduler.js"></script>
+    <script src="/js/scheduler.js"></script>
 
     <!--progress-->
     <script src="~/js/progress.js"></script>
    
-
+    <!--calib schedule-->
+    <script src="~/js/calibresult.js"></script>
+    
   </body>
 </html>
