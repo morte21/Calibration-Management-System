@@ -138,6 +138,7 @@ namespace Calibration_Management_System.Areas.Identity.Pages.Account
 
                 user.Firstname = Input.Firstname;
                 user.Lastname = Input.Lastname;
+                user.EmailConfirmed = true;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
