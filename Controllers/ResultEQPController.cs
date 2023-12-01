@@ -80,9 +80,6 @@ namespace Calibration_Management_System.Controllers
         public IActionResult Edit(GlobalControllerClass model, IFormFile _pathIMG, IFormFile _pathDoc)
         {
 
-
-            try
-            {
                 // Update the edited data in the ResultEQPController
 
                 if (_pathIMG != null && _pathIMG.Length > 0)
@@ -132,13 +129,6 @@ namespace Calibration_Management_System.Controllers
 
                     model.CalibrationResultEQP.fld_pathDoc = uniqueFileNameDoc;
                 }
-            }
-            catch(Exception ex)
-            {
-
-            }
-
-                
 
                 //_context.CalibrationResultEQP.Update(model.CalibrationResultEQP);
                 _context.Attach(model.CalibrationResultEQP);
@@ -181,6 +171,7 @@ namespace Calibration_Management_System.Controllers
                     equipmentModel.fld_appStandardEqp = model.CalibrationResultEQP.fld_appStandardEqp;
                     equipmentModel.fld_pathIMG = model.CalibrationResultEQP.fld_pathIMG;
                     equipmentModel.fld_pathDoc = model.CalibrationResultEQP.fld_pathDoc;
+                
                     equipmentModel.fld_stat = model.CalibrationResultEQP.fld_stat;
                     equipmentModel.fld_withNCR = model.CalibrationResultEQP.fld_withNC;
                     equipmentModel.fld_withFailureReport = model.CalibrationResultEQP.fld_CalibFR;
@@ -190,7 +181,11 @@ namespace Calibration_Management_System.Controllers
                     _context.Equipment_table.Update(equipmentModel);
                 }
 
-                _context.SaveChanges();
+            _context.Attach(equipmentModel);
+            _context.Entry(equipmentModel).State = EntityState.Modified;
+            _context.Entry(equipmentModel).Property(f => f.fld_pathIMG).IsModified = _pathIMG != null;
+            _context.Entry(equipmentModel).Property(f => f.fld_pathDoc).IsModified = _pathDoc != null;
+            _context.SaveChanges();
 
                 return RedirectToAction("Index");
             

@@ -96,7 +96,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.CalibrationResultEQP.fld_calibMonth" class="control-label"></label>
-                    <select required asp-for="@Model.CalibrationResultEQP.fld_calibMonth" asp-items="@(ViewBag.Months)" class="form-control"></select>
+                    <select id="calibMonth" required asp-for="@Model.CalibrationResultEQP.fld_calibMonth" asp-items="@(ViewBag.Months)" class="form-control"></select>
                     <span asp-validation-for="@Model.CalibrationResultEQP.fld_calibMonth" class="text-danger"></span>
                 </div>
             </div>
@@ -245,8 +245,8 @@
                     <label asp-for="@Model.CalibrationResultEQP.fld_stat" class="control-label"></label>
                     <select required asp-for="@Model.CalibrationResultEQP.fld_stat" class="form-control">
                         <option value="">Select</option>
-                        <option value="PASSED">PASSED</option>
-                        <option value="FAILED">FAILED</option>
+                        <option value="OK">OK</option>
+                        <option value="NG">NG</option>
                         <option value="SUSPENDED">SUSPENDED</option>
                         <option value="DISPOSED">DISPOSED</option>
                     </select>

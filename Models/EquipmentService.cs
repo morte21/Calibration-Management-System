@@ -22,7 +22,7 @@ namespace Calibration_Management_System.Models
         {
             //selectedDates = selectedDates.ToArray();
             return await _context.Equipment_table
-                .Where(e => e.fld_nextCalibDate >= startDate && e.fld_nextCalibDate <= endDate && e.fld_passFail == "PASS")
+                .Where(e => e.fld_nextCalibDate >= startDate && e.fld_nextCalibDate <= endDate && e.fld_passFail == "PASS" && e.fld_stat == "OK")
                 .ToListAsync();
         }
 

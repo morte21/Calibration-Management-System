@@ -4,7 +4,7 @@
 
 function updateCalibrationDate() {
 
-    //console.log('Function called'); // Add this line to check if the function is called.
+    console.log('Function called'); // Add this line to check if the function is called.
 
     var termSelect = document.getElementById('fld_term');
     var expirationSelect = document.getElementById('expirationSelect');
@@ -56,7 +56,36 @@ function updateCalibrationDate() {
         nextCalibrationMonthInput.value = (nextCalibrationDate.getMonth() + 1).toString().padStart(2, '0');
         nextCalibrationYearInput.value = nextCalibrationDate.getFullYear().toString();
     }
-    
+
+
+    //calib month
+
+    const dateInput = document.getElementById('calibrationDateInput');
+    const selectedDate = new Date(dateInput.value);
+
+    console.log(selectedDate);
+
+    if (!isNaN(selectedDate.getTime())) {
+        const monthIndex = selectedDate.getMonth(); // Month index is zero-based
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        const calibMonth = document.getElementById('calibMonth');
+        calibMonth.innerHTML = ''; // Clear existing options
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select Month';
+        calibMonth.appendChild(defaultOption);
+
+        monthNames.forEach((month, index) => {
+            const option = document.createElement('option');
+            option.value = index + 1; // Add 1 to match option indexes
+            option.textContent = month;
+            calibMonth.appendChild(option);
+        });
+
+        calibMonth.selectedIndex = monthIndex + 1; // Add 1 to match option indexes
+    }
 
 }
 
@@ -842,3 +871,5 @@ function exportToExcelResultJIG() {
     // Save the file
     saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'calib_schedule_equipment.xlsx');
 }
+
+

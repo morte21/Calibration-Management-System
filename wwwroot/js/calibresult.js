@@ -4,6 +4,7 @@
         var searchYear = $('#searchYear').val();
         var tableBody = $('#dailyCalibEQP tbody');
 
+        console.log("run");
         // Clear the table before populating with search results
         tableBody.empty();
 
@@ -30,9 +31,9 @@
 
                         // Determine the row color class based on fld_stat
                         var rowColorClass = '';
-                        if (item.fld_stat === 'PASSED') {
+                        if (item.fld_stat === 'OK') {
                             rowColorClass = 'green';
-                        } else if (item.fld_stat === 'FAILED') {
+                        } else if (item.fld_stat === 'NG') {
                             rowColorClass = 'red';
                         } else if (item.fld_stat === 'SUSPENDED') {
                             rowColorClass = 'yellow';
@@ -155,9 +156,9 @@ $(document).ready(function () {
 
                         // Determine the row color class based on fld_stat
                         var rowColorClass = '';
-                        if (item.fld_stat === 'PASSED') {
+                        if (item.fld_stat === 'OK') {
                             rowColorClass = 'green';
-                        } else if (item.fld_stat === 'FAILED') {
+                        } else if (item.fld_stat === 'NG') {
                             rowColorClass = 'red';
                         } else if (item.fld_stat === 'SUSPENDED') {
                             rowColorClass = 'yellow';

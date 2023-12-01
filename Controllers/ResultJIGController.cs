@@ -78,9 +78,6 @@ namespace Calibration_Management_System.Controllers
         public IActionResult Edit(GlobalControllerClass model, IFormFile _pathIMG, IFormFile _pathDoc)
         {
 
-
-            try
-            {
                 // Update the edited data in the ResultEQPController
 
                 if (_pathIMG != null && _pathIMG.Length > 0)
@@ -130,11 +127,7 @@ namespace Calibration_Management_System.Controllers
 
                     model.CalibrationResultJIG.fld_pathDoc = uniqueFileNameDoc;
                 }
-            }
-            catch (Exception ex)
-            {
-
-            }
+           
 
 
 
@@ -184,6 +177,10 @@ namespace Calibration_Management_System.Controllers
                 _context.Jig_table.Update(jigModel);
             }
 
+            _context.Attach(jigModel);
+            _context.Entry(jigModel).State = EntityState.Modified;
+            _context.Entry(jigModel).Property(f => f.fld_pathIMG).IsModified = _pathIMG != null;
+            _context.Entry(jigModel).Property(f => f.fld_pathDoc).IsModified = _pathDoc != null;
             _context.SaveChanges();
 
             return RedirectToAction("Index");
