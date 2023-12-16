@@ -24,8 +24,109 @@ namespace Calibration_Management_System.Controllers
         public IActionResult Index()
         {
             List<Uncontrolled> uncontrolled;
-            uncontrolled = _context.Uncontrolled_table.OrderByDescending(x => x.id).ToList();
+            uncontrolled = _context.Uncontrolled_table
+                .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
+                .Take(0)
+                .ToList();
             return View(uncontrolled);
+        }
+
+
+        public IActionResult UNLoadData2()
+        {
+            var draw = Request.Form["draw"].FirstOrDefault();
+            int start = int.Parse(Request.Form["start"].FirstOrDefault());
+            int length = int.Parse(Request.Form["length"].FirstOrDefault());
+
+            // Get global search value
+            string searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+            // Query the database based on start, length, filters, etc.
+            var query = _context.Uncontrolled_table.Where(x => x.fld_nameEquip != null );
+
+
+            // Apply global search filter
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                query = query.Where(x =>
+                    x.fld_nameEquip.Contains(searchValue) ||
+                    x.fld_modelType.Contains(searchValue) ||
+                    x.fld_serial.Contains(searchValue) ||
+                    x.fld_maker.Contains(searchValue) ||
+                    x.fld_reasonUncontrolled.Contains(searchValue) ||
+                    x.fld_qty.Contains(searchValue) ||
+                    x.fld_reqDate.Contains(searchValue) ||
+                    x.fld_reqBy.Contains(searchValue) ||
+                    x.fld_department.Contains(searchValue) ||
+
+                    x.fld_commento.Contains(searchValue)
+                // ...other fields here
+                );
+            }
+
+            // Fetch all search values for each column (tfoot)
+            List<string> searchValuesTfoot = new List<string>();
+            for (int i = 0; i < Request.Form.Keys.Count; i++)
+            {
+                string key = Request.Form.Keys.ElementAt(i);
+                if (key.StartsWith("columns") && key.Contains("[search][value]"))
+                {
+                    searchValuesTfoot.Add(Request.Form[key].FirstOrDefault());
+                }
+            }
+
+            // Apply column-wise search filters from tfoot in
+            for (int i = 0; i < searchValuesTfoot.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(searchValuesTfoot[i]))
+                {
+                    string getData = searchValuesTfoot[i];
+
+                    // Adjust search logic for each column based on the index
+                    switch (i)
+                    {
+                        case 1: // Handle search for the first column (adjust these cases based on your column order)
+                            query = query.Where(x => x.fld_nameEquip.Contains(getData));
+                            break;
+                        case 2: // Handle search for the second column
+                            query = query.Where(x => x.fld_modelType.Contains(getData));
+                            break;
+
+                        case 3: // Handle search for the second column
+                            query = query.Where(x => x.fld_serial.Contains(getData));
+                            break;
+                        case 4: // Handle search for the second column
+                            query = query.Where(x => x.fld_maker.Contains(getData));
+                            break;
+                        case 5: // Handle search for the second column
+                            query = query.Where(x => x.fld_reasonUncontrolled.Contains(getData));
+                            break;
+                        case 6: // Handle search for the second column
+                            query = query.Where(x => x.fld_qty.Contains(getData));
+                            break;
+                        case 7: // Handle search for the second column
+                            query = query.Where(x => x.fld_reqDate.Contains(getData));
+                            break;
+                        case 8: // Handle search for the second column
+                            query = query.Where(x => x.fld_reqBy.Contains(getData));
+                            break;
+                        case 9: // Handle search for the second column
+                            query = query.Where(x => x.fld_department.Contains(getData));
+                            break;
+                        case 10: // Handle search for the second column
+                            query = query.Where(x => x.fld_commento.Contains(getData));
+                            break;
+
+
+                            // Add cases for other columns here...
+                    }
+                }
+            }
+
+            var data = query.Skip(start).Take(length).ToList();
+            var totalCount = query.Count();
+
+            return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
         }
 
         [Authorize(Roles = "Control Function,Admin-Calibration")]

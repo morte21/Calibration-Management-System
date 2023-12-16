@@ -23,9 +23,183 @@ namespace Calibration_Management_System.Controllers
         public IActionResult Index()
         {
             List<CalibrationResultJIG> calibrationResults;
-            calibrationResults = _context.CalibrationResultJIG.OrderByDescending(x => x.calibrationdate).ToList();
+            calibrationResults = _context.CalibrationResultJIG
+                .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
+                .Take(0)
+                .ToList();
             return View(calibrationResults);
         }
+
+        public IActionResult ResultJIGLoadData2()
+        {
+            var draw = Request.Form["draw"].FirstOrDefault();
+            int start = int.Parse(Request.Form["start"].FirstOrDefault());
+            int length = int.Parse(Request.Form["length"].FirstOrDefault());
+
+            // Get global search value
+            string searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+            // Query the database based on start, length, filters, etc.
+            var query = _context.CalibrationResultJIG.Where(x => x.fld_jigName != null);
+
+
+            // Apply global search filter
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                query = query.Where(x =>
+                    x.fld_stat.Contains(searchValue) ||
+                    x.fld_ctrlNo.Contains(searchValue) ||
+                    x.fld_jigName.Contains(searchValue) ||
+                    x.calibrationdate.Contains(searchValue) ||
+                    x.fld_drawingNo.Contains(searchValue) ||
+                    x.fld_term.Contains(searchValue) ||
+                    x.fld_reqFunction.Contains(searchValue) ||
+                    x.fld_remarks.Contains(searchValue) ||
+                    x.fld_passfail.Contains(searchValue) ||
+                    x.fld_imte.Contains(searchValue) ||
+                    x.fld_dateRecv.Contains(searchValue) ||
+                    x.fld_calibDate.Contains(searchValue) ||
+                    x.fld_calibMonth.Contains(searchValue) ||
+                    x.fld_calibYear.Contains(searchValue) ||
+                    x.fld_nextCalibDate.Contains(searchValue) ||
+                    x.fld_nextCalibMonth.Contains(searchValue) ||
+                    x.fld_nextCalibYear.Contains(searchValue) ||
+                    x.fld_dateReturned.Contains(searchValue) ||
+                    x.fld_internalExternal.Contains(searchValue) ||
+                    x.fld_withNC.Contains(searchValue) ||
+                    x.fld_CalibFR.Contains(searchValue) ||
+                    x.fld_calibDisSusForm.Contains(searchValue) ||
+                    x.fld_withCalibResult.Contains(searchValue) ||
+                    x.fld_incharge.Contains(searchValue) ||
+                    x.fld_changeSticker.Contains(searchValue) ||
+                    x.fld_actualCalibDueDate.Contains(searchValue) ||
+                    x.fld_month.Contains(searchValue) ||
+                    x.fld_year.Contains(searchValue)
+                // ...other fields here
+                );
+            }
+
+            // Fetch all search values for each column (tfoot)
+            List<string> searchValuesTfoot = new List<string>();
+            for (int i = 0; i < Request.Form.Keys.Count; i++)
+            {
+                string key = Request.Form.Keys.ElementAt(i);
+                if (key.StartsWith("columns") && key.Contains("[search][value]"))
+                {
+                    searchValuesTfoot.Add(Request.Form[key].FirstOrDefault());
+                }
+            }
+
+            // Apply column-wise search filters from tfoot in
+            for (int i = 0; i < searchValuesTfoot.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(searchValuesTfoot[i]))
+                {
+                    string getData = searchValuesTfoot[i];
+
+                    // Adjust search logic for each column based on the index
+                    switch (i)
+                    {
+                        case 1: // Handle search for the first column (adjust these cases based on your column order)
+                            query = query.Where(x => x.fld_stat.Contains(getData));
+                            break;
+                        case 2: // Handle search for the second column
+                            query = query.Where(x => x.fld_ctrlNo.Contains(getData));
+                            break;
+
+                        case 3: // Handle search for the second column
+                            query = query.Where(x => x.fld_jigName.Contains(getData));
+                            break;
+                        case 4: // Handle search for the second column
+                            query = query.Where(x => x.calibrationdate.Contains(getData));
+                            break;
+                        case 6: // Handle search for the second column
+                            query = query.Where(x => x.fld_drawingNo.Contains(getData));
+                            break;
+                        case 7: // Handle search for the second column
+                            query = query.Where(x => x.fld_term.Contains(getData));
+                            break;
+                        case 8: // Handle search for the second column
+                            query = query.Where(x => x.fld_reqFunction.Contains(getData));
+                            break;
+                        case 9: // Handle search for the second column
+                            query = query.Where(x => x.fld_remarks.Contains(getData));
+                            break;
+                        case 10: // Handle search for the second column
+                            query = query.Where(x => x.fld_passfail.Contains(getData));
+                            break;
+                        case 11: // Handle search for the second column
+                            query = query.Where(x => x.fld_imte.Contains(getData));
+                            break;
+                        case 12: // Handle search for the second column
+                            query = query.Where(x => x.fld_dateRecv.Contains(getData));
+                            break;
+                        case 13: // Handle search for the second column
+                            query = query.Where(x => x.fld_calibDate.Contains(getData));
+                            break;
+                        case 14: // Handle search for the second column
+                            query = query.Where(x => x.fld_calibMonth.ToString().Contains(getData));
+                            break;
+                        case 15: // Handle search for the second column
+                            query = query.Where(x => x.fld_calibYear.ToString().Contains(getData));
+                            break;
+                        case 16: // Handle search for the second column
+                            query = query.Where(x => x.fld_nextCalibDate.Contains(getData));
+                            break;
+                        case 17: // Handle search for the second column
+                            query = query.Where(x => x.fld_nextCalibMonth.Contains(getData));
+                            break;
+                        case 18: // Handle search for the second column
+                            query = query.Where(x => x.fld_nextCalibYear.ToString().Contains(getData));
+                            break;
+                        case 19: // Handle search for the second column
+                            query = query.Where(x => x.fld_dateReturned.Contains(getData));
+                            break;
+                        case 20: // Handle search for the second column
+                            query = query.Where(x => x.fld_internalExternal.Contains(getData));
+                            break;
+                        case 21: // Handle search for the second column
+                            query = query.Where(x => x.fld_withNC.Contains(getData));
+                            break;
+                        case 22: // Handle search for the second column
+                            query = query.Where(x => x.fld_CalibFR.Contains(getData));
+                            break;
+                        case 23: // Handle search for the second column
+                            query = query.Where(x => x.fld_calibDisSusForm.Contains(getData));
+                            break;
+                        case 24: // Handle search for the second column
+                            query = query.Where(x => x.fld_withCalibResult.Contains(getData));
+                            break;
+                        case 27: // Handle search for the second column
+                            query = query.Where(x => x.fld_incharge.Contains(getData));
+                            break;
+                        case 28: // Handle search for the second column
+                            query = query.Where(x => x.fld_changeSticker.Contains(getData));
+                            break;
+                        case 29: // Handle search for the second column
+                            query = query.Where(x => x.fld_actualCalibDueDate.Contains(getData));
+                            break;
+                        case 30: // Handle search for the second column
+                            query = query.Where(x => x.fld_month.Contains(getData));
+                            break;
+                        case 31: // Handle search for the second column
+                            query = query.Where(x => x.fld_year.Contains(getData));
+                            break;
+                            // Add cases for other columns here...
+                    }
+                }
+            }
+
+
+
+
+
+            var data = query.Skip(start).Take(length).ToList();
+            var totalCount = query.Count();
+
+            return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
+        }
+
 
 
         [HttpPost]

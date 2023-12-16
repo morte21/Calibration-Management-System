@@ -8,6 +8,7 @@ namespace Calibration_Management_System.Models
         [Key]
         public int id { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = false)]
         [DisplayName("Register Date")]
         public DateTime? fld_dateReg { get; set; } = DateTime.UtcNow;
 

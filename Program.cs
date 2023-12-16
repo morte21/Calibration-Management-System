@@ -13,6 +13,18 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<EquipmentService>();
 builder.Services.AddScoped<JigService>();
 
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll",
+//        builder =>
+//        {
+//            builder.AllowAnyOrigin()
+//                   .AllowAnyMethod()
+//                   .AllowAnyHeader();
+//        });
+//});
+
 //add services for db connection ****
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));

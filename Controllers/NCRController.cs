@@ -22,9 +22,130 @@ namespace Calibration_Management_System.Controllers
 
         public IActionResult Index()
         {
-            List<NCR> ncr;
-            ncr = _context.NCR_table.OrderByDescending(x => x.id).ToList();
+
+                List<NCR> ncr;
+                ncr = _context.NCR_table
+                .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
+                .Take(0)
+                .ToList();
             return View(ncr);
+        }
+
+        public IActionResult NCRLoadData2()
+        {
+            var draw = Request.Form["draw"].FirstOrDefault();
+            int start = int.Parse(Request.Form["start"].FirstOrDefault());
+            int length = int.Parse(Request.Form["length"].FirstOrDefault());
+
+            // Get global search value
+            string searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+            // Query the database based on start, length, filters, etc.
+            var query = _context.NCR_table.Where(x => x.fld_contents != null);
+
+
+
+            // Apply global search filter
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                query = query.Where(x =>
+                    x.fld_nonConReportNo.Contains(searchValue) ||
+                    x.fld_dateIssue.Contains(searchValue) ||
+                    x.fld_ctrlNo.Contains(searchValue) ||
+                    x.fld_IssueTo.Contains(searchValue) ||
+                    x.fld_mainIncharge.Contains(searchValue) ||
+                    x.fld_modelNo.Contains(searchValue) ||
+                    x.fld_qty.Contains(searchValue) ||
+                    x.fld_withDisposalForm.Contains(searchValue) ||
+                    x.fld_contents.Contains(searchValue) ||
+                    x.fld_dateCompleted.Contains(searchValue) ||
+                    x.fld_status.Contains(searchValue) ||
+                    x.fld_calibReportNo.Contains(searchValue) ||
+                    x.fld_giveDisposeSuspendedForm.Contains(searchValue) ||
+                    x.fld_givenTo.Contains(searchValue) ||
+                    
+                    x.fld_rcvDisposeSuspendedForm.Contains(searchValue)
+                // ...other fields here
+                );
+            }
+
+            // Fetch all search values for each column (tfoot)
+            List<string> searchValuesTfoot = new List<string>();
+            for (int i = 0; i < Request.Form.Keys.Count; i++)
+            {
+                string key = Request.Form.Keys.ElementAt(i);
+                if (key.StartsWith("columns") && key.Contains("[search][value]"))
+                {
+                    searchValuesTfoot.Add(Request.Form[key].FirstOrDefault());
+                }
+            }
+
+            // Apply column-wise search filters from tfoot in
+            for (int i = 0; i < searchValuesTfoot.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(searchValuesTfoot[i]))
+                {
+                    string getData = searchValuesTfoot[i];
+
+                    // Adjust search logic for each column based on the index
+                    switch (i)
+                    {
+                        case 1: // Handle search for the first column (adjust these cases based on your column order)
+                            query = query.Where(x => x.fld_nonConReportNo.Contains(getData));
+                            break;
+                        case 2: // Handle search for the second column
+                            query = query.Where(x => x.fld_dateIssue.Contains(getData));
+                            break;
+
+                        case 3: // Handle search for the second column
+                            query = query.Where(x => x.fld_ctrlNo.Contains(getData));
+                            break;
+                        case 4: // Handle search for the second column
+                            query = query.Where(x => x.fld_IssueTo.Contains(getData));
+                            break;
+                        case 5: // Handle search for the second column
+                            query = query.Where(x => x.fld_mainIncharge.Contains(getData));
+                            break;
+                        case 6: // Handle search for the second column
+                            query = query.Where(x => x.fld_modelNo.Contains(getData));
+                            break;
+                        case 7: // Handle search for the second column
+                            query = query.Where(x => x.fld_qty.Contains(getData));
+                            break;
+                        case 8: // Handle search for the second column
+                            query = query.Where(x => x.fld_withDisposalForm.Contains(getData));
+                            break;
+                        case 9: // Handle search for the second column
+                            query = query.Where(x => x.fld_contents.Contains(getData));
+                            break;
+                        case 10: // Handle search for the second column
+                            query = query.Where(x => x.fld_dateCompleted.Contains(getData));
+                            break;
+                        case 11: // Handle search for the second column
+                            query = query.Where(x => x.fld_status.Contains(getData));
+                            break;
+                        case 12: // Handle search for the second column
+                            query = query.Where(x => x.fld_calibReportNo.Contains(getData));
+                            break;
+                        case 13: // Handle search for the second column
+                            query = query.Where(x => x.fld_giveDisposeSuspendedForm.ToString().Contains(getData));
+                            break;
+                        case 14: // Handle search for the second column
+                            query = query.Where(x => x.fld_givenTo.ToString().Contains(getData));
+                            break;
+                        case 15: // Handle search for the second column
+                            query = query.Where(x => x.fld_rcvDisposeSuspendedForm.Contains(getData));
+                            break;
+                        
+                            // Add cases for other columns here...
+                    }
+                }
+            }
+
+            var data = query.Skip(start).Take(length).ToList();
+            var totalCount = query.Count();
+
+            return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
         }
 
         [Authorize(Roles = "Control Function,Admin-Calibration")]

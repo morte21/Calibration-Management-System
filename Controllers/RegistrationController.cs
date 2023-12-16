@@ -32,21 +32,219 @@ namespace Calibration_Management_System.Controllers
         //VIEW EQUPMENT REGISTRATION PAGE
         public IActionResult Index()
         {
-            List<RegistrationClass> registrationClass;
-            //registrationClass = _context.Registration_Table.ToList();
 
-            registrationClass = _context.Registration_Table.Where(x => x.fld_jigCategory == "EQP").ToList();
-            //sort decs by id
-            //registrationClass = _context.Registration_Table.OrderByDescending(x => x.id).ToList();
+            List<RegistrationClass> registrationClass;
+            registrationClass = _context.Registration_Table
+                .Where(x => x.fld_jigCategory == "EQP").ToList()
+                .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
+                .Take(0)
+                .ToList();
+
             return View(registrationClass);
         }
 
         //VIEW JIG REGISTRATION PAGE
         public IActionResult IndexJig()
         {
+            
             List<RegistrationClass> registrationClassJig;
-            registrationClassJig = _context.Registration_Table.Where(x => x.fld_jigCategory == "JIG").ToList();
+            registrationClassJig = _context.Registration_Table
+                .Where(x => x.fld_jigCategory == "JIG").ToList()
+                .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
+                .Take(0)
+                .ToList();
             return View(registrationClassJig);
+        }
+
+        public IActionResult EQPLoadData()
+        {
+            var draw = Request.Form["draw"].FirstOrDefault();
+            int start = int.Parse(Request.Form["start"].FirstOrDefault());
+            int length = int.Parse(Request.Form["length"].FirstOrDefault());
+
+            // Get global search value
+            string searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+            // Query the database based on start, length, filters, etc.
+            var query = _context.Registration_Table.Where(x => x.fld_jigCategory == "EQP");
+
+
+            // Apply global search filter
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                query = query.Where(x =>
+                    x.fld_dateReg.ToString().Contains(searchValue) ||
+                    x.fld_reqFunction.Contains(searchValue) ||
+                    x.fld_incharge.Contains(searchValue) ||
+                    x.fld_approvedBy.Contains(searchValue) ||
+                    x.fld_codeNo.Contains(searchValue) ||
+                    x.fld_ctrlNo.Contains(searchValue) ||
+                    x.fld_eqpName.Contains(searchValue) ||
+                    x.fld_eqpModelNo.Contains(searchValue) ||
+                    x.fld_serial.Contains(searchValue) ||
+                    x.fld_brand.Contains(searchValue) ||
+                    x.fld_submissionDate.Contains(searchValue) ||
+                    x.fld_receivedBy.Contains(searchValue) ||
+                    x.fld_status.Contains(searchValue) ||
+                    x.fld_emailOne.Contains(searchValue) ||
+                    x.fld_emailTwo.Contains(searchValue) ||
+                    x.fld_emailThree.Contains(searchValue) ||
+                    x.fld_jigName.Contains(searchValue) ||
+                    x.fld_drawingNo.Contains(searchValue) ||
+                    x.fld_reRegJigCtrlNo.Contains(searchValue) ||
+                    x.fld_jigCategory.Contains(searchValue) ||
+                    x.fld_remarks.Contains(searchValue)
+                // ...other fields here
+                );
+            }
+
+            // Fetch all search values for each column (tfoot)
+            List<string> searchValuesTfoot = new List<string>();
+            for (int i = 0; i < Request.Form.Keys.Count; i++)
+            {
+                string key = Request.Form.Keys.ElementAt(i);
+                if (key.StartsWith("columns") && key.Contains("[search][value]"))
+                {
+                    searchValuesTfoot.Add(Request.Form[key].FirstOrDefault());
+                }
+            }
+
+            // Apply column-wise search filters from tfoot inputs
+            for (int i = 0; i < searchValuesTfoot.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(searchValuesTfoot[i]))
+                {
+                    string getData = searchValuesTfoot[i];
+
+                    // Adjust search logic for each column based on the index
+                    switch (i)
+                    {
+                        case 1: // Handle search for the first column (adjust these cases based on your column order)
+                            query = query.Where(x => x.fld_dateReg.ToString().Contains(getData));
+                            break;
+                        case 2: // Handle search for the first column (adjust these cases based on your column order)
+                            query = query.Where(x => x.fld_reqFunction.Contains(getData));
+                            break;
+                        case 7: // Handle search for the second column
+                            query = query.Where(x => x.fld_eqpName.Contains(getData));
+                            break;
+
+                        case 8: // Handle search for the second column
+                            query = query.Where(x => x.fld_eqpModelNo.Contains(getData));
+                            break;
+                        case 13: // Handle search for the second column
+                            query = query.Where(x => x.fld_status.Contains(getData));
+                            break;
+                        
+                            // Add cases for other columns here...
+                    }
+                }
+            }
+
+
+
+
+            var data = query.Skip(start).Take(length).ToList();
+            var totalCount = query.Count();
+
+            return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
+        }
+
+        public IActionResult JIGLoadData()
+        {
+            var draw = Request.Form["draw"].FirstOrDefault();
+            int start = int.Parse(Request.Form["start"].FirstOrDefault());
+            int length = int.Parse(Request.Form["length"].FirstOrDefault());
+
+
+            // Get global search value
+            string searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+            // Query the database based on start, length, filters, etc.
+            var query = _context.Registration_Table.Where(x => x.fld_jigCategory == "JIG");
+
+
+            // Apply global search filter
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                query = query.Where(x =>
+                    x.fld_dateReg.ToString().Contains(searchValue) ||
+                    x.fld_reqFunction.Contains(searchValue) ||
+                    x.fld_incharge.Contains(searchValue) ||
+                    x.fld_approvedBy.Contains(searchValue) ||
+                    x.fld_codeNo.Contains(searchValue) ||
+                    x.fld_ctrlNo.Contains(searchValue) ||
+                    x.fld_jigName.Contains(searchValue) ||
+                    x.fld_drawingNo.Contains(searchValue) ||
+                    x.fld_eqpName.Contains(searchValue) ||
+                    x.fld_eqpModelNo.Contains(searchValue) ||
+                    x.fld_serial.Contains(searchValue) ||
+                    x.fld_brand.Contains(searchValue) ||
+                    x.fld_submissionDate.Contains(searchValue) ||
+                    x.fld_receivedBy.Contains(searchValue) ||
+                    x.fld_status.Contains(searchValue) ||
+                    x.fld_emailOne.Contains(searchValue) ||
+                    x.fld_emailTwo.Contains(searchValue) ||
+                    x.fld_emailThree.Contains(searchValue) ||
+                    
+                    x.fld_reRegJigCtrlNo.Contains(searchValue) ||
+                    x.fld_jigCategory.Contains(searchValue) ||
+                    x.fld_remarks.Contains(searchValue)
+                // ...other fields here
+                );
+            }
+
+            // Fetch all search values for each column (tfoot)
+            List<string> searchValuesTfoot = new List<string>();
+            for (int i = 0; i < Request.Form.Keys.Count; i++)
+            {
+                string key = Request.Form.Keys.ElementAt(i);
+                if (key.StartsWith("columns") && key.Contains("[search][value]"))
+                {
+                    searchValuesTfoot.Add(Request.Form[key].FirstOrDefault());
+                }
+            }
+
+            // Apply column-wise search filters from tfoot inputs
+            for (int i = 0; i < searchValuesTfoot.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(searchValuesTfoot[i]))
+                {
+                    string getData = searchValuesTfoot[i];
+
+                    // Adjust search logic for each column based on the index
+                    switch (i)
+                    {
+
+                        case 1: // Handle search for the first column (adjust these cases based on your column order)
+                            query = query.Where(x => x.fld_dateReg.ToString().Contains(getData));
+                            break;
+                        case 2: // Handle search for the first column (adjust these cases based on your column order)
+                            query = query.Where(x => x.fld_reqFunction.Contains(getData));
+                            break;
+                        case 7: // Handle search for the second column
+                            query = query.Where(x => x.fld_eqpName.Contains(getData));
+                            break;
+
+                        case 8: // Handle search for the second column
+                            query = query.Where(x => x.fld_eqpModelNo.Contains(getData));
+                            break;
+                        case 13: // Handle search for the second column
+                            query = query.Where(x => x.fld_status.Contains(getData));
+                            break;
+
+                            // Add cases for other columns here...
+                    }
+                }
+            }
+
+
+
+
+            var data = query.Skip(start).Take(length).ToList();
+            var totalCount = query.Count();
+
+            return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
         }
 
 

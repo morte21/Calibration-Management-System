@@ -29,6 +29,7 @@
         <table id="table-registration-jig" class="display" style="width:100%">
             <thead>
                 <tr>
+                    <th></th>
                     <th hidden>@Html.DisplayNameFor(model => model.id)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
@@ -51,13 +52,17 @@
                     <th hidden>@Html.DisplayNameFor(model => model.fld_reRegJigCtrlNo)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_jigCategory)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_remarks)</th>
-                    <th></th>
+                    
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>
+                            <a style="font-size:x-small;" asp-action="Edit_DataJig" asp-route-id="@item.id">Edit</a> |
+                            <a style="font-size:x-small;" asp-controller="JigMaster" asp-action="EditGet" asp-route-fld_codeNo="@item.fld_codeNo" asp-route-fld_jigName="@item.fld_jigName" asp-route-fld_drawingNo="@item.fld_drawingNo" asp-route-fld_serial="@item.fld_serial" asp-route-fld_reqFunction="@item.fld_reqFunction" asp-route-fld_ctrlNo="@item.fld_ctrlNo">Register Calibration</a>
+                        </td>
                         <td hidden>@Html.DisplayFor(modelItem => item.id)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_dateReg)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_reqFunction)</td>
@@ -80,30 +85,14 @@
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_reRegJigCtrlNo)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_jigCategory)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_remarks)</td>
-                        <td>
-                           @*<div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bx bx-dots-horizontal-rounded "></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" style="font-size:x-small;" asp-action="Edit_Data" asp-route-id="@item.id">Edit</a>
-                                    <a class="dropdown-item" style="font-size:x-small;" asp-controller="EquipmentMaster" asp-action="EditGet" asp-route-fld_codeNo="@item.fld_codeNo" asp-route-fld_eqpName="@item.fld_eqpName" asp-route-fld_eqpModelNo="@item.fld_eqpModelNo" asp-route-fld_serial="@item.fld_serial" asp-route-fld_brand="@item.fld_brand" asp-route-fld_reqFunction="@item.fld_reqFunction" asp-route-fld_ctrlNo="@item.fld_ctrlNo">Register Calibration</a>
-                                    <a class="dropdown-item" style="font-size:x-small;" asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                                </div>
-                            </div>*@
-
-                            <a style="font-size:x-small;" asp-action="Edit_DataJig" asp-route-id="@item.id">Edit</a> |
-                            <a style="font-size:x-small;" asp-controller="JigMaster" asp-action="EditGet" asp-route-fld_codeNo="@item.fld_codeNo" asp-route-fld_jigName="@item.fld_jigName" asp-route-fld_drawingNo="@item.fld_drawingNo" asp-route-fld_serial="@item.fld_serial" asp-route-fld_reqFunction="@item.fld_reqFunction" asp-route-fld_ctrlNo="@item.fld_ctrlNo">Register Calibration</a>
-
-
-
-                        </td>
+                       
                     </tr>
                 }
             </tbody>
             <tfoot>
                 <tr>
-                    <th hidden></th>
+                    <th></th>
+                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_incharge)</th>
@@ -125,7 +114,7 @@
                     <th hidden>@Html.DisplayNameFor(model => model.fld_reRegJigCtrlNo)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_jigCategory)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_remarks)</th>
-                    <th></th>
+                    
                 </tr>
             </tfoot>
         </table>

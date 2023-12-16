@@ -361,35 +361,35 @@ document.addEventListener('DOMContentLoaded', updateLabelCountsJig);
 //    getCodeByDepartment();
 //})
 
-$(document).ready(function () {
-    function getCodeByDepartment() {
-        var selectedValue = $('#requestingFunctionSelect').val();
 
-        if (!selectedValue) {
-            $('#codeInput').val('');
-            return;
-        }
+function getCodeByDepartment() {
+    var selectedValue = $('#requestingFunctionSelect').val();
 
-        $.ajax({
-            url: '/Registration/GetCodeByDepartment',  // Replace with the actual route
-            type: 'GET',
-            data: { department: selectedValue },
-            success: function (response) {
-                if (response) {
-                    $('#codeInput').val(response);
-                } else {
-                    $('#codeInput').val('');
-                }
-            },
-            error: function (error) {
-                console.log("Error:", error);
-            }
-        });
+    if (!selectedValue) {
+        $('#codeInput').val('');
+        return;
     }
 
-    $('#requestingFunctionSelect').on('change', getCodeByDepartment);
-    getCodeByDepartment();  // Initial load
-});
+    $.ajax({
+        url: '/Registration/GetCodeByDepartment',  // Replace with the actual route
+        type: 'GET',
+        data: { department: selectedValue },
+        success: function (response) {
+            if (response) {
+                $('#codeInput').val(response);
+            } else {
+                $('#codeInput').val('');
+            }
+        },
+        error: function (error) {
+            console.log("Error:", error);
+        }
+    });
+}
+
+    //$('#requestingFunctionSelect').on('change', getCodeByDepartment);
+    //getCodeByDepartment();  // Initial load
+
 
 
 

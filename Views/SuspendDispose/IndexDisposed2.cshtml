@@ -23,7 +23,6 @@
             <thead>
                 <tr>
                     <th>--A c t i o n--</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_itemName)</th>
@@ -56,7 +55,6 @@
                             &nbsp;&nbsp;<a asp-action="DetailsDisposed" asp-route-id="@item.id">Details</a>
                         </td>
                         
-                        <td hidden>@Html.DisplayNameFor(model => model.id)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_dateReg)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_itemName)</td>
@@ -85,7 +83,6 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_itemName)</th>

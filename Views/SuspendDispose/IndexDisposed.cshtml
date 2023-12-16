@@ -26,7 +26,7 @@
         <table id="table-disposedRegistration" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
+                    <th></th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_itemName)</th>
@@ -49,14 +49,17 @@
                     <th hidden>@Html.DisplayNameFor(model => model.fld_followUpDate)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_nextFollowUp)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_inchargeRequestor)</th>
-                    <th></th>
+                    
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <th hidden>@Html.DisplayNameFor(model => model.id)</th>
+                        <td>
+                            <a asp-action="Edit_Disposed" asp-route-id="@item.id">Update</a> |
+                            <a asp-action="ActivateDisposed" asp-route-id="@item.id">Dispose Item</a>
+                        </td>
                         <td>@Html.DisplayFor(modelItem => item.fld_dateReg)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_itemName)</td>
@@ -79,16 +82,13 @@
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_followUpDate)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_nextFollowUp)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_inchargeRequestor)</td>
-                        <td>
-                            <a  asp-action="Edit_Disposed" asp-route-id="@item.id">Edit</a> |
-                            <a  asp-action="ActivateDisposed" asp-route-id="@item.id">Dispose Item</a>
-                        </td>
+                        
                     </tr>
                 }
             </tbody>
             <tfoot>
                 <tr>
-                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
+                    <th></th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_itemName)</th>
@@ -111,7 +111,7 @@
                     <th hidden>@Html.DisplayNameFor(model => model.fld_followUpDate)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_nextFollowUp)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_inchargeRequestor)</th>
-                    <th></th>
+                    
                 </tr>
             </tfoot>
         </table>

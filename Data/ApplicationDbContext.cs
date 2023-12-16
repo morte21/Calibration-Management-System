@@ -29,6 +29,7 @@ namespace Calibration_Management_System.Data
         public DbSet<Uncontrolled> Uncontrolled_table { get; set; }
 
         public DbSet<NCR> NCR_table { get; set; }
+
         public DbSet<GeneralForm> GeneralForm_table { get; set; }
 
         public DbSet<CalibrationNotice> CalibrationNotice_table { get; set; }
