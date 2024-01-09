@@ -1,0 +1,21 @@
+{
+  "ConnectionStrings": {
+     "dbConnection": "Data Source=DATABASE_NAME;Initial Catalog=TABLE_DATABASE;User ID=USER_ID;Password=PASSWORD; encrypt=false;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+
+  "SmtpSettings": {
+   
+  }
+
+
+}
+
+
+  
