@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 
 
 
@@ -150,6 +151,30 @@ namespace Calibration_Management_System.Controllers
             return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
         }
 
+
+        public IActionResult ExportAllDataEQP()
+        {
+            var allData = _context.Registration_Table.Where(x => x.fld_jigCategory == "EQP").ToList();
+
+            // Create headers
+            var headers = string.Join(",", typeof(RegistrationClass).GetProperties().Select(prop => prop.Name));
+
+            // Create CSV data with headers
+            var csvData = new StringBuilder();
+            csvData.AppendLine(headers); // Add headers as the first line
+
+            // Add rows of data
+            foreach (var dataRow in allData)
+            {
+                var rowData = string.Join(",", typeof(RegistrationClass).GetProperties().Select(prop => prop.GetValue(dataRow, null)));
+                csvData.AppendLine(rowData);
+            }
+
+            byte[] buffer = Encoding.UTF8.GetBytes(csvData.ToString());
+
+            return File(buffer, "text/csv", "exported_data.csv");
+        }
+
         public IActionResult JIGLoadData()
         {
             var draw = Request.Form["draw"].FirstOrDefault();
@@ -246,6 +271,33 @@ namespace Calibration_Management_System.Controllers
 
             return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
         }
+
+
+        public IActionResult ExportAllDataJIG()
+        {
+            var allData = _context.Registration_Table.Where(x => x.fld_jigCategory == "JIG").ToList();
+
+            // Create headers
+            var headers = string.Join(",", typeof(RegistrationClass).GetProperties().Select(prop => prop.Name));
+
+            // Create CSV data with headers
+            var csvData = new StringBuilder();
+            csvData.AppendLine(headers); // Add headers as the first line
+
+            // Add rows of data
+            foreach (var dataRow in allData)
+            {
+                var rowData = string.Join(",", typeof(RegistrationClass).GetProperties().Select(prop => prop.GetValue(dataRow, null)));
+                csvData.AppendLine(rowData);
+            }
+
+            byte[] buffer = Encoding.UTF8.GetBytes(csvData.ToString());
+
+            return File(buffer, "text/csv", "exported_data.csv");
+        }
+
+
+
 
 
         // JIG

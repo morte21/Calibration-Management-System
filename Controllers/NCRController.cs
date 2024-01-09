@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Text;
 
 namespace Calibration_Management_System.Controllers
 {
@@ -147,6 +148,34 @@ namespace Calibration_Management_System.Controllers
 
             return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
         }
+
+
+        public IActionResult ExportAllData()
+        {
+            var allData = _context.NCR_table.Where(x => x.fld_contents != null);
+
+            // Create headers
+            var headers = string.Join(",", typeof(NCR).GetProperties().Select(prop => prop.Name));
+
+            // Create CSV data with headers
+            var csvData = new StringBuilder();
+            csvData.AppendLine(headers); // Add headers as the first line
+
+            // Add rows of data
+            foreach (var dataRow in allData)
+            {
+                var rowData = string.Join(",", typeof(NCR).GetProperties().Select(prop => prop.GetValue(dataRow, null)));
+                csvData.AppendLine(rowData);
+            }
+
+            byte[] buffer = Encoding.UTF8.GetBytes(csvData.ToString());
+
+            return File(buffer, "text/csv", "exported_data.csv");
+        }
+
+
+
+
 
         [Authorize(Roles = "Control Function,Admin-Calibration")]
         [HttpGet]

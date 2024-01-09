@@ -24,9 +24,9 @@ namespace Calibration_Management_System.Controllers
         {
             List<CalibrationResultJIG> calibrationResults;
             calibrationResults = _context.CalibrationResultJIG
-                .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
-                .Take(0)
-                .ToList();
+            .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
+            .Take(0)
+            .ToList();
             return View(calibrationResults);
         }
 
@@ -40,7 +40,7 @@ namespace Calibration_Management_System.Controllers
             string searchValue = Request.Form["search[value]"].FirstOrDefault();
 
             // Query the database based on start, length, filters, etc.
-            var query = _context.CalibrationResultJIG.Where(x => x.fld_jigName != null);
+            var query = _context.CalibrationResultJIG.OrderBy(x => x.calibrationdate).Where(x => x.fld_jigName != null);
 
 
             // Apply global search filter
@@ -203,7 +203,7 @@ namespace Calibration_Management_System.Controllers
 
 
         [HttpPost]
-        public IActionResult SearchSchedule(int searchMonth, int searchYear)
+        public IActionResult SearchSchedule(string searchMonth, int searchYear)
         {
             List<CalibrationResultJIG> searchResults;
 

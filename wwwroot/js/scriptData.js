@@ -395,481 +395,481 @@ function getCodeByDepartment() {
 
 
 //EXPORT TO EXCEL EQUIPMENT MASTER
-function exportToExcelMaster() {
-    // Get the DataTable instance
-    var dataTable = $('#equipment-registration').DataTable();
-
-    // Get the visible rows and their data
-    var visibleRows = dataTable.rows({ 'search': 'applied' }).data().toArray();
-
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
-
-    // Add headers to the worksheet
-    var headers = [
-        "Code",
-        "Control Number",
-        "Division",
-        "Category",
-        "Code",
-        "Equipment Name",
-        "Model",
-        "Serial",
-        "Maker",
-        "Term",
-        "Employment Place",
-        "Pass/Fail",
-        "Registration Date",
-        "IMTE",
-        "Calibration Date",
-        "Calibration Month",
-        "Calibration Year",
-        "Next Calibration Date",
-        "Next Calibration Month",
-        "Next Calibration Year",
-        "Internal/External",
-        "External Supplier",
-        "Comment",
-        "Standard Equipment",
-        "Status",
-        "Calibration Result",
-        "IMG Result"
-    ];
-
-    var visibleData = visibleRows.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 25 to 34
-            return index !== 0 && (index < 25 || index > 34);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(visibleData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Equipment Registration');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'equipment_registration.xlsx');
-}
-
-
-//EXPORT TO EXCEL JIG
-function exportToExcel2() {
-    // Get the DataTable instance
-    var dataTable = $('#jig-registration').DataTable();
-
-    // Get the visible data from the DataTable
-    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
-
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
-
-    // Add headers to the worksheet
-    var headers = [
-        "Code",
-        "Control Number",
-        "Division",
-        "Jig Name",
-        "Drawing No.",
-        "Serial",
-        "Term",
-        "Employment Place",
-        "Pass/Fail",
-        "Registration Date",
-        "IMTE",
-        "Calibration Date",
-        "Calibration Month",
-        "Calibration Year",
-        "Next Calibration Date",
-        "Next Calibration Month",
-        "Next Calibration Year",
-        "Internal/External",
-        "Comment",
-        "Path IMG",
-        "Path DOC",
-        "Status",
-        "Description"
-    ];
-
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude any columns that need to be excluded
-            return index !== 0 && (index < 24 || index > 34);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Jig Registration');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'jig_registration.xlsx');
-}
-
+//function exportToExcelMaster() {
+//    // Get the DataTable instance
+//    var dataTable = $('#equipment-registration').DataTable();
+
+//    // Get the visible rows and their data
+//    var visibleRows = dataTable.rows({ 'search': 'applied' }).data().toArray();
+
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
+
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+//    // Add headers to the worksheet
+//    var headers = [
+//        "Code",
+//        "Control Number",
+//        "Division",
+//        "Category",
+//        "Code",
+//        "Equipment Name",
+//        "Model",
+//        "Serial",
+//        "Maker",
+//        "Term",
+//        "Employment Place",
+//        "Pass/Fail",
+//        "Registration Date",
+//        "IMTE",
+//        "Calibration Date",
+//        "Calibration Month",
+//        "Calibration Year",
+//        "Next Calibration Date",
+//        "Next Calibration Month",
+//        "Next Calibration Year",
+//        "Internal/External",
+//        "External Supplier",
+//        "Comment",
+//        "Standard Equipment",
+//        "Status",
+//        "Calibration Result",
+//        "IMG Result"
+//    ];
+
+//    var visibleData = visibleRows.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude column 0 (Action) and columns 25 to 34
+//            return index !== 0 && (index < 25 || index > 34);
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(visibleData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'Equipment Registration');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'equipment_registration.xlsx');
+//}
+
+
+////EXPORT TO EXCEL JIG
+//function exportToExcel2() {
+//    // Get the DataTable instance
+//    var dataTable = $('#jig-registration').DataTable();
+
+//    // Get the visible data from the DataTable
+//    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
+
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
+
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+//    // Add headers to the worksheet
+//    var headers = [
+//        "Code",
+//        "Control Number",
+//        "Division",
+//        "Jig Name",
+//        "Drawing No.",
+//        "Serial",
+//        "Term",
+//        "Employment Place",
+//        "Pass/Fail",
+//        "Registration Date",
+//        "IMTE",
+//        "Calibration Date",
+//        "Calibration Month",
+//        "Calibration Year",
+//        "Next Calibration Date",
+//        "Next Calibration Month",
+//        "Next Calibration Year",
+//        "Internal/External",
+//        "Comment",
+//        "Path IMG",
+//        "Path DOC",
+//        "Status",
+//        "Description"
+//    ];
+
+//    var filteredData = data.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude any columns that need to be excluded
+//            return index !== 0 && (index < 24 || index > 34);
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(filteredData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'Jig Registration');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'jig_registration.xlsx');
+//}
+
 
-//EXPORT TO EXCEL FAILURE
-function exportToExcelFR() {
-    // Get the DataTable instance
-    var dataTable = $('#failurereport-registration').DataTable();
+////EXPORT TO EXCEL FAILURE
+//function exportToExcelFR() {
+//    // Get the DataTable instance
+//    var dataTable = $('#failurereport-registration').DataTable();
 
-    // Get the visible rows and their data
-    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
+//    // Get the visible rows and their data
+//    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
 
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
 
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
 
-    // Add headers to the worksheet
-    var headers = [
-        "Report No.",
-        "Date Issued",
-        "Department/Section",
-        "In Charge",
-        "Main Incharge",
-        "Control Number",
-        "Equipment Name",
-        "Quantity",
-        "Contents"
-    ];
-
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 10 to 11
-            return index !== 0 && (index < 10 || index > 11);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Failure Report Masterlist');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'failure_report.xlsx');
-}
-
-
-
-//EXPORT TO EXCEL UNCONTROLLED
-function exportToExcelUC() {
-    // Get the DataTable instance
-    var dataTable = $('#uncontrolled-registration').DataTable();
-
-    // Get the visible rows data from the DataTable
-    var data = dataTable.rows({ search: "applied" }).data().toArray();
-
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
+//    // Add headers to the worksheet
+//    var headers = [
+//        "Report No.",
+//        "Date Issued",
+//        "Department/Section",
+//        "In Charge",
+//        "Main Incharge",
+//        "Control Number",
+//        "Equipment Name",
+//        "Quantity",
+//        "Contents"
+//    ];
+
+//    var filteredData = data.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude column 0 (Action) and columns 10 to 11
+//            return index !== 0 && (index < 10 || index > 11);
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(filteredData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'Failure Report Masterlist');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'failure_report.xlsx');
+//}
+
+
+
+////EXPORT TO EXCEL UNCONTROLLED
+//function exportToExcelUC() {
+//    // Get the DataTable instance
+//    var dataTable = $('#uncontrolled-registration').DataTable();
+
+//    // Get the visible rows data from the DataTable
+//    var data = dataTable.rows({ search: "applied" }).data().toArray();
+
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
+
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
 
-    // Add headers to the worksheet
-    var headers = [
-        "Equipment Name",
-        "Model Type",
-        "Serial",
-        "Maker",
-        "Reason",
-        "Quantity",
-        "Request Date",
-        "Request By",
-        "Department",
-        "Comment"
-    ];
-
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 10 to 11
-            return index !== 0 && (index < 10 || index > 11);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Uncontrolled Masterlist');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'uncontrolled.xlsx');
-}
+//    // Add headers to the worksheet
+//    var headers = [
+//        "Equipment Name",
+//        "Model Type",
+//        "Serial",
+//        "Maker",
+//        "Reason",
+//        "Quantity",
+//        "Request Date",
+//        "Request By",
+//        "Department",
+//        "Comment"
+//    ];
+
+//    var filteredData = data.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude column 0 (Action) and columns 10 to 11
+//            return index !== 0 && (index < 10 || index > 11);
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(filteredData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'Uncontrolled Masterlist');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'uncontrolled.xlsx');
+//}
 
 
-
-//EXPORT TO EXCEL NCR
-function exportToExcelNCR() {
-    // Get the DataTable instance
-    var dataTable = $('#ncr-registration').DataTable();
+
+////EXPORT TO EXCEL NCR
+//function exportToExcelNCR() {
+//    // Get the DataTable instance
+//    var dataTable = $('#ncr-registration').DataTable();
 
-    // Get the visible rows from the DataTable
-    var visibleRows = dataTable.rows({ 'search': 'applied' }).data().toArray();
+//    // Get the visible rows from the DataTable
+//    var visibleRows = dataTable.rows({ 'search': 'applied' }).data().toArray();
 
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
 
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
 
-    // Add headers to the worksheet
-    var headers = [
-        "NCR No.",
-        "Date Issue",
-        "Control No.",
-        "Issue to",
-        "Main In charge",
-        "Model No.",
-        "Quantity",
-        "With Disposal Form",
-        "Contents",
-        "Date Completed",
-        "Status",
-        "Report No.",
-        "With Dispose/Suspended Form",
-        "Given to",
-        "Dispose/Suspend Form Receiver"
-    ];
-
-    // Extract data from visible rows
-    var visibleData = visibleRows.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 10 to 11
-            return index !== 0 && (index < 16 || index > 17);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(visibleData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'NCR Masterlist');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'ncr.xlsx');
-}
-
-
-
-//EXPORT TO EXCEL GEN. FORM
-function exportToExcelGF() {
-    // Get the DataTable instance
-    var dataTable = $('#generalform-registration').DataTable();
-
-    // Get the visible rows' data
-    var data = dataTable.rows({ filter: 'applied' }).data().toArray();
-
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
-
-    // Add headers to the worksheet
-    var headers = [
-        "No.",
-        "Date Estimate",
-        "Equipment",
-        "Doc. No.",
-        "Revision"
-    ];
-
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 10 to 11
-            return index !== 0 && (index < 16 || index > 17);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'General Form Masterlist');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'general_form.xlsx');
-}
-
-
-
-
-//EXPORT TO EXCEL EQP SCHEDULE
-function exportToExcelResultEQP() {
-    // Get the DataTable instance
-    var dataTable = $('#dailyCalibEQP').DataTable();
-
-    // Get the data of visible rows from the DataTable
-    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
-
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
-
-    // Add headers to the worksheet
-    var headers = [
-        "Status",
-        "Code",
-        "Control No.",
-        "Calibration Date",
-        "Equipment Name",
-        "Model No.",
-        "Serial",
-        "Brand",
-        "Term",
-        "Department/Section",
-        "Pass/Fail",
-        "Expiration Period",
-        "Actual Calibration Date",
-        "Calibration Month",
-        "Calibration Year",
-        "Next Calib. Date",
-        "Next Calib. Month",
-        "Next Calib. Year",
-        "Internal/External",
-        "External Supplier",
-        "Comment",
-        "Application Standard Equipment",
-        "Date Return",
-        "With NC",
-        "With FR",
-        "With Dispose/Suspended Form",
-        "With Calibration Result",
-        "In charge",
-        "Remarks",
-        "Change Sticker",
-        "Actual Calibration Due Date",
-        "Date Received"
-    ];
-
-    // Filter the data to exclude specific columns (e.g., columns 0 and 10-11)
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 and columns 10-11
-            return (
-                index !== 0 && (index < 23 || index > 24) && (index < 35 || index > 36)
-            );
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Calibration Schedule Equipment');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'calib_schedule_equipment.xlsx');
-}
-
-
-
-
-//EXPORT TO EXCEL JIG SCHEDULE
-function exportToExcelResultJIG() {
-    // Get the DataTable instance
-    var dataTable = $('#dailyCalibJig').DataTable();
-
-    // Get the filtered (visible) data from the DataTable
-    var data = dataTable.rows({ search: 'applied' }).data().toArray();
-
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Create a new worksheet
-    var worksheet = XLSX.utils.aoa_to_sheet([]);
-
-    // Add headers to the worksheet
-    var headers = [
-        "Status",
-        "Control No.",
-        "Jig Name",
-        "Calibration Date",
-        "Code No.",
-        "Drawing No.",
-        "Term",
-        "Department/Section",
-        "Remarks",
-        "Pass/Fail",
-        "Expiration Period",
-        "Date Received",
-        "Actual Calibration Date",
-        "Calibration Month",
-        "Calibration Year",
-        "Next Calib. Date",
-        "Next Calib. Month",
-        "Next Calib. Year",
-        "Date Return",
-        "External/External",
-        "With NC",
-        "With FR",
-        "With Dispose/Suspended Form",
-        "With Calibration Result",
-        "In charge",
-        "Change Sticker",
-        "Actual Calibration Due Date"
-    ];
-
-    var filteredData = data.map(function (row) {
-        return row.filter(function (_, index) {
-            // Exclude column 0 (Action) and columns 10 to 11
-            return index !== 0 && (index < 25 || index > 26) && (index < 30 || index > 31);
-        });
-    });
-
-    var dataWithHeaders = [headers].concat(filteredData);
-
-    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Calibration Schedule Equipment');
-
-    // Generate the Excel file
-    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Save the file
-    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'calib_schedule_equipment.xlsx');
-}
+//    // Add headers to the worksheet
+//    var headers = [
+//        "NCR No.",
+//        "Date Issue",
+//        "Control No.",
+//        "Issue to",
+//        "Main In charge",
+//        "Model No.",
+//        "Quantity",
+//        "With Disposal Form",
+//        "Contents",
+//        "Date Completed",
+//        "Status",
+//        "Report No.",
+//        "With Dispose/Suspended Form",
+//        "Given to",
+//        "Dispose/Suspend Form Receiver"
+//    ];
+
+//    // Extract data from visible rows
+//    var visibleData = visibleRows.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude column 0 (Action) and columns 10 to 11
+//            return index !== 0 && (index < 16 || index > 17);
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(visibleData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'NCR Masterlist');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'ncr.xlsx');
+//}
+
+
+
+////EXPORT TO EXCEL GEN. FORM
+//function exportToExcelGF() {
+//    // Get the DataTable instance
+//    var dataTable = $('#generalform-registration').DataTable();
+
+//    // Get the visible rows' data
+//    var data = dataTable.rows({ filter: 'applied' }).data().toArray();
+
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
+
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+//    // Add headers to the worksheet
+//    var headers = [
+//        "No.",
+//        "Date Estimate",
+//        "Equipment",
+//        "Doc. No.",
+//        "Revision"
+//    ];
+
+//    var filteredData = data.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude column 0 (Action) and columns 10 to 11
+//            return index !== 0 && (index < 16 || index > 17);
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(filteredData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'General Form Masterlist');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'general_form.xlsx');
+//}
+
+
+
+
+////EXPORT TO EXCEL EQP SCHEDULE
+//function exportToExcelResultEQP() {
+//    // Get the DataTable instance
+//    var dataTable = $('#dailyCalibEQP').DataTable();
+
+//    // Get the data of visible rows from the DataTable
+//    var data = dataTable.rows({ 'search': 'applied' }).data().toArray();
+
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
+
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+//    // Add headers to the worksheet
+//    var headers = [
+//        "Status",
+//        "Code",
+//        "Control No.",
+//        "Calibration Date",
+//        "Equipment Name",
+//        "Model No.",
+//        "Serial",
+//        "Brand",
+//        "Term",
+//        "Department/Section",
+//        "Pass/Fail",
+//        "Expiration Period",
+//        "Actual Calibration Date",
+//        "Calibration Month",
+//        "Calibration Year",
+//        "Next Calib. Date",
+//        "Next Calib. Month",
+//        "Next Calib. Year",
+//        "Internal/External",
+//        "External Supplier",
+//        "Comment",
+//        "Application Standard Equipment",
+//        "Date Return",
+//        "With NC",
+//        "With FR",
+//        "With Dispose/Suspended Form",
+//        "With Calibration Result",
+//        "In charge",
+//        "Remarks",
+//        "Change Sticker",
+//        "Actual Calibration Due Date",
+//        "Date Received"
+//    ];
+
+//    // Filter the data to exclude specific columns (e.g., columns 0 and 10-11)
+//    var filteredData = data.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude column 0 and columns 10-11
+//            return (
+//                index !== 0 && (index < 23 || index > 24) && (index < 30 || index > 32)
+//            );
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(filteredData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'Calibration Schedule Equipment');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'calib_schedule_equipment.xlsx');
+//}
+
+
+
+
+////EXPORT TO EXCEL JIG SCHEDULE
+//function exportToExcelResultJIG() {
+//    // Get the DataTable instance
+//    var dataTable = $('#dailyCalibJig').DataTable();
+
+//    // Get the filtered (visible) data from the DataTable
+//    var data = dataTable.rows({ search: 'applied' }).data().toArray();
+
+//    // Create a new workbook
+//    var workbook = XLSX.utils.book_new();
+
+//    // Create a new worksheet
+//    var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+//    // Add headers to the worksheet
+//    var headers = [
+//        "Status",
+//        "Control No.",
+//        "Jig Name",
+//        "Calibration Date",
+//        "Code No.",
+//        "Drawing No.",
+//        "Term",
+//        "Department/Section",
+//        "Remarks",
+//        "Pass/Fail",
+//        "Expiration Period",
+//        "Date Received",
+//        "Actual Calibration Date",
+//        "Calibration Month",
+//        "Calibration Year",
+//        "Next Calib. Date",
+//        "Next Calib. Month",
+//        "Next Calib. Year",
+//        "Date Return",
+//        "External/External",
+//        "With NC",
+//        "With FR",
+//        "With Dispose/Suspended Form",
+//        "With Calibration Result",
+//        "In charge",
+//        "Change Sticker",
+//        "Actual Calibration Due Date"
+//    ];
+
+//    var filteredData = data.map(function (row) {
+//        return row.filter(function (_, index) {
+//            // Exclude column 0 (Action) and columns 10 to 11
+//            return index !== 0 && (index < 25 || index > 26) && (index < 30 || index > 31);
+//        });
+//    });
+
+//    var dataWithHeaders = [headers].concat(filteredData);
+
+//    XLSX.utils.sheet_add_aoa(worksheet, dataWithHeaders);
+
+//    // Add the worksheet to the workbook
+//    XLSX.utils.book_append_sheet(workbook, worksheet, 'Calibration Schedule Equipment');
+
+//    // Generate the Excel file
+//    var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+//    // Save the file
+//    saveAs(new Blob([excelFile], { type: 'application/octet-stream' }), 'calib_schedule_equipment.xlsx');
+//}
 
 

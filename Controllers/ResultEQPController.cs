@@ -25,7 +25,7 @@ namespace Calibration_Management_System.Controllers
         {
             List<CalibrationResultEQP> calibrationResults;
             calibrationResults = _context.CalibrationResultEQP
-                .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
+                .OrderByDescending(x => x.calibrationdate) // Assuming 'id' is the ID field
                 .Take(0)
                 .ToList();
             return View(calibrationResults);
@@ -41,7 +41,7 @@ namespace Calibration_Management_System.Controllers
             string searchValue = Request.Form["search[value]"].FirstOrDefault();
 
             // Query the database based on start, length, filters, etc.
-            var query = _context.CalibrationResultEQP.Where(x => x.fld_ctrlNo != null);
+            var query = _context.CalibrationResultEQP.OrderBy(x => x.calibrationdate).Where(x => x.fld_ctrlNo != null);
 
             // Apply global search filter
             if (!string.IsNullOrEmpty(searchValue))
@@ -222,7 +222,7 @@ namespace Calibration_Management_System.Controllers
 
 
         [HttpPost]
-        public IActionResult SearchSchedule(int searchMonth, int searchYear)
+        public IActionResult SearchSchedule(string searchMonth, int searchYear)
         {
             List<CalibrationResultEQP> searchResults;
 

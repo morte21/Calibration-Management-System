@@ -7,13 +7,13 @@
 
 <h1>CALIBRATION MANAGEMENT SCHEDULE [EQUIPMENT]</h1>
 
-<div>
+@* <div>
     <div  style="text-align: right;">
          <div>
             <button type="button" class="btn btn-dark button-export" onclick="exportToExcelResultEQP()">Export to Excel</button>
         </div>
     </div>
-</div>
+</div> *@
 
 
 
@@ -49,15 +49,15 @@
 
             </div>
             <div class="col-md-12">
-                <div class="form-group" style="text-align: right;">
-                    <div>
+                <div class="form-group" style="text-align: right;"> 
+                    <div> 
                         <label id="completionRate"></label>
                         <label id="totalRate"></label>
                         <label id="totalCalibrated"></label>
                     </div>
                     <div>
                         <button id="viewSchedule" type="button" class="btn btn-primary">
-                            View Calibration Schedule
+                            View Completion Percentage
                         </button>
                     </div>
                     
@@ -70,13 +70,13 @@
     <div class="table-responsive text-nowrap">
         <table id="dailyCalibEQP" class="display" style="width:100%" >
             <thead>
-                <tr style="align-items:center; position:center;">
+                <tr>
                     <th>A c t i o n</th>
                     <th>@Html.DisplayNameFor(model => model.fld_stat)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_codeNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
                     <th>@Html.DisplayNameFor(model => model.calibrationdate)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_eqpName)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_eqpName)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_eqpModelNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_serial)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_brand)</th>
@@ -92,21 +92,21 @@
                     <th>@Html.DisplayNameFor(model => model.fld_nextCalibYear)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_internalExternal)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_supplierExternal)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_comment)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_appStandardEqp)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_comment)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_appStandardEqp)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
                     
-                    <th>@Html.DisplayNameFor(model => model.fld_dateReturned)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_withNC)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_CalibFR)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_calibDisSusForm)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_withCalibResult)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_remarks)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_changeSticker)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_actualCalibDueDate)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_dateRecv)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_dateReturned)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_withNC)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_CalibFR)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_calibDisSusForm)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_withCalibResult)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_remarks)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_changeSticker)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_actualCalibDueDate)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_dateRecv)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_month)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_year)</th>
                 </tr>
@@ -116,13 +116,13 @@
                 {
                     <tr>
                         <td>
-                            &nbsp;&nbsp;<a style="pointer-events:none; color:gray; text-decoration:none; cursor:not-allowed;" href='/ResultEQP/Edit/" + @item.id + '>Edit</a>&nbsp;&nbsp; 
+                            &nbsp;&nbsp;<a href='/ResultEQP/Edit/" + @item.id + '>Edit</a>&nbsp;&nbsp; 
                         </td>
                         <td>@Html.DisplayFor(modelItem => item.fld_stat)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_codeNo)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>
                         <td>@Html.DisplayFor(modelItem => item.calibrationdate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_eqpName)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_eqpName)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_eqpModelNo)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_serial)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_brand)</td>
@@ -138,21 +138,21 @@
                         <td>@Html.DisplayFor(modelItem => item.fld_nextCalibYear)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_internalExternal)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_supplierExternal)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_comment)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_appStandardEqp)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_comment)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_appStandardEqp)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_pathIMG)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_pathDoc)</td>
-                        
-                        <td>@Html.DisplayFor(modelItem => item.fld_dateReturned)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_withNC)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_CalibFR)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_calibDisSusForm)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_withCalibResult)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_incharge)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_remarks)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_changeSticker)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_actualCalibDueDate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fld_dateRecv)</td>
+
+                        <td >@Html.DisplayFor(modelItem => item.fld_dateReturned)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_withNC)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_CalibFR)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_calibDisSusForm)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_withCalibResult)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_incharge)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_remarks)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_changeSticker)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_actualCalibDueDate)</td>
+                        <td >@Html.DisplayFor(modelItem => item.fld_dateRecv)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_month)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_year)</td>
 
@@ -166,7 +166,7 @@
                     <th>@Html.DisplayNameFor(model => model.fld_codeNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
                     <th>@Html.DisplayNameFor(model => model.calibrationdate)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_eqpName)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_eqpName)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_eqpModelNo)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_serial)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_brand)</th>
@@ -182,21 +182,21 @@
                     <th>@Html.DisplayNameFor(model => model.fld_nextCalibYear)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_internalExternal)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_supplierExternal)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_comment)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_appStandardEqp)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_comment)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_appStandardEqp)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_pathIMG)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_pathDoc)</th>
                     
-                    <th>@Html.DisplayNameFor(model => model.fld_dateReturned)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_withNC)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_CalibFR)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_calibDisSusForm)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_withCalibResult)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_remarks)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_changeSticker)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_actualCalibDueDate)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_dateRecv)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_dateReturned)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_withNC)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_CalibFR)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_calibDisSusForm)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_withCalibResult)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_incharge)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_remarks)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_changeSticker)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_actualCalibDueDate)</th>
+                    <th >@Html.DisplayNameFor(model => model.fld_dateRecv)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_month)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_year)</th>
                 </tr>

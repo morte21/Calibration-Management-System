@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 
 namespace Calibration_Management_System.Controllers
 {
@@ -209,6 +210,30 @@ namespace Calibration_Management_System.Controllers
 
             return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
         }
+
+        public IActionResult ExportAllDataSUS()
+        {
+            var allData = _context.SuspendDispose_table.Where(x => x.fld_reqStatus == "SUSPENDED");
+
+            // Create headers
+            var headers = string.Join(",", typeof(SuspendDisposeRegistration).GetProperties().Select(prop => prop.Name));
+
+            // Create CSV data with headers
+            var csvData = new StringBuilder();
+            csvData.AppendLine(headers); // Add headers as the first line
+
+            // Add rows of data
+            foreach (var dataRow in allData)
+            {
+                var rowData = string.Join(",", typeof(SuspendDisposeRegistration).GetProperties().Select(prop => prop.GetValue(dataRow, null)));
+                csvData.AppendLine(rowData);
+            }
+
+            byte[] buffer = Encoding.UTF8.GetBytes(csvData.ToString());
+
+            return File(buffer, "text/csv", "exported_data.csv");
+        }
+
 
         public IActionResult SuspendLoadData1()
         {
@@ -878,6 +903,31 @@ namespace Calibration_Management_System.Controllers
             var totalCount = query.Count();
 
             return Json(new { draw = draw, recordsFiltered = totalCount, recordsTotal = totalCount, data = data });
+        }
+
+
+
+        public IActionResult ExportAllDataDIS()
+        {
+            var allData = _context.SuspendDispose_table.Where(x => x.fld_reqStatus == "DISPOSED");
+
+            // Create headers
+            var headers = string.Join(",", typeof(SuspendDisposeRegistration).GetProperties().Select(prop => prop.Name));
+
+            // Create CSV data with headers
+            var csvData = new StringBuilder();
+            csvData.AppendLine(headers); // Add headers as the first line
+
+            // Add rows of data
+            foreach (var dataRow in allData)
+            {
+                var rowData = string.Join(",", typeof(SuspendDisposeRegistration).GetProperties().Select(prop => prop.GetValue(dataRow, null)));
+                csvData.AppendLine(rowData);
+            }
+
+            byte[] buffer = Encoding.UTF8.GetBytes(csvData.ToString());
+
+            return File(buffer, "text/csv", "exported_data.csv");
         }
 
         public IActionResult DisposeLoadData1()

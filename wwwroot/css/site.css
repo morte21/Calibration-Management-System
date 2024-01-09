@@ -764,3 +764,7 @@ h1.fontTxt {
 .spinner-border {
     margin-bottom: 10px;
 }
+
+.calibschedWidth {
+    width: 800px !important;
+}

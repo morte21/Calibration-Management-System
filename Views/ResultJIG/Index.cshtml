@@ -6,13 +6,13 @@
 
 <h1>CALIBRATION MANAGEMENT SCHEDULE [JIG]</h1>
 
-<div>
+@* <div>
     <div style="text-align: right;">
         <div>
             <button type="button" class="btn btn-dark button-export" onclick="exportToExcelResultJIG()">Export to Excel</button>
         </div>
     </div>
-</div>
+</div> *@
 
 <div class="card" style="margin-top:15px; padding:10px;">
     <div class="container">
@@ -54,7 +54,7 @@
                     </div>
                     <div>
                         <button id="viewScheduleJig" type="button" class="btn btn-primary">
-                            View Calibration Schedule
+                            View Completion Percentage
                         </button>
                     </div>
 
@@ -65,9 +65,9 @@
     </div>
     <hr style="border-top: 2px solid #000000;" />
     <div class="table-responsive text-nowrap">
-        <table id="dailyCalibJig" class="display" style="width:100%">
+        <table id="dailyCalibJig" class="display" style="width:120%">
             <thead>
-                <tr>
+                <tr> 
                     <th>A c t i o n</th>
                     <th>@Html.DisplayNameFor(model => model.fld_stat)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_ctrlNo)</th>
@@ -98,7 +98,7 @@
                     <th>@Html.DisplayNameFor(model => model.fld_incharge)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_changeSticker)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_actualCalibDueDate)</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.fld_month)</th>
+                    <th hidden>@Html.DisplayNameFor(model => model.fld_month)</th> 
                     <th hidden>@Html.DisplayNameFor(model => model.fld_year)</th>
 
                 </tr>
@@ -108,8 +108,8 @@
                 {
                     <tr>
                         <td>
-                            &nbsp;&nbsp;<a style="pointer-events:none; color:gray; text-decoration:none; cursor:not-allowed;" href='/ResultEQP/Edit/" + @item.id + '>Edit</a>&nbsp;&nbsp;
-                        </td>
+                            &nbsp;&nbsp;<a href='/ResultEQP/Edit/" + @item.id + '>Edit</a>&nbsp;&nbsp;
+                        </td> 
 
                         <td>@Html.DisplayFor(modelItem => item.fld_stat)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_ctrlNo)</td>

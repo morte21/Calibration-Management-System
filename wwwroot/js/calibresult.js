@@ -4,7 +4,7 @@
         var searchYear = $('#searchYear').val();
         var tableBody = $('#dailyCalibEQP tbody');
 
-        console.log("run");
+        //console.log("run");
         // Clear the table before populating with search results
         tableBody.empty();
 
@@ -14,6 +14,7 @@
             method: 'POST',
             data: { searchMonth: searchMonth, searchYear: searchYear },
             success: function (data) {
+                //console.log(data);
                 // Populate the table with search results
                 if (data.length > 0) {
                     data.forEach(function (item) {
@@ -41,16 +42,16 @@
                             rowColorClass = 'orange';
                         }
 
-                        console.log(item.fld_stat);
-                        console.log(rowColorClass);
-                        console.log('<tr class="' + rowColorClass + '">');
+                        //console.log(item.fld_stat);
+                        //console.log(rowColorClass);
+                        //console.log('<tr class="' + rowColorClass + '">');
 
                         // Create a cell with the links
                         var linksCell = editLink;
 
                         tableBody.append(
                             '<tr>' +
-                            '<td>' + linksCell + '</td>' +
+                            '<td >' + linksCell + '</td>' +
                             '<td class="' + rowColorClass + '">' + item.fld_stat + '</td>' +
                             '<td>' + item.fld_codeNo + '</td>' +
                             '<td>' + item.fld_ctrlNo + '</td>' +
@@ -71,21 +72,21 @@
                             '<td>' + item.fld_nextCalibYear + '</td>' +
                             '<td>' + item.fld_internalExternal + '</td>' +
                             '<td>' + item.fld_supplierExternal + '</td>' +
-                            '<td>' + item.fld_comment + '</td>' +
-                            '<td>' + item.fld_appStandardEqp + '</td>' +
+                            '<td >' + item.fld_comment + '</td>' +
+                            '<td >' + item.fld_appStandardEqp + '</td>' +
                             '<td hidden>' + item.fld_pathIMG + '</td>' +
                             '<td hidden>' + item.fld_pathDoc + '</td>' +
                             
-                            '<td>' + item.fld_dateReturned + '</td>' +
-                            '<td>' + item.fld_withNC + '</td>' +
-                            '<td>' + item.fld_CalibFR + '</td>' +
-                            '<td>' + item.fld_calibDisSusForm + '</td>' +
-                            '<td>' + item.fld_withCalibResult + '</td>' +
-                            '<td>' + item.fld_incharge + '</td>' +
-                            '<td>' + item.fld_remarks + '</td>' +
-                            '<td>' + item.fld_changeSticker + '</td>' +
-                            '<td>' + item.fld_actualCalibDueDate + '</td>' +
-                            '<td>' + item.fld_dateRecv + '</td>' +
+                            '<td >' + item.fld_dateReturned + '</td>' +
+                            '<td >' + item.fld_withNC + '</td>' +
+                            '<td >' + item.fld_CalibFR + '</td>' +
+                            '<td >' + item.fld_calibDisSusForm + '</td>' +
+                            '<td >' + item.fld_withCalibResult + '</td>' +
+                            '<td >' + item.fld_incharge + '</td>' +
+                            '<td >' + item.fld_remarks + '</td>' +
+                            '<td >' + item.fld_changeSticker + '</td>' +
+                            '<td >' + item.fld_actualCalibDueDate + '</td>' +
+                            '<td >' + item.fld_dateRecv + '</td>' +
                             '<td hidden>' + item.fld_month + '</td>' +
                             '<td hidden>' + item.fld_year + '</td>' +
 
@@ -98,6 +99,7 @@
                         return item.fld_stat !== "";
                     }).length;
                     var totalRecords = data.length;
+                    
 
                     var completionRate = totalCalibrated / totalRecords;
 
@@ -166,9 +168,10 @@ $(document).ready(function () {
                             rowColorClass = 'orange';
                         }
 
-                        console.log(item.fld_stat);
-                        console.log(rowColorClass);
-                        console.log('<tr class="' + rowColorClass + '">');
+                        
+                        //console.log(item.fld_stat);
+                        //console.log(rowColorClass);
+                        //console.log('<tr class="' + rowColorClass + '">');
 
                         // Create a cell with the links
                         var linksCell = editLink;

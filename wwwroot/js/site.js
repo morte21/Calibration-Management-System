@@ -31,8 +31,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -87,9 +87,6 @@ $(function () {
         ],
 
 
-
-
-
         initComplete: function () {
             var table = this;
             $('tfoot input').on('keyup change', function () {
@@ -111,7 +108,22 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/Registration/ExportAllDataEQP';
+                } 
+            },
+        ],
+
     });
 });
 $(function () {
@@ -124,8 +136,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
         processing: true,
@@ -180,6 +192,8 @@ $(function () {
             { data: 'fld_remarks', visible: false }
         ],
 
+        
+
 
         initComplete: function () {
             var table = this;
@@ -202,7 +216,19 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/Registration/ExportAllDataJIG';
+                } 
+            },
+        ],
 
     });
 });
@@ -217,8 +243,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -302,7 +328,19 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/EquipmentMaster/ExportAllDataEQP';
+                }
+            },
+        ],
 
        
 
@@ -325,11 +363,6 @@ $(document).ready(function () {
     });
 });
 
-
-
-
-
-
 $(function () {
     new DataTable('#jig-registration', {
         order: [[0, 'desc']],
@@ -340,10 +373,11 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
+        //server side data
         processing: true,
         serverSide: true,
         ajax: {
@@ -396,7 +430,7 @@ $(function () {
             { data: 'fld_description' }
         ],
 
-
+        //search function
         initComplete: function () {
             var table = this;
             $('tfoot input').on('keyup change', function () {
@@ -418,7 +452,21 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+
+        //export data to excel
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/JigMaster/ExportAllDataJIG';
+                }
+            },
+        ],
     });
 });
 
@@ -432,8 +480,8 @@ $(function () {
 //        "select": true,
 
 //        lengthMenu: [
-//            [15, 25, 50, 100, -1],
-//            [15, 25, 50, 100, 'All'],
+//            [15, 25, 50, 100],
+//            [15, 25, 50, 100, 100],
 //        ],
 //        initComplete: function () {
 //            this.api()
@@ -469,8 +517,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
         processing: true,
@@ -548,7 +596,9 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        
     });
 });
 
@@ -563,8 +613,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -640,7 +690,10 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+
+        
     });
 });
 
@@ -655,8 +708,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
         processing: true,
@@ -730,7 +783,20 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        //export data to excel
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/SuspendDispose/ExportAllDataSUS';
+                }
+            },
+        ],
 
         
     });
@@ -747,8 +813,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -824,7 +890,20 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        //export data to excel
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/SuspendDispose/ExportAllDataDIS';
+                }
+            },
+        ],
     });
 });
 
@@ -841,8 +920,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -907,7 +986,20 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        //export data to excel
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/FailureReport/ExportAllData';
+                }
+            },
+        ],
     });
 });
 
@@ -922,8 +1014,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -989,7 +1081,20 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/Uncontrolled/ExportAllData';
+                }
+            },
+        ],
+
     });
 });
 
@@ -1004,8 +1109,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -1075,7 +1180,20 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/NCR/ExportAllData';
+                }
+            },
+        ],
+
     });
 });
 
@@ -1090,8 +1208,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -1151,7 +1269,19 @@ $(function () {
                         }
                     });
             });
-        }
+        },
+
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export to Excel',
+                action: function (e, dt, button, config) {
+                    // Trigger the export action here
+                    window.location.href = '/GeneralForm/ExportAllData';
+                }
+            },
+        ],
     });
 });
 
@@ -1167,8 +1297,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
         initComplete: function () {
             this.api()
@@ -1204,8 +1334,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [15, 25, 50, 100, -1],
-            [15, 25, 50, 100, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
         initComplete: function () {
             this.api()
@@ -1234,7 +1364,7 @@ $(function () {
 
 $(function () {
     new DataTable('#dailyCalibEQP', {
-        order: [[3, 'desc']],
+        order: [[5, 'desc']],
         "scrollY": '50vh',
         "scrollX": '50vh',
         "scrollCollapse": true,
@@ -1242,10 +1372,9 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [8, 10, 15, 25, -1],
-            [8, 10, 15, 25, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
-
 
         processing: true,
         serverSide: true,
@@ -1267,7 +1396,7 @@ $(function () {
                 render: function (data, type, row) {
                     return `
                 <td>
-                    &nbsp;&nbsp;<a style="pointer-events:none; color:gray; text-decoration:none; cursor:not-allowed;" href="/ResultEQP/Edit/${row.id}">Edit</a>&nbsp;&nbsp;
+                    &nbsp;&nbsp;<a href="/ResultEQP/Edit/${row.id}">Edit</a>&nbsp;&nbsp;
                 </td>`;
                 }
             },
@@ -1306,8 +1435,8 @@ $(function () {
             { data: 'fld_changeSticker' },
             { data: 'fld_actualCalibDueDate' },
             { data: 'fld_dateRecv' },
-            { data: 'fld_month' },
-            { data: 'fld_year' }
+            { data: 'fld_month', visible: false },
+            { data: 'fld_year', visible: false }
         ],
 
         initComplete: function () {
@@ -1348,8 +1477,8 @@ $(function () {
         "select": true,
 
         lengthMenu: [
-            [8, 10, 15, 25, -1],
-            [8, 10, 15, 25, 'All'],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
         ],
 
 
@@ -1373,7 +1502,7 @@ $(function () {
                 render: function (data, type, row) {
                     return `
                 <td>
-                    &nbsp;&nbsp;<a style="pointer-events:none; color:gray; text-decoration:none; cursor:not-allowed;" href="/ResultJIG/Edit/${row.id}">Edit</a>&nbsp;&nbsp;
+                    &nbsp;&nbsp;<a  href="/ResultJIG/Edit/${row.id}">Edit</a>&nbsp;&nbsp;
                 </td>`;
                 }
             },
@@ -1407,8 +1536,8 @@ $(function () {
             { data: 'fld_incharge' },
             { data: 'fld_changeSticker' },
             { data: 'fld_actualCalibDueDate' },
-            { data: 'fld_month'},
-            { data: 'fld_year' }
+            { data: 'fld_month', visible: false },
+            { data: 'fld_year', visible: false }
         ],
 
         initComplete: function () {
