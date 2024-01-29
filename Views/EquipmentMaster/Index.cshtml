@@ -10,21 +10,30 @@
 
 <div >
     <div class="d-flex justify-content-between" style="padding-bottom:20px;">
-        <div>
+        @* <div>
             <a asp-action="Create" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Create New</a>
-        </div>
+        </div> *@
        @*  <div>
             <button type="button" class="btn btn-dark button-export" onclick="exportToExcelMaster()">Export to Excel</button>
         </div> *@
+        
     </div>
 </div>
     
 
 <div class="card" style="padding:5px;">
-    <h5 class="card-header">Equipment Calibration Data</h5>
-    <hr />
+    <div class="righto card-header">
+        <b>
+            <label id="ongoing">Total Active Equipments: @ViewBag.TotalOtherStatuses &ensp;</label> |
+            <label id="complete">&ensp; COOLING: @ViewBag.COOLING &ensp;</label> |
+            <label id="pending">&ensp; UPS: @ViewBag.UPS &ensp;</label> |
+            <label id="ongoing">&ensp; SERVO: @ViewBag.SERVO &ensp;</label>
+
+        </b>
+    </div>
+    <br />
     <div class="table-responsive text-nowrap">
-        <table id="equipment-registration" class="display" style="width:100%"> 
+        <table id="equipment-registration" class="display dataTable custom-table" style="width:100%">
             <thead>
                 <tr>
                     <th>--A c t i o n--</th>

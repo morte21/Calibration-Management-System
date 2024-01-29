@@ -15,11 +15,14 @@
 
 <hr />
 <div class="card" style="padding:5px;">
-    <h5 class="card-header">Calibration Management System</h5>
-
-    <hr />
+    <div class="righto card-header">
+        <b>
+            <label id="ongoing">Total Disposed: @ViewBag.TotalOtherStatuses &ensp;</label>
+        </b>
+    </div>
+    <br />
     <div class="table-responsive text-nowrap">
-        <table id="table-disposedMaster" class="display" style="width:100%">
+        <table id="table-disposedMaster" class="display dataTable custom-table" style="width:100%">
             <thead>
                 <tr>
                     <th>--A c t i o n--</th>

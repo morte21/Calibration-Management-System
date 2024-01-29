@@ -28,6 +28,27 @@ namespace Calibration_Management_System.Controllers
                 .Take(0)
                 .ToList();
 
+            // Count the occurrences of each status
+            var statusCounts = _context.Jig_table
+                .Where(x => x.fld_passfail == "PASS" && x.fld_stat == "OK" && (x.fld_division.ToUpper() == "Cooling" || x.fld_division.ToUpper() == "UPS" || x.fld_division.ToUpper() == "Servo"))
+                .GroupBy(x => x.fld_division)
+                .Select(group => new
+                {
+                    Status = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+
+            // Add the counts to ViewData for access in the View
+            ViewData["COOLING"] = statusCounts.FirstOrDefault(x => x.Status == "Cooling")?.Count ?? 0;
+            ViewData["UPS"] = statusCounts.FirstOrDefault(x => x.Status == "UPS")?.Count ?? 0;
+            ViewData["SERVO"] = statusCounts.FirstOrDefault(x => x.Status == "Servo")?.Count ?? 0;
+
+            // Sum the counts for additional statuses
+            ViewData["TotalOtherStatuses"] = (int)ViewData["Cooling"] + (int)ViewData["UPS"] + (int)ViewData["Servo"];
+
+
+
             ViewBag.Category = GetCategory();
             //ViewBag.EqpCode = GetEqpCode();
             ViewBag.Months = GetMonths();
@@ -69,7 +90,7 @@ namespace Calibration_Management_System.Controllers
                     x.fld_reqFunction.Contains(searchValue) ||
                     x.fld_passfail.Contains(searchValue) ||
                     x.fld_registrationDate.ToString().Contains(searchValue) ||
-                    x.fld_imte.Contains(searchValue) ||
+                    
                     x.fld_calibDate.ToString().Contains(searchValue) ||
                     x.fld_calibMonth.Contains(searchValue) ||
                     x.fld_calibYear.Contains(searchValue) ||
@@ -78,9 +99,7 @@ namespace Calibration_Management_System.Controllers
                     x.fld_nextCalibYear.Contains(searchValue) ||
                     x.fld_internalExternal.Contains(searchValue) ||
                     x.fld_remarks.Contains(searchValue) ||
-                    x.fld_pathIMG.Contains(searchValue) ||
-                    x.fld_pathDoc.Contains(searchValue) ||
-                    x.fld_stat.Contains(searchValue) ||
+                    
                     x.fld_description.Contains(searchValue)
                 // ...other fields here
                 );

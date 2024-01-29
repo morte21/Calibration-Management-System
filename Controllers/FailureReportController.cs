@@ -30,6 +30,22 @@ namespace Calibration_Management_System.Controllers
                 .Take(0)
                 .ToList();
 
+            //// Count the occurrences of each status
+            //var statusCounts = _context.FailureReport_table
+            //    .GroupBy(x => x.id)
+            //    .Select(group => new
+            //    {
+            //        Status = group.Key,
+            //        Count = group.Count()
+            //    })
+            //    .ToList();
+
+            //// Sum the counts for all IDs
+            //int totalOtherStatuses = statusCounts.Sum(x => x.Count);
+
+            //// Add the total count to ViewData for access in the View
+            //ViewData["TotalOtherStatuses"] = totalOtherStatuses;
+
             return View(failureReports);
         }
 

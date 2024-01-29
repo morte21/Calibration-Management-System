@@ -5,32 +5,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>JIG REGISTRATION</h1>
-<div class="containero">
-    <div class="lefto">
-        <a asp-action="Create_Reg_Jig" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">New Registration</a>
-        <a asp-action="Create_ReReg_Jig" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Re-Registration</a>
-    </div>
-    <div class="righto">
-        <b>
-            <label id="completeJig"></label>
-            <label id="pendingJig"></label>
-            <label id="ongoingJig"></label>
-        </b>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>JIG REGISTRATION</h1>
+    <div>
+        <div>
+            <a asp-action="Create_Reg_Jig" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">New Registration</a>
+            <a asp-action="Create_ReReg_Jig" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Re-Registration</a>
+        </div>
     </div>
 </div>
 
+
 <hr />
 <div class="card" style="padding:5px;">
-    <h5 class="card-header">Calibration Management System</h5>
-    <hr />
+    <div class="righto card-header">
+        <b>
+            <label id="complete">Completed: @ViewBag.CompleteCount &ensp;</label> |
+            <label id="pending">&ensp; Pending: @ViewBag.PendingCount &ensp;</label> |
+            <label id="ongoing">&ensp; Ongoing: @ViewBag.OngoingCount</label>
+        </b>
+    </div>
+    <br />
     
     <div class="table-responsive text-nowrap">
-        <table id="table-registration-jig" class="display" style="width:100%">
+        <table id="table-registration-jig" class="display dataTable custom-table" style="width:100%">
             <thead>
                 <tr>
                     <th></th>
-                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_incharge)</th>
@@ -63,7 +64,6 @@
                             <a style="font-size:x-small;" asp-action="Edit_DataJig" asp-route-id="@item.id">Edit</a> |
                             <a style="font-size:x-small;" asp-controller="JigMaster" asp-action="EditGet" asp-route-fld_codeNo="@item.fld_codeNo" asp-route-fld_jigName="@item.fld_jigName" asp-route-fld_drawingNo="@item.fld_drawingNo" asp-route-fld_serial="@item.fld_serial" asp-route-fld_reqFunction="@item.fld_reqFunction" asp-route-fld_ctrlNo="@item.fld_ctrlNo">Register Calibration</a>
                         </td>
-                        <td hidden>@Html.DisplayFor(modelItem => item.id)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_dateReg)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_reqFunction)</td>
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_incharge)</td>
@@ -89,10 +89,9 @@
                     </tr>
                 }
             </tbody>
-            <tfoot>
+            @* <tfoot>
                 <tr>
                     <th></th>
-                    <th hidden>@Html.DisplayNameFor(model => model.id)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
                     <th>@Html.DisplayNameFor(model => model.fld_reqFunction)</th>
                     <th hidden>@Html.DisplayNameFor(model => model.fld_incharge)</th>
@@ -116,7 +115,7 @@
                     <th hidden>@Html.DisplayNameFor(model => model.fld_remarks)</th>
                     
                 </tr>
-            </tfoot>
+            </tfoot> *@
         </table>
     </div>
 </div>

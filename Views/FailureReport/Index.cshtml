@@ -20,10 +20,15 @@
 
 
 <div class="card" style="padding:5px;">
-    <h5 class="card-header">Failure Report Data</h5>
+    @* <div class="righto card-header">
+        <b>
+            <label id="ongoing">Total: @ViewBag.TotalOtherStatuses &ensp;</label>
+        </b>
+    </div>
+    <br /> *@
     <hr />
     <div class="table-responsive text-nowrap">
-        <table id="failurereport-registration" class="display" style="width:100%">
+        <table id="failurereport-registration" class="display dataTable custom-table" style="width:100%">
             <thead>
                 <tr>
                     <th> --A c t i o n--</th>

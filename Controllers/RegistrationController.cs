@@ -41,6 +41,23 @@ namespace Calibration_Management_System.Controllers
                 .Take(0)
                 .ToList();
 
+
+            // Count the occurrences of each status
+            var statusCounts = _context.Registration_Table
+                .Where(x => x.fld_jigCategory == "EQP" && (x.fld_status == "ONGOING" || x.fld_status == "COMPLETED" || x.fld_status == "PENDING"))
+                .GroupBy(x => x.fld_status)
+                .Select(group => new
+                {
+                    Status = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+
+            // Add the counts to ViewData for access in the View
+            ViewData["CompleteCount"] = statusCounts.FirstOrDefault(x => x.Status == "COMPLETED")?.Count ?? 0;
+            ViewData["PendingCount"] = statusCounts.FirstOrDefault(x => x.Status == "PENDING")?.Count ?? 0;
+            ViewData["OngoingCount"] = statusCounts.FirstOrDefault(x => x.Status == "ONGOING")?.Count ?? 0;
+
             return View(registrationClass);
         }
 
@@ -54,6 +71,25 @@ namespace Calibration_Management_System.Controllers
                 .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
                 .Take(0)
                 .ToList();
+
+
+            // Count the occurrences of each status
+            var statusCounts = _context.Registration_Table
+                .Where(x => x.fld_jigCategory == "JIG" && (x.fld_status == "ONGOING" || x.fld_status == "COMPLETED" || x.fld_status == "PENDING"))
+                .GroupBy(x => x.fld_status)
+                .Select(group => new
+                {
+                    Status = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+
+            // Add the counts to ViewData for access in the View
+            ViewData["CompleteCount"] = statusCounts.FirstOrDefault(x => x.Status == "COMPLETED")?.Count ?? 0;
+            ViewData["PendingCount"] = statusCounts.FirstOrDefault(x => x.Status == "PENDING")?.Count ?? 0;
+            ViewData["OngoingCount"] = statusCounts.FirstOrDefault(x => x.Status == "ONGOING")?.Count ?? 0;
+
+
             return View(registrationClassJig);
         }
 

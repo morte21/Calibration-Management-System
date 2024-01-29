@@ -25,10 +25,15 @@ $(function () {
     new DataTable('#table-registration', {
         order: [[0, 'desc']],
         /*"scrollY": '50vh',*/
-        "scrollX": '50vh',
-        "scrollCollapse": true,
-        "paging": true,
-        "select": true,
+        scrollX: '50vh',
+        scrollCollapse: true,
+        paging: true,
+        select: true,
+        searching: true,
+        colReorder: true,
+        fixedHeader: true, // Enable FixedHeader
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -56,8 +61,8 @@ $(function () {
                 render: function (data, type, row) {
                     return `
                 <td>
-                &nbsp;&nbsp;<a style="font-size:x-small;" href="/Registration/Edit_Data/${row.id}">Edit</a>&nbsp;&nbsp; |
-                &nbsp;&nbsp;<a style="font-size:x-small;" href="/EquipmentMaster/EditGet?fld_codeNo=${encodeURIComponent(row.fld_codeNo)}&fld_eqpName=${encodeURIComponent(row.fld_eqpName)}&fld_eqpModelNo=${encodeURIComponent(row.fld_eqpModelNo)}&fld_serial=${encodeURIComponent(row.fld_serial)}&fld_brand=${encodeURIComponent(row.fld_brand)}&fld_reqFunction=${encodeURIComponent(row.fld_reqFunction)}&fld_ctrlNo=${encodeURIComponent(row.fld_ctrlNo)}">Register Calibration</a>
+                &nbsp;&nbsp;<a  href="/Registration/Edit_Data/${row.id}">Edit</a>&nbsp;&nbsp; |
+                &nbsp;&nbsp;<a  href="/EquipmentMaster/EditGet?fld_codeNo=${encodeURIComponent(row.fld_codeNo)}&fld_eqpName=${encodeURIComponent(row.fld_eqpName)}&fld_eqpModelNo=${encodeURIComponent(row.fld_eqpModelNo)}&fld_serial=${encodeURIComponent(row.fld_serial)}&fld_brand=${encodeURIComponent(row.fld_brand)}&fld_reqFunction=${encodeURIComponent(row.fld_reqFunction)}&fld_ctrlNo=${encodeURIComponent(row.fld_ctrlNo)}">Register Calibration</a>
                 </td>`;
                 }
             },
@@ -87,31 +92,34 @@ $(function () {
         ],
 
 
-        initComplete: function () {
-            var table = this;
-            $('tfoot input').on('keyup change', function () {
-                var index = $(this).parent().index();
-                table.column(index).search(this.value).draw();
-            });
+        //initComplete: function () {
+        //    var table = this;
+        //    $('tfoot input').on('keyup change', function () {
+        //        var index = $(this).parent().index();
+        //        table.column(index).search(this.value).draw();
+        //    });
 
-            this.api().columns().every(function () {
-                var column = this;
-                var columnIndex = column.index();
-                var title = $(column.header()).text();
+        //    this.api().columns().every(function () {
+        //        var column = this;
+        //        var columnIndex = column.index();
+        //        var title = $(column.header()).text();
 
-                // Create the input element for each column
-                var input = $('<input type="text" placeholder="Search ' + title + '" />')
-                    .appendTo($(column.footer()).empty())
-                    .on('keyup change', function () {
-                        if (column.search() !== this.value) {
-                            column.search(this.value).draw();
-                        }
-                    });
-            });
-        },
+        //        // Create the input element for each column
+        //        var input = $('<input type="text" placeholder="Search ' + title + '" />')
+        //            .appendTo($(column.footer()).empty())
+        //            .on('keyup change', function () {
+        //                if (column.search() !== this.value) {
+        //                    column.search(this.value).draw();
+        //                }
+        //            });
+        //    });
+        //},
 
 
 
+
+
+        // Enable global search box
         dom: 'Bfrtip',
         buttons: [
             {
@@ -124,8 +132,14 @@ $(function () {
             },
         ],
 
+        
     });
+
+    
 });
+
+
+
 $(function () {
     new DataTable('#table-registration-jig', {
         order: [[0, 'desc']],
@@ -134,6 +148,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -160,13 +176,12 @@ $(function () {
                 render: function (data, type, row) {
                     return `
                 <td>
-                    <a style="font-size:x-small;" href="/Registration/Edit_DataJig/${row.id}">Edit</a> |
-                    <a style="font-size:x-small;" href="/JigMaster/EditGet?fld_codeNo=${row.fld_codeNo}&fld_jigName=${row.fld_jigName}&fld_drawingNo=${row.fld_drawingNo}&fld_serial=${row.fld_serial}&fld_reqFunction=${row.fld_reqFunction}&fld_ctrlNo=${row.fld_ctrlNo}">Register Calibration</a>
+                    <a  href="/Registration/Edit_DataJig/${row.id}">Edit</a> |
+                    <a  href="/JigMaster/EditGet?fld_codeNo=${row.fld_codeNo}&fld_jigName=${row.fld_jigName}&fld_drawingNo=${row.fld_drawingNo}&fld_serial=${row.fld_serial}&fld_reqFunction=${row.fld_reqFunction}&fld_ctrlNo=${row.fld_ctrlNo}">Register Calibration</a>
                 </td>`;
                 }
             },
 
-            { data: 'id', visible: false },
             { data: 'fld_dateReg' },
             { data: 'fld_reqFunction' },
             { data: 'fld_incharge', visible: false },
@@ -195,28 +210,28 @@ $(function () {
         
 
 
-        initComplete: function () {
-            var table = this;
-            $('tfoot input').on('keyup change', function () {
-                var index = $(this).parent().index();
-                table.column(index).search(this.value).draw();
-            });
+        //initComplete: function () {
+        //    var table = this;
+        //    $('tfoot input').on('keyup change', function () {
+        //        var index = $(this).parent().index();
+        //        table.column(index).search(this.value).draw();
+        //    });
 
-            this.api().columns().every(function () {
-                var column = this;
-                var columnIndex = column.index();
-                var title = $(column.header()).text();
+        //    this.api().columns().every(function () {
+        //        var column = this;
+        //        var columnIndex = column.index();
+        //        var title = $(column.header()).text();
 
-                // Create the input element for each column
-                var input = $('<input type="text" placeholder="Search ' + title + '" />')
-                    .appendTo($(column.footer()).empty())
-                    .on('keyup change', function () {
-                        if (column.search() !== this.value) {
-                            column.search(this.value).draw();
-                        }
-                    });
-            });
-        },
+        //        // Create the input element for each column
+        //        var input = $('<input type="text" placeholder="Search ' + title + '" />')
+        //            .appendTo($(column.footer()).empty())
+        //            .on('keyup change', function () {
+        //                if (column.search() !== this.value) {
+        //                    column.search(this.value).draw();
+        //                }
+        //            });
+        //    });
+        //},
 
         dom: 'Bfrtip',
         buttons: [
@@ -241,6 +256,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -289,7 +306,7 @@ $(function () {
             { data: 'fld_reqFunction' },
             { data: 'fld_passFail' },
             { data: 'fld_registrationDate' },
-            { data: 'fld_imte' },
+            { data: 'fld_imte', visible: false },
             { data: 'fld_calibDate' },
             { data: 'fld_calibMonth' },
             { data: 'fld_calibYear' },
@@ -300,9 +317,9 @@ $(function () {
             { data: 'fld_supplierExternal' },
             { data: 'fld_comment' },
             { data: 'fld_appStandardEqp' },
-            { data: 'fld_pathIMG' },
-            { data: 'fld_pathDoc' },
-            { data: 'fld_stat' },
+            { data: 'fld_pathIMG', visible: false },
+            { data: 'fld_pathDoc', visible: false },
+            { data: 'fld_stat', visible: false },
             { data: 'fld_calibResult' }
         ],
 
@@ -371,6 +388,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -414,7 +433,7 @@ $(function () {
             { data: 'fld_reqFunction' },
             { data: 'fld_passfail' },
             { data: 'fld_registrationDate' },
-            { data: 'fld_imte' },
+            { data: 'fld_imte', visible: false },
             { data: 'fld_calibDate' },
             { data: 'fld_calibMonth' },
             { data: 'fld_calibYear' },
@@ -423,9 +442,9 @@ $(function () {
             { data: 'fld_nextCalibYear' },
             { data: 'fld_internalExternal' },
             { data: 'fld_remarks' },
-            { data: 'fld_pathDoc' },
-            { data: 'fld_pathIMG' },
-            { data: 'fld_stat' },
+            { data: 'fld_pathDoc', visible: false },
+            { data: 'fld_pathIMG', visible: false },
+            { data: 'fld_stat', visible: false },
            
             { data: 'fld_description' }
         ],
@@ -515,6 +534,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -575,28 +596,28 @@ $(function () {
 
 
 
-        initComplete: function () {
-            var table = this;
-            $('tfoot input').on('keyup change', function () {
-                var index = $(this).parent().index();
-                table.column(index).search(this.value).draw();
-            });
+        //initComplete: function () {
+        //    var table = this;
+        //    $('tfoot input').on('keyup change', function () {
+        //        var index = $(this).parent().index();
+        //        table.column(index).search(this.value).draw();
+        //    });
 
-            this.api().columns().every(function () {
-                var column = this;
-                var columnIndex = column.index();
-                var title = $(column.header()).text();
+        //    this.api().columns().every(function () {
+        //        var column = this;
+        //        var columnIndex = column.index();
+        //        var title = $(column.header()).text();
 
-                // Create the input element for each column
-                var input = $('<input type="text" placeholder="Search ' + title + '" />')
-                    .appendTo($(column.footer()).empty())
-                    .on('keyup change', function () {
-                        if (column.search() !== this.value) {
-                            column.search(this.value).draw();
-                        }
-                    });
-            });
-        },
+        //        // Create the input element for each column
+        //        var input = $('<input type="text" placeholder="Search ' + title + '" />')
+        //            .appendTo($(column.footer()).empty())
+        //            .on('keyup change', function () {
+        //                if (column.search() !== this.value) {
+        //                    column.search(this.value).draw();
+        //                }
+        //            });
+        //    });
+        //},
 
         
     });
@@ -611,6 +632,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -669,28 +692,28 @@ $(function () {
             { data: 'fld_inchargeRequestor', visible: false }
         ],
 
-        initComplete: function () {
-            var table = this;
-            $('tfoot input').on('keyup change', function () {
-                var index = $(this).parent().index();
-                table.column(index).search(this.value).draw();
-            });
+        //initComplete: function () {
+        //    var table = this;
+        //    $('tfoot input').on('keyup change', function () {
+        //        var index = $(this).parent().index();
+        //        table.column(index).search(this.value).draw();
+        //    });
 
-            this.api().columns().every(function () {
-                var column = this;
-                var columnIndex = column.index();
-                var title = $(column.header()).text();
+        //    this.api().columns().every(function () {
+        //        var column = this;
+        //        var columnIndex = column.index();
+        //        var title = $(column.header()).text();
 
-                // Create the input element for each column
-                var input = $('<input type="text" placeholder="Search ' + title + '" />')
-                    .appendTo($(column.footer()).empty())
-                    .on('keyup change', function () {
-                        if (column.search() !== this.value) {
-                            column.search(this.value).draw();
-                        }
-                    });
-            });
-        },
+        //        // Create the input element for each column
+        //        var input = $('<input type="text" placeholder="Search ' + title + '" />')
+        //            .appendTo($(column.footer()).empty())
+        //            .on('keyup change', function () {
+        //                if (column.search() !== this.value) {
+        //                    column.search(this.value).draw();
+        //                }
+        //            });
+        //    });
+        //},
 
 
         
@@ -706,6 +729,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -811,6 +836,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -918,6 +945,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -1012,6 +1041,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -1107,6 +1138,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -1206,6 +1239,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -1295,6 +1330,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -1332,6 +1369,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -1370,6 +1409,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],
@@ -1475,6 +1516,8 @@ $(function () {
         "scrollCollapse": true,
         "paging": true,
         "select": true,
+        responsive: false, // Enable responsive design
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
 
         lengthMenu: [
             [15, 25, 50, 100],

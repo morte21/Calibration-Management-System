@@ -5,17 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DISPOSAL REGISTRATION</h1>
-
-<div class="containero">
-    <div class="lefto">
-        <a asp-action="Create_Disposed" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">New Registration</a>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>DISPOSAL REGISTRATION</h1>
+    <div>
+        <div>
+            <a asp-action="Create_Disposed" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">New Registration</a>
+            <a asp-action="IndexDisposed2" style="background-color: #00ff15; color: #fff; padding: 10px 20px; text-decoration: none;">Go to Masterlist</a>
+        </div>
     </div>
-    <div class="lefto">
-        <a asp-action="IndexDisposed2" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none;">Go to Masterlist</a>
-    </div>
-
 </div>
+
+
 
 <hr />
 <div class="card" style="padding:5px;">
@@ -23,7 +23,7 @@
 
     <hr />
     <div class="table-responsive text-nowrap">
-        <table id="table-disposedRegistration" class="display" style="width:100%">
+        <table id="table-disposedRegistration" class="display dataTable custom-table" style="width:100%">
             <thead>
                 <tr>
                     <th></th>
@@ -86,7 +86,7 @@
                     </tr>
                 }
             </tbody>
-            <tfoot>
+            @* <tfoot>
                 <tr>
                     <th></th>
                     <th>@Html.DisplayNameFor(model => model.fld_dateReg)</th>
@@ -113,7 +113,7 @@
                     <th hidden>@Html.DisplayNameFor(model => model.fld_inchargeRequestor)</th>
                     
                 </tr>
-            </tfoot>
+            </tfoot> *@
         </table>
 
     </div>

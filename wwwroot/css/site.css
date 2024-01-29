@@ -183,6 +183,8 @@ h1.fontTxt {
 .righto {
     display: flex;
     align-items: center;
+    text-align:center;
+    padding-top: 10px;
 }
 
     .righto labesl {
@@ -767,4 +769,48 @@ h1.fontTxt {
 
 .calibschedWidth {
     width: 800px !important;
+}
+
+
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-table th, .custom-table td {
+    border: 1px solid #dddddd; /* Define border style */
+    padding: 8px; /* Adjust padding as needed */
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #f2f2f2; /* Background color for header row */
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    padding: 10px;
+}
+
+.card-height-home {
+    height:430px;
+}
+
+.card-height-header-home {
+    height: 60px;
+    text-align:center;
+}
+
+.div-padding-home {
+    padding:20px;
+}
+
+.autosize-image {
+    width: 100%;
+    height: auto;
 }

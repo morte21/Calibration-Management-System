@@ -39,6 +39,25 @@ namespace Calibration_Management_System.Controllers
                 .Take(0)
                 .ToList();
 
+            // Count the occurrences of each status
+            var statusCounts = _context.Equipment_table
+                .Where(x => x.fld_passFail == "PASS" && x.fld_stat == "OK" && (x.fld_division.ToUpper() == "Cooling" || x.fld_division.ToUpper() == "UPS" || x.fld_division.ToUpper() == "Servo"))
+                .GroupBy(x => x.fld_division)
+                .Select(group => new
+                {
+                    Status = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+
+            // Add the counts to ViewData for access in the View
+            ViewData["COOLING"] = statusCounts.FirstOrDefault(x => x.Status == "Cooling")?.Count ?? 0;
+            ViewData["UPS"] = statusCounts.FirstOrDefault(x => x.Status == "UPS")?.Count ?? 0;
+            ViewData["SERVO"] = statusCounts.FirstOrDefault(x => x.Status == "Servo")?.Count ?? 0;
+
+            // Sum the counts for additional statuses
+            ViewData["TotalOtherStatuses"] = (int)ViewData["Cooling"] + (int)ViewData["UPS"] + (int)ViewData["Servo"];
+
 
             ViewBag.Category = GetCategory();
             ViewBag.EqpCode = GetEqpCode();
@@ -92,9 +111,9 @@ namespace Calibration_Management_System.Controllers
                     x.fld_supplierExternal.Contains(searchValue) ||
                     x.fld_comment.Contains(searchValue) ||
                     x.fld_appStandardEqp.Contains(searchValue) ||
-                    x.fld_pathIMG.Contains(searchValue) ||
-                    x.fld_pathDoc.Contains(searchValue) ||
-                    x.fld_stat.Contains(searchValue) ||
+                    //x.fld_pathIMG.Contains(searchValue) ||
+                    //x.fld_pathDoc.Contains(searchValue) ||
+                    //x.fld_stat.Contains(searchValue) ||
                     x.fld_calibResult.Contains(searchValue)
                 // ...other fields here
                 );

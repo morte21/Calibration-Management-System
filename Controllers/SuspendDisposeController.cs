@@ -62,6 +62,22 @@ namespace Calibration_Management_System.Controllers
                 .Take(0)
                 .ToList();
 
+
+            // Count the occurrences of each status
+            var statusCounts = _context.SuspendDispose_table
+                .Where(x => x.fld_reqStatus.ToUpper() == "SUSPENDED")
+                .GroupBy(x => x.fld_reqStatus)
+                .Select(group => new
+                {
+                    Status = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+
+            // Add the counts to ViewData for access in the View
+            ViewData["TotalOtherStatuses"] = statusCounts.FirstOrDefault(x => x.Status == "SUSPENDED")?.Count ?? 0;
+
+
             return View(SusDisRegistration);
 
         }
@@ -757,6 +773,21 @@ namespace Calibration_Management_System.Controllers
                 .OrderByDescending(x => x.id) // Assuming 'id' is the ID field
                 .Take(0)
                 .ToList();
+
+
+            // Count the occurrences of each status
+            var statusCounts = _context.SuspendDispose_table
+                .Where(x => x.fld_reqStatus.ToUpper() == "DISPOSED")
+                .GroupBy(x => x.fld_reqStatus)
+                .Select(group => new
+                {
+                    Status = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+
+            // Add the counts to ViewData for access in the View
+            ViewData["TotalOtherStatuses"] = statusCounts.FirstOrDefault(x => x.Status == "DISPOSED")?.Count ?? 0;
             return View(SusDisRegistration);
         }
 
