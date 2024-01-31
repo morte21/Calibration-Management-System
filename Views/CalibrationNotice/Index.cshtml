@@ -27,8 +27,8 @@
                     <th hidden>@Html.DisplayNameFor(model => model.fld_pathJIG)</th>
                     <th width="150px">@Html.DisplayNameFor(model => model.fld_stat)</th>
                     <th width="150px">@Html.DisplayNameFor(model => model.fld_dateApproved)</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibMonth)</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibYear)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibMonth)</th>
+                    <th>@Html.DisplayNameFor(model => model.fld_calibYear)</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,23 +45,12 @@
                         <td hidden>@Html.DisplayFor(modelItem => item.fld_pathJIG)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_stat)</td>
                         <td>@Html.DisplayFor(modelItem => item.fld_dateApproved)</td>
-                        <td hidden>@Html.DisplayFor(modelItem => item.fld_calibMonth)</td>
-                        <td hidden>@Html.DisplayFor(modelItem => item.fld_calibYear)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_calibMonth)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fld_calibYear)</td>
                     </tr>
                 }
             </tbody>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th>@Html.DisplayNameFor(model => model.fld_dateCreated)</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathEQP)</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.fld_pathJIG)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_stat)</th>
-                    <th>@Html.DisplayNameFor(model => model.fld_dateApproved)</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibMonth)</th>
-                    <th hidden>@Html.DisplayNameFor(model => model.fld_calibYear)</th>
-                </tr>
-            </tfoot>
+            
         </table>
     </div>
 </div>
