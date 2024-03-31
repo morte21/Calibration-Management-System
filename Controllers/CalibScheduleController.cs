@@ -199,7 +199,7 @@ namespace Calibration_Management_System.Controllers
                 .Select(n =>
                 new SelectListItem
                 {
-                    Value = n.Months_.ToString(),
+                    Value = n.Id.ToString(),
                     Text = n.Months_
                 }).ToList();
 

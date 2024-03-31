@@ -29,7 +29,7 @@ namespace Calibration_Management_System.Models
         public async Task<List<EquipmentRegistration>> GetEquipmentByMonthAndYear(string selectedMonth, string selectedYear)
         {
             return await _context.Equipment_table
-                .Where(e => e.fld_calibYear == selectedYear && e.fld_calibMonth == selectedMonth)
+                .Where(e => e.fld_nextCalibYear == selectedYear && e.fld_nextCalibMonth == selectedMonth)
                 .ToListAsync();
         }
     }
